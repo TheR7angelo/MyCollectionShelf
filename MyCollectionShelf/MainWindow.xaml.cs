@@ -54,9 +54,10 @@ namespace MyCollectionShelf
 
             if (result.BarcodeFormat != BarcodeFormat.EAN_13) return;
 
-            // await api.GetCovers(result.Text, "test.jpg", EOpenLibrarySize.Medium);
-            await api.GetBookInformation(result.Text);
+            var book = await api.GetBookInformation(result.Text);
             
+            await api.GetCovers(result.Text, $"{book?.Title}.jpg", EOpenLibrarySize.Medium);
+
             Console.WriteLine("cover download");
         }
     }
