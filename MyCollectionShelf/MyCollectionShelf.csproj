@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MyCollectionShelf.Camera\MyCollectionShelf.Camera.csproj" />
+      <ProjectReference Include="..\MyCollectionShelf.WebApi\MyCollectionShelf.WebApi.csproj" />
     </ItemGroup>
 
 </Project>

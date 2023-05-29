@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using MyCollectionShelf.Camera.Object.Static_Class;
+using MyCollectionShelf.WebApi.OpenLibrary;
 using ZXing;
 using ZXing.Common;
 
@@ -45,9 +46,18 @@ namespace MyCollectionShelf
             VideoPreview.StartCamera(devices.First());
         }
 
-        private void VideoPreviewResultFound(Camera.Ui.Camera sender, Result result)
+        private async void VideoPreviewResultFound(Camera.Ui.Camera sender, Result result)
         {
             Console.WriteLine(result.Text);
+
+            var api = new OpenLibraryApi();
+
+            if (result.BarcodeFormat != BarcodeFormat.EAN_13) return;
+
+            // await api.GetCovers(result.Text, "test.jpg", EOpenLibrarySize.Medium);
+            await api.GetBookInformation(result.Text);
+            
+            Console.WriteLine("cover download");
         }
     }
 }
