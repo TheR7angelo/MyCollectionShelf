@@ -7,7 +7,9 @@
              mc:Ignorable="d">
     
     <Grid>
+        
         <Image x:Name="Image" Stretch="Uniform" />
+        
     </Grid>
     
 </UserControl>
