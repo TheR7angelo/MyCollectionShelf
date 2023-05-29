@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenCvSharp;
+﻿using MyCollectionShelf.Camera.Object.Static_Class;
 
 namespace MyCollectionShelf
 {
@@ -11,19 +9,9 @@ namespace MyCollectionShelf
         {
             InitializeComponent();
 
-            var lst = new List<VideoCapture>();
+            var devices = CameraHelper.GetAvailableCameras();
 
-            var i = 0;
-            while (true)
-            {
-                using var capture = new VideoCapture(i);
-                if (!capture.IsOpened()) break;
-                lst.Add(capture);
-                i++;
-                
-            }
             
-            Console.WriteLine(lst.Count);
         }
     }
 }
