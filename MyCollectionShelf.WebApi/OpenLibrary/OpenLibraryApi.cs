@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using MyCollectionShelf.WebApi.OpenLibrary.Class;
+﻿using MyCollectionShelf.WebApi.OpenLibrary.Class;
 using Newtonsoft.Json;
 
 namespace MyCollectionShelf.WebApi.OpenLibrary;
@@ -8,33 +7,45 @@ public class OpenLibraryApi
 {
     private static Uri BaseInformationIsbnApi => new("https://openlibrary.org/isbn/");
     private static Uri BaseCoverIsbnApi => new("https://covers.openlibrary.org/b/isbn/");
-    private HttpClient Client { get; }
+    private HttpClient Client { get; set; } = new();
+    
+    private string? UserAgent { get; set; }
     
     public OpenLibraryApi(string userAgent)
     {
-        Client = new HttpClient();
-        Client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+        UserAgent = userAgent;
     }
     
     public OpenLibraryApi()
     {
-        Client = new HttpClient();
+        
     }
 
-    public async Task GetBookInformation(string isbn13)
+    private void SetHttpClient()
     {
+        Client = new HttpClient();
+        if (UserAgent is null) return;
+        {
+            Client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
+        }
+    }
+
+    public async Task<Book?> GetBookInformation(string isbn13)
+    {
+        SetHttpClient();
         Client.BaseAddress = BaseInformationIsbnApi;
         var message = await Client.GetAsync($"{isbn13}.json");
 
-        if (!message.IsSuccessStatusCode) return;
+        if (!message.IsSuccessStatusCode) return null;
 
         var json = await message.Content.ReadAsStringAsync();
 
-        var obj = JsonConvert.DeserializeObject<JsonBook>(json);
+        return JsonConvert.DeserializeObject<Book>(json);
     }
 
     public async Task GetCovers(string isbn13, string filePath, EOpenLibrarySize openLibrarySize)
     {
+        SetHttpClient();
         Client.BaseAddress = BaseCoverIsbnApi;
 
         var size = openLibrarySize.ToString()[0];
