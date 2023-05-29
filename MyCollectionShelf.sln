@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf", "MyColl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Camera", "MyCollectionShelf.Camera\MyCollectionShelf.Camera.csproj", "{9DF05099-C7CB-4EAC-9E7A-AEE082DDE3A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.WebApi", "MyCollectionShelf.WebApi\MyCollectionShelf.WebApi.csproj", "{00025E10-6C6F-43E8-9B10-8B0527C5398F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{9DF05099-C7CB-4EAC-9E7A-AEE082DDE3A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DF05099-C7CB-4EAC-9E7A-AEE082DDE3A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DF05099-C7CB-4EAC-9E7A-AEE082DDE3A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00025E10-6C6F-43E8-9B10-8B0527C5398F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00025E10-6C6F-43E8-9B10-8B0527C5398F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00025E10-6C6F-43E8-9B10-8B0527C5398F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00025E10-6C6F-43E8-9B10-8B0527C5398F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
