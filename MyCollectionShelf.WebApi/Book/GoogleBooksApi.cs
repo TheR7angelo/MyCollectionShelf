@@ -4,11 +4,11 @@ namespace MyCollectionShelf.WebApi.Book;
 
 public class GoogleBooksApi : IBookApi
 {
-    private static Uri BaseInformationIsbnApi { get; } = new Uri("https://www.googleapis.com/books/v1/volumes?q=isbn:");
+    private static Uri BaseInformationIsbnApi { get; } = new("https://www.googleapis.com/books/v1/volumes?q=isbn:");
 
     private string? UserAgent { get; set; }
     
-    public GoogleBooksApi(string? userAgent)
+    public GoogleBooksApi(string? userAgent=null)
     {
         UserAgent = userAgent;
     }
@@ -16,9 +16,8 @@ public class GoogleBooksApi : IBookApi
     public async Task GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
-        client.BaseAddress = BaseInformationIsbnApi;
         
-        var message = await client.GetAsync($"{isbn13}");
+        var message = await client.GetAsync($"{BaseInformationIsbnApi}{isbn13}");
 
         if (!message.IsSuccessStatusCode) return;
 
