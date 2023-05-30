@@ -5,9 +5,9 @@ public class TestGoogleBooksApi
     [Fact]
     private async void GetInformationTest()
     {
-        const string isbn = "9782072934902";
+        const string isbn = "9782343129822";
 
         var api = new MyCollectionShelf.WebApi.Book.GoogleBooksApi();
-        await api.GetBookInformation(isbn);
+        var book = await api.GetBookInformation(isbn);
     }
 }

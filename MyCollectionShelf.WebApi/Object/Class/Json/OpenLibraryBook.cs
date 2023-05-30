@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using MyCollectionShelf.WebApi.Object.Class.Json.Converter;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -43,7 +44,7 @@ public class OpenLibraryBook
     public List<string>? Isbn10 { get; set; }
 
     [JsonProperty("publish_date")]
-    [JsonConverter(typeof(DateTimeFormatedConverter))]
+    [JsonConverter(typeof(DateTimeConverter))]
     public DateTime? PublishDate { get; set; }
 
     [JsonProperty("key")] 
@@ -98,53 +99,6 @@ public class KeyValueConverter : JsonConverter<string>
             var obj = JObject.Load(reader);
             var valueToken = obj["value"];
             return valueToken?.Value<string>() ?? existingValue;
-        }
-        else
-        {
-            return existingValue;
-        }
-    }
-}
-
-public class DateTimeConverter : JsonConverter<DateTime>
-{
-    public override DateTime ReadJson(JsonReader reader, Type objectType, DateTime existingValue, bool hasExistingValue,
-        JsonSerializer serializer)
-    {
-        if (reader.TokenType == JsonToken.StartObject)
-        {
-            var obj = JObject.Load(reader);
-            var valueToken = obj["value"];
-            return valueToken?.Value<DateTime>() ?? existingValue;
-        }
-        else
-        {
-            return existingValue;
-        }
-    }
-
-    public override void WriteJson(JsonWriter writer, DateTime value, JsonSerializer serializer)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-public class DateTimeFormatedConverter : JsonConverter<DateTime?>
-{
-    private const string DateFormat = "MMM dd, yyyy";
-
-    public override void WriteJson(JsonWriter writer, DateTime? value, JsonSerializer serializer)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override DateTime? ReadJson(JsonReader reader, Type objectType, DateTime? existingValue, bool hasExistingValue,
-        JsonSerializer serializer)
-    {
-        if (reader.TokenType == JsonToken.String)
-        {
-            var dateStr = reader.Value?.ToString();
-            return string.IsNullOrEmpty(dateStr) ? null : DateTime.ParseExact(dateStr, DateFormat, new CultureInfo("EN-en"));
         }
         else
         {
