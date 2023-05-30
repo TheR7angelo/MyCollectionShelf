@@ -1,6 +1,6 @@
 ﻿namespace MyCollectionShelf.Camera.Object.Structures;
 
-public struct SVideoCaptureEnum
+public struct VideoCapture
 {
     public string Name { get; init; }
     public int Index { get; init; }

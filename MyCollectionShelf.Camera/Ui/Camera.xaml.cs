@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows;
 using System.Windows.Threading;
-using MyCollectionShelf.Camera.Object.Structures;
 using OpenCvSharp;
 using OpenCvSharp.WpfExtensions;
 using ZXing;
@@ -37,7 +36,7 @@ public partial class Camera : IDisposable
     }
 
     private DispatcherTimer Timer { get; } = new();
-    private VideoCapture? Capture { get; set; }
+    private OpenCvSharp.VideoCapture? Capture { get; set; }
 
     public double Fps
     {
@@ -75,17 +74,17 @@ public partial class Camera : IDisposable
         Timer.Tick += TimerOnTick;
     }
 
-    public void StartCamera(double fps, SVideoCaptureEnum videoCaptureEnum)
+    public void StartCamera(double fps, Object.Structures.VideoCapture videoCapture)
     {
-        Capture = new VideoCapture(videoCaptureEnum.Index);
+        Capture = new OpenCvSharp.VideoCapture(videoCapture.Index);
         Fps = fps;
 
         StartCapture();
     }
 
-    public void StartCamera(SVideoCaptureEnum videoCaptureEnum)
+    public void StartCamera(Object.Structures.VideoCapture videoCapture)
     {
-        Capture = new VideoCapture(videoCaptureEnum.Index);
+        Capture = new OpenCvSharp.VideoCapture(videoCapture.Index);
         StartCapture();
     }
 
