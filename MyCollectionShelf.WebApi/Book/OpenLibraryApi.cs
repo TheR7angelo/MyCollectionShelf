@@ -2,7 +2,7 @@
 using MyCollectionShelf.WebApi.Object.Enum;
 using Newtonsoft.Json;
 
-namespace MyCollectionShelf.WebApi.Book.OpenLibrary;
+namespace MyCollectionShelf.WebApi.Book;
 
 public class OpenLibraryApi
 {
