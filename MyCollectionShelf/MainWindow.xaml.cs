@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using MyCollectionShelf.Camera.Object.Static_Class;
-using MyCollectionShelf.WebApi.OpenLibrary;
+using MyCollectionShelf.WebApi.Book.OpenLibrary;
+using MyCollectionShelf.WebApi.Object.Enum;
 using ZXing;
 using ZXing.Common;
 

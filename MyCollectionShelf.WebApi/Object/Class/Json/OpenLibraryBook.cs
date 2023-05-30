@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MyCollectionShelf.WebApi.OpenLibrary.Class;
+namespace MyCollectionShelf.WebApi.Object.Class.Json;
 
-public class Book
+public class OpenLibraryBook
 {
     [JsonProperty("publishers")] 
     public List<string>? Publishers { get; set; }

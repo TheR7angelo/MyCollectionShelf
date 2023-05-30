@@ -1,4 +1,4 @@
-﻿namespace MyCollectionShelf.WebApi.OpenLibrary;
+﻿namespace MyCollectionShelf.WebApi.Object.Enum;
 
 public enum EOpenLibrarySize
 {

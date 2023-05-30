@@ -1,7 +1,8 @@
-﻿using MyCollectionShelf.WebApi.OpenLibrary.Class;
+﻿using MyCollectionShelf.WebApi.Object.Class.Json;
+using MyCollectionShelf.WebApi.Object.Enum;
 using Newtonsoft.Json;
 
-namespace MyCollectionShelf.WebApi.OpenLibrary;
+namespace MyCollectionShelf.WebApi.Book.OpenLibrary;
 
 public class OpenLibraryApi
 {
@@ -30,7 +31,7 @@ public class OpenLibraryApi
         }
     }
 
-    public async Task<Book?> GetBookInformation(string isbn13)
+    public async Task<OpenLibraryBook?> GetBookInformation(string isbn13)
     {
         SetHttpClient();
         Client.BaseAddress = BaseInformationIsbnApi;
@@ -40,7 +41,7 @@ public class OpenLibraryApi
 
         var json = await message.Content.ReadAsStringAsync();
 
-        return JsonConvert.DeserializeObject<Book>(json);
+        return JsonConvert.DeserializeObject<OpenLibraryBook>(json);
     }
 
     public async Task GetCovers(string isbn13, string filePath, EOpenLibrarySize openLibrarySize)
