@@ -57,7 +57,7 @@ namespace MyCollectionShelf
 
             var book = await api.GetBookInformation(result.Text);
             
-            await api.GetCovers(result.Text, $"{book?.Title}.jpg", EOpenLibrarySize.Medium);
+            await api.GetCovers(result.Text, $"{book?.Title}.jpg", EBookSize.Medium);
 
             Console.WriteLine("cover download");
         }
