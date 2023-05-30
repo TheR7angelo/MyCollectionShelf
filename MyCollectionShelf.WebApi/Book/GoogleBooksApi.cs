@@ -1,4 +1,5 @@
 ﻿using MyCollectionShelf.WebApi.Object.Class.Json;
+using MyCollectionShelf.WebApi.Object.Enum;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 using Newtonsoft.Json;
 
@@ -33,5 +34,10 @@ public class GoogleBooksApi : IBookApi
         
         json = await message.Content.ReadAsStringAsync();
         return JsonConvert.DeserializeObject<GoogleBooksBook>(json);
+    }
+
+    public async Task GetCover(GoogleBooksBook book, EBookSize bookSize)
+    {
+        // todo à finir
     }
 }
