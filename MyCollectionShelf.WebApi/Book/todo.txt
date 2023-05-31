@@ -1,3 +1,0 @@
-﻿isbn search => https://isbnsearch.org/isbn/{isbn value}
-
-https://docs.google.com/spreadsheets/d/1Qh96hiwk0K4XSeKgq8ZkfOQt936_lximypODYRSag8w/edit#gid=0
