@@ -30,6 +30,7 @@ public class OpenLibraryApi : IBookApi
 
         var openLibraryBook = JsonConvert.DeserializeObject<OpenLibraryBook>(json);
 
+        // todo à refaire
         return new Object.Class.Book
         {
             // Isbn13 = isbn13,
