@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MyCollectionShelf.WebApi.Object.Book.Class.Json.Converter;
 
@@ -15,8 +16,20 @@ internal class DateTimeConverter : JsonConverter<DateTime?>
     public override DateTime? ReadJson(JsonReader reader, Type objectType, DateTime? existingValue, bool hasExistingValue,
         JsonSerializer serializer)
     {
-        if (reader.TokenType != JsonToken.String) return null;
-        var dateStr = (reader.Value?.ToString() ?? string .Empty).Trim();
+        string? dateStr = null;
+        switch (reader.TokenType)
+        {
+            case JsonToken.String:
+                dateStr = (reader.Value?.ToString() ?? string .Empty).Trim();
+                break;
+            case JsonToken.StartObject:
+                var temp = JObject.Load(reader);
+                dateStr = temp["value"]?.ToString();
+                break;
+            default:
+                Console.WriteLine(reader.TokenType);
+                break;
+        }
 
         if (string.IsNullOrEmpty(dateStr)) return null;
 

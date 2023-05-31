@@ -16,7 +16,5 @@ public class TestOpenLibraryApi
         var success = await book?.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;
         
         Assert.True(success);
-        
-        //todo FONCTIONNE PAS à CAUSE D'UNE DATE
     }
 }
