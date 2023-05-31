@@ -1,47 +1,36 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 
 namespace MyCollectionShelf.WebApi.Object.Book.Class;
 
-public class BookInformation : INotifyPropertyChanged
+public class Book : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    private string? _isbn13;
+    private BookInformations _bookInformations = new();
 
-    public string? Isbn13
+    public BookInformations BookInformations
     {
-        get => _isbn13;
+        get => _bookInformations;
         set
         {
-            _isbn13 = value;
+            _bookInformations = value;
             OnPropertyChanged();
         }
     }
 
-    private string? _title;
+    private BookNote _bookNote = new();
 
-    public string? Title
+    public BookNote BookNote
     {
-        get => _title;
+        get => _bookNote;
         set
         {
-            _title = value;
-            OnPropertyChanged();
-        }
-    }
-    
-    private BookCover? _bookCover;
-
-    public BookCover? BookCover
-    {
-        get => _bookCover;
-        set
-        {
-            _bookCover = value;
+            _bookNote = value;
             OnPropertyChanged();
         }
     }
