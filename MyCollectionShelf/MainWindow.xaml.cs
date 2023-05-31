@@ -5,7 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using MyCollectionShelf.Camera.Object.Static_Class;
 using MyCollectionShelf.WebApi.Book;
-using MyCollectionShelf.WebApi.Object.Enum;
+using MyCollectionShelf.WebApi.Object.Book.Enum;
+using MyCollectionShelf.WebApi.Object.Book.Static_Class;
 using ZXing;
 using ZXing.Common;
 
@@ -56,8 +57,8 @@ namespace MyCollectionShelf
             if (result.BarcodeFormat != BarcodeFormat.EAN_13) return;
 
             var book = await api.GetBookInformation(result.Text);
-            
-            await api.GetCovers(result.Text, $"{book?.Title}.jpg", EBookSize.Medium);
+
+            var success = await book?.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, $"{book.Title}.jpg")!;
 
             Console.WriteLine("cover download");
         }
