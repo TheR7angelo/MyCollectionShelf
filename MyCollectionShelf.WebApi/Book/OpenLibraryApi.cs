@@ -1,5 +1,5 @@
-﻿using MyCollectionShelf.WebApi.Object.Class.Json;
-using MyCollectionShelf.WebApi.Object.Enum;
+﻿using MyCollectionShelf.WebApi.Object.Book.Class;
+using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 using Newtonsoft.Json;
 
@@ -17,7 +17,7 @@ public class OpenLibraryApi : IBookApi
         UserAgent = userAgent;
     }
 
-    public async Task<OpenLibraryBook?> GetBookInformation(string isbn13)
+    public async Task<BookInformation?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
         client.BaseAddress = BaseInformationIsbnApi;
@@ -28,44 +28,22 @@ public class OpenLibraryApi : IBookApi
 
         var json = await message.Content.ReadAsStringAsync();
 
-        return JsonConvert.DeserializeObject<OpenLibraryBook>(json);
-    }
+        var openLibraryBook = JsonConvert.DeserializeObject<OpenLibraryBook>(json);
 
-    public async Task GetCovers(string isbn13, string filePath, EBookSize bookSize)
-    {
-        using var client = WebClient.GetWebClient(UserAgent);
-        client.BaseAddress = BaseCoverIsbnApi;
-
-        bookSize = GetBookSize(bookSize);
-        
-        var size = bookSize.ToString()[0];
-
-        var message = await client.GetAsync($"{isbn13}-{size}.jpg");
-        if (!message.IsSuccessStatusCode) return;
-
-        var imageBytes = await message.Content.ReadAsByteArrayAsync();
-        await File.WriteAllBytesAsync(filePath, imageBytes);
-    }
-
-    private static EBookSize GetBookSize(EBookSize bookSize)
-    {
-        switch (bookSize)
+        return new BookInformation
         {
-            case EBookSize.SmallThumbnail:
-            case EBookSize.Thumbnail:
-                bookSize = EBookSize.Small;
-                break;
-            case EBookSize.Small:
-            case EBookSize.Medium:
-            case EBookSize.Large:
-                break;
-            case EBookSize.ExtraLarge:
-                bookSize = EBookSize.Large;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(bookSize), bookSize, null);
-        }
-
-        return bookSize;
+            Isbn13 = isbn13,
+            Title = openLibraryBook?.Title,
+            BookCover = new BookCover
+            {
+                SmallThumbnail = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-S.jpg"),
+                Thumbnail = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-S.jpg"),
+                Small = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-S.jpg"),
+                Medium = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-M.jpg"),
+                Large = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-L.jpg"),
+                ExtraLarge = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-L.jpg"),
+            }
+        };
     }
+
 }
