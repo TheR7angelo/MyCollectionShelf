@@ -37,6 +37,7 @@ public class GoogleBooksApi : IBookApi
 
         return new BookInformation
         {
+            Isbn13 = isbn13,
             Title = googleBook?.VolumeInfo?.Title,
             BookCover = new BookCover
             {
