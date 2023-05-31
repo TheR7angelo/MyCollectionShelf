@@ -36,7 +36,7 @@ public partial class Camera : IDisposable
     }
 
     private DispatcherTimer Timer { get; } = new();
-    private OpenCvSharp.VideoCapture? Capture { get; set; }
+    private VideoCapture? Capture { get; set; }
 
     public double Fps
     {
@@ -68,7 +68,7 @@ public partial class Camera : IDisposable
         {
             Options = BarcodeOptions
         };
-
+        
         InitializeComponent();
 
         Timer.Tick += TimerOnTick;
@@ -76,7 +76,7 @@ public partial class Camera : IDisposable
 
     public void StartCamera(double fps, Object.Structures.VideoCapture videoCapture)
     {
-        Capture = new OpenCvSharp.VideoCapture(videoCapture.Index);
+        Capture = new VideoCapture(videoCapture.Index);
         Fps = fps;
 
         StartCapture();
