@@ -60,7 +60,7 @@ namespace MyCollectionShelf
 
             var success = await book?.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, $"{book.Title}.jpg")!;
 
-            Console.WriteLine("cover download");
+            Console.WriteLine($"cover download {success}");
         }
     }
 }

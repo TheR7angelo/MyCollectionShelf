@@ -8,7 +8,7 @@ namespace MyCollectionShelf.WebApi.Book;
 public class OpenLibraryApi : IBookApi
 {
     private static Uri BaseInformationIsbnApi => new("https://openlibrary.org/isbn/");
-    private static Uri BaseCoverIsbnApi => new("https://covers.openlibrary.org/b/isbn/");
+    private const string BaseCoverIsbnApi = "https://covers.openlibrary.org/b/isbn/";
     
     private string? UserAgent { get; set; }
     
@@ -36,12 +36,12 @@ public class OpenLibraryApi : IBookApi
             Title = openLibraryBook?.Title,
             BookCover = new BookCover
             {
-                SmallThumbnail = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-S.jpg"),
-                Thumbnail = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-S.jpg"),
-                Small = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-S.jpg"),
-                Medium = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-M.jpg"),
-                Large = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-L.jpg"),
-                ExtraLarge = new Uri($"https://covers.openlibrary.org/b/isbn/{isbn13}-L.jpg"),
+                SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+                Thumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+                Small = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+                Medium = new Uri($"{BaseCoverIsbnApi}{isbn13}-M.jpg"),
+                Large = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
+                ExtraLarge = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
             }
         };
     }
