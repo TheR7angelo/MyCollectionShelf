@@ -1,6 +1,6 @@
-﻿namespace MyCollectionShelf.WebApi.Object.Enum;
+﻿namespace MyCollectionShelf.WebApi.Object.Book.Enum;
 
-public enum EBookSize
+public enum EBookCoverSize
 {
     SmallThumbnail,
     Thumbnail,

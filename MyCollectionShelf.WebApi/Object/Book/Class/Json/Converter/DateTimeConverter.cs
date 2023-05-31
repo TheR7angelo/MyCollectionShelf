@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using Newtonsoft.Json;
 
-namespace MyCollectionShelf.WebApi.Object.Class.Json.Converter;
+namespace MyCollectionShelf.WebApi.Object.Book.Class.Json.Converter;
 
 internal class DateTimeConverter : JsonConverter<DateTime?>
 {

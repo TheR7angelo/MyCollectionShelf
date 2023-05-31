@@ -1,7 +1,7 @@
-﻿using MyCollectionShelf.WebApi.Object.Class.Json.Converter;
+﻿using MyCollectionShelf.WebApi.Object.Book.Class.Json.Converter;
 using Newtonsoft.Json;
 
-namespace MyCollectionShelf.WebApi.Object.Class.Json;
+namespace MyCollectionShelf.WebApi.Object.Book.Class.Json;
 
 public class GoogleBooksBook
 {
