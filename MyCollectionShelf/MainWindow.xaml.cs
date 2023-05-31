@@ -18,7 +18,7 @@ namespace MyCollectionShelf
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        
+
         private DecodingOptions _decodingOption = new();
 
         public DecodingOptions DecodingOptions
@@ -43,7 +43,7 @@ namespace MyCollectionShelf
             InitializeComponent();
 
             VideoPreview.ResultFound += VideoPreviewResultFound;
-            
+
             var devices = CameraHelper.GetAvailableCameras();
             VideoPreview.StartCamera(devices.First());
         }
@@ -58,7 +58,8 @@ namespace MyCollectionShelf
 
             var book = await api.GetBookInformation(result.Text);
 
-            var success = await book?.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, $"{book.Title}.jpg")!;
+            var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge,
+                $"{book.BookInformations.Title}.jpg")!;
 
             Console.WriteLine($"cover download {success}");
         }

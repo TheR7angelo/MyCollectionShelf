@@ -50,7 +50,7 @@ public class OpenLibraryBook
     public string? Key { get; set; }
 
     [JsonProperty("authors")] 
-    public List<Author>? Authors { get; set; }
+    public List<AuthorOpenLibrary>? Authors { get; set; }
 
     [JsonProperty("latest_revision")] 
     public int? LatestRevision { get; set; }
@@ -65,7 +65,7 @@ public class OpenLibraryBook
     public int Revision { get; set; }
 }
 
-public class Author
+public class AuthorOpenLibrary
 {
     [JsonProperty("key")] 
     public string? Key { get; set; }

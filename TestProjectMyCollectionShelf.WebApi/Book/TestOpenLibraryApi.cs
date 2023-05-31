@@ -13,7 +13,7 @@ public class TestOpenLibraryApi
         var api = new MyCollectionShelf.WebApi.Book.OpenLibraryApi();
         var book = await api.GetBookInformation(isbn);
 
-        var success = await book?.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;
+        var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;
         
         Assert.True(success);
     }
