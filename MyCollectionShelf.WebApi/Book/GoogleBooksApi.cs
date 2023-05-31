@@ -1,11 +1,12 @@
-﻿using MyCollectionShelf.WebApi.Object.Book.Class;
+﻿using System.Text.RegularExpressions;
+using MyCollectionShelf.WebApi.Object.Book.Class;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 using Newtonsoft.Json;
 
 namespace MyCollectionShelf.WebApi.Book;
 
-public class GoogleBooksApi : IBookApi
+public partial class GoogleBooksApi : IBookApi
 {
     private static Uri BaseInformationIsbnApi { get; } = new("https://www.googleapis.com/books/v1/volumes?q=isbn:");
 
@@ -16,7 +17,7 @@ public class GoogleBooksApi : IBookApi
         UserAgent = userAgent;
     }
     
-    public async Task<BookInformation?> GetBookInformation(string isbn13)
+    public async Task<Object.Book.Class.Book?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
         
@@ -35,19 +36,50 @@ public class GoogleBooksApi : IBookApi
         json = await message.Content.ReadAsStringAsync();
         var googleBook = JsonConvert.DeserializeObject<GoogleBooksBook>(json);
 
-        return new BookInformation
+        var authors = new List<BookAuthors>();
+        foreach (var authorStr in googleBook?.VolumeInfo?.Authors ?? new List<string>())
         {
-            Isbn13 = isbn13,
-            Title = googleBook?.VolumeInfo?.Title,
-            BookCover = new BookCover
+            var author = MyRegex().Matches(authorStr).Select(s => s.Value).ToList();
+
+            while (author.Count < 2) author.Add(string.Empty);
+            
+            var name = author[0];
+            var familyName = string.Join(' ', author.Skip(1));
+            
+            authors.Add(new BookAuthors
             {
-                SmallThumbnail = googleBook?.VolumeInfo?.ImageLinks?.SmallThumbnail,
-                Thumbnail = googleBook?.VolumeInfo?.ImageLinks?.Thumbnail,
-                Small = googleBook?.VolumeInfo?.ImageLinks?.Small,
-                Medium = googleBook?.VolumeInfo?.ImageLinks?.Medium,
-                Large = googleBook?.VolumeInfo?.ImageLinks?.Large,
-                ExtraLarge = googleBook?.VolumeInfo?.ImageLinks?.ExtraLarge
+                Name = name,
+                FamilyName = familyName
+            });
+        }
+        
+        return new Object.Book.Class.Book
+        {
+            BookInformations = new BookInformations
+            {
+                Title = googleBook?.VolumeInfo?.Title,
+                Authors = authors,
+                BookCover = new BookCover
+                {
+                    SmallThumbnail = googleBook?.VolumeInfo?.ImageLinks?.SmallThumbnail,
+                    Thumbnail = googleBook?.VolumeInfo?.ImageLinks?.Thumbnail,
+                    Small = googleBook?.VolumeInfo?.ImageLinks?.Small,
+                    Medium = googleBook?.VolumeInfo?.ImageLinks?.Medium,
+                    Large = googleBook?.VolumeInfo?.ImageLinks?.Large,
+                    ExtraLarge = googleBook?.VolumeInfo?.ImageLinks?.ExtraLarge
+                },
+                Summarize = googleBook?.VolumeInfo?.Description,
+                // Series = "", // L'API ne le fournit pas
+                // TomeNumber = 0, // L'API ne le fournit pas
+                Genre = new List<string>(),
+                PublishDate = googleBook?.VolumeInfo?.PublishedDate,
+                Editor = googleBook?.VolumeInfo?.Publisher,
+                PageNumber = googleBook?.VolumeInfo?.PageCount,
+                Isbn = isbn13
             }
         };
     }
+
+    [GeneratedRegex(@"(?=[A-Z])\w+")]
+    private static partial Regex MyRegex();
 }

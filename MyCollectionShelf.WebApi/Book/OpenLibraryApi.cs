@@ -17,7 +17,7 @@ public class OpenLibraryApi : IBookApi
         UserAgent = userAgent;
     }
 
-    public async Task<BookInformation?> GetBookInformation(string isbn13)
+    public async Task<Object.Book.Class.Book?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
         client.BaseAddress = BaseInformationIsbnApi;
@@ -30,19 +30,19 @@ public class OpenLibraryApi : IBookApi
 
         var openLibraryBook = JsonConvert.DeserializeObject<OpenLibraryBook>(json);
 
-        return new BookInformation
+        return new Object.Book.Class.Book
         {
-            Isbn13 = isbn13,
-            Title = openLibraryBook?.Title,
-            BookCover = new BookCover
-            {
-                SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
-                Thumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
-                Small = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
-                Medium = new Uri($"{BaseCoverIsbnApi}{isbn13}-M.jpg"),
-                Large = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
-                ExtraLarge = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
-            }
+            // Isbn13 = isbn13,
+            // Title = openLibraryBook?.Title,
+            // BookCover = new BookCover
+            // {
+            //     SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+            //     Thumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+            //     Small = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+            //     Medium = new Uri($"{BaseCoverIsbnApi}{isbn13}-M.jpg"),
+            //     Large = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
+            //     ExtraLarge = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
+            // }
         };
     }
 
