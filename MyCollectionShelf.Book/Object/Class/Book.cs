@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 
-namespace MyCollectionShelf.WebApi.Object.Book.Class;
+namespace MyCollectionShelf.Book.Object.Class;
 
 public class Book : INotifyPropertyChanged
 {

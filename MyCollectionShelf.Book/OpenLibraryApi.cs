@@ -1,9 +1,9 @@
-﻿using MyCollectionShelf.WebApi.Object.Book.Class;
+﻿using MyCollectionShelf.WebApi.Book;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 using Newtonsoft.Json;
 
-namespace MyCollectionShelf.WebApi.Book;
+namespace MyCollectionShelf.Book;
 
 public class OpenLibraryApi : IBookApi
 {
@@ -17,7 +17,7 @@ public class OpenLibraryApi : IBookApi
         UserAgent = userAgent;
     }
 
-    public async Task<Object.Book.Class.Book?> GetBookInformation(string isbn13)
+    public async Task<Object.Class.Book?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
         client.BaseAddress = BaseInformationIsbnApi;
@@ -30,7 +30,7 @@ public class OpenLibraryApi : IBookApi
 
         var openLibraryBook = JsonConvert.DeserializeObject<OpenLibraryBook>(json);
 
-        return new Object.Book.Class.Book
+        return new Object.Class.Book
         {
             // Isbn13 = isbn13,
             // Title = openLibraryBook?.Title,

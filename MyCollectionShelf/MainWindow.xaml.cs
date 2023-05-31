@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Book;
+using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Camera.Object.Static_Class;
-using MyCollectionShelf.WebApi.Book;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
-using MyCollectionShelf.WebApi.Object.Book.Static_Class;
 using ZXing;
 using ZXing.Common;
 

@@ -23,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MyCollectionShelf.Book\MyCollectionShelf.Book.csproj" />
       <ProjectReference Include="..\MyCollectionShelf.WebApi\MyCollectionShelf.WebApi.csproj" />
     </ItemGroup>
 

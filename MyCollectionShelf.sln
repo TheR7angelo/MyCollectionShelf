@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.WebApi", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMyCollectionShelf.WebApi", "TestProjectMyCollectionShelf.WebApi\TestProjectMyCollectionShelf.WebApi.csproj", "{1CD53215-0EF1-42BE-9D3A-99454CD8425A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Book", "MyCollectionShelf.Book\MyCollectionShelf.Book.csproj", "{EA819049-010F-456B-AF9E-B3BCFFF5FC99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{1CD53215-0EF1-42BE-9D3A-99454CD8425A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD53215-0EF1-42BE-9D3A-99454CD8425A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD53215-0EF1-42BE-9D3A-99454CD8425A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

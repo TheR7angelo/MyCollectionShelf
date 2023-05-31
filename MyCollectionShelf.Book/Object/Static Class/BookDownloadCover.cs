@@ -1,8 +1,8 @@
-﻿using MyCollectionShelf.WebApi.Object.Book.Class;
+﻿using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 
-namespace MyCollectionShelf.WebApi.Object.Book.Static_Class;
+namespace MyCollectionShelf.Book.Object.Static_Class;
 
 public static class BookDownloadCover
 {

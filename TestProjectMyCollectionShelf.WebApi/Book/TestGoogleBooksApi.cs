@@ -1,5 +1,6 @@
-﻿using MyCollectionShelf.WebApi.Object.Book.Enum;
-using MyCollectionShelf.WebApi.Object.Book.Static_Class;
+﻿using MyCollectionShelf.Book;
+using MyCollectionShelf.Book.Object.Static_Class;
+using MyCollectionShelf.WebApi.Object.Book.Enum;
 
 namespace TestProjectMyCollectionShelf.WebApi.Book;
 
@@ -10,7 +11,7 @@ public class TestGoogleBooksApi
     {
         const string isbn = "9782092552988";
 
-        var api = new MyCollectionShelf.WebApi.Book.GoogleBooksApi();
+        var api = new GoogleBooksApi();
         var book = await api.GetBookInformation(isbn);
 
         var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;

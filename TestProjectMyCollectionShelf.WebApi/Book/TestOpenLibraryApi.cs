@@ -1,5 +1,6 @@
-﻿using MyCollectionShelf.WebApi.Object.Book.Enum;
-using MyCollectionShelf.WebApi.Object.Book.Static_Class;
+﻿using MyCollectionShelf.Book;
+using MyCollectionShelf.Book.Object.Static_Class;
+using MyCollectionShelf.WebApi.Object.Book.Enum;
 
 namespace TestProjectMyCollectionShelf.WebApi.Book;
 
@@ -10,7 +11,7 @@ public class TestOpenLibraryApi
     {
         const string isbn = "9780553381689";
 
-        var api = new MyCollectionShelf.WebApi.Book.OpenLibraryApi();
+        var api = new OpenLibraryApi();
         var book = await api.GetBookInformation(isbn);
 
         var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;

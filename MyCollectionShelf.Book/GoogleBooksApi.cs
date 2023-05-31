@@ -1,10 +1,11 @@
 ﻿using System.Text.RegularExpressions;
-using MyCollectionShelf.WebApi.Object.Book.Class;
+using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.WebApi.Book;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 using Newtonsoft.Json;
 
-namespace MyCollectionShelf.WebApi.Book;
+namespace MyCollectionShelf.Book;
 
 public partial class GoogleBooksApi : IBookApi
 {
@@ -17,7 +18,7 @@ public partial class GoogleBooksApi : IBookApi
         UserAgent = userAgent;
     }
     
-    public async Task<Object.Book.Class.Book?> GetBookInformation(string isbn13)
+    public async Task<MyCollectionShelf.Book.Object.Class.Book?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
         
@@ -53,7 +54,7 @@ public partial class GoogleBooksApi : IBookApi
             });
         }
         
-        return new Object.Book.Class.Book
+        return new MyCollectionShelf.Book.Object.Class.Book
         {
             BookInformations = new BookInformations
             {
