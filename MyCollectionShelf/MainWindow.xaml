@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Camera="clr-namespace:MyCollectionShelf.Camera.Ui;assembly=MyCollectionShelf.Camera"
+        xmlns:camera="clr-namespace:MyCollectionShelf.Camera.Ui;assembly=MyCollectionShelf.Camera"
         xmlns:local="clr-namespace:MyCollectionShelf"
         mc:Ignorable="d"    
         Title="MainWindow" Height="450" Width="800">
     
     <Grid>
         
-        <Camera:Camera x:Name="VideoPreview" 
+        <camera:Camera x:Name="VideoPreview" 
                        Fps="30" EnableBarCodeReader="True"
                        BarcodeOptions="{Binding DecodingOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                        RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
