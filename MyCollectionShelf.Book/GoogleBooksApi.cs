@@ -1,5 +1,5 @@
-﻿using System.Text.RegularExpressions;
-using MyCollectionShelf.Book.Object.Class;
+﻿using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.WebApi.Book;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace MyCollectionShelf.Book;
 
-public partial class GoogleBooksApi : IBookApi
+public class GoogleBooksApi : IBookApi
 {
     private static Uri BaseInformationIsbnApi { get; } = new("https://www.googleapis.com/books/v1/volumes?q=isbn:");
 
@@ -29,6 +29,7 @@ public partial class GoogleBooksApi : IBookApi
         var json = await messagePreview.Content.ReadAsStringAsync();
 
         var selfLink = JsonConvert.DeserializeObject<Root>(json)?.Items;
+        if (selfLink is null) return null;
         
         using var message = await client.GetAsync(selfLink?.First().SelfLink);
         
@@ -40,7 +41,7 @@ public partial class GoogleBooksApi : IBookApi
         var authors = new List<BookAuthors>();
         foreach (var authorStr in googleBook?.VolumeInfo?.Authors ?? new List<string>())
         {
-            var author = MyRegex().Matches(authorStr).Select(s => s.Value).ToList();
+            var author = authorStr.SplitAuthorName().ToList();
 
             while (author.Count < 2) author.Add(string.Empty);
             
@@ -84,7 +85,4 @@ public partial class GoogleBooksApi : IBookApi
             // }
         };
     }
-
-    [GeneratedRegex(@"(?=[A-Z])\w+")]
-    private static partial Regex MyRegex();
 }
