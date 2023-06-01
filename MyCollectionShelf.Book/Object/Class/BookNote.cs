@@ -46,9 +46,9 @@ public class BookNote : INotifyPropertyChanged
         }
     }
 
-    private decimal? _price;
+    private double? _price;
 
-    public decimal? Price
+    public double? Price
     {
         get => _price;
         set
