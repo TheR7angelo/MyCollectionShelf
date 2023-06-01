@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Camera", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.WebApi", "MyCollectionShelf.WebApi\MyCollectionShelf.WebApi.csproj", "{00025E10-6C6F-43E8-9B10-8B0527C5398F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMyCollectionShelf.WebApi", "TestProjectMyCollectionShelf.WebApi\TestProjectMyCollectionShelf.WebApi.csproj", "{1CD53215-0EF1-42BE-9D3A-99454CD8425A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMyCollectionShelf.Book", "TestProjectMyCollectionShelf.Book\TestProjectMyCollectionShelf.Book.csproj", "{1CD53215-0EF1-42BE-9D3A-99454CD8425A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Book", "MyCollectionShelf.Book\MyCollectionShelf.Book.csproj", "{EA819049-010F-456B-AF9E-B3BCFFF5FC99}"
 EndProject
