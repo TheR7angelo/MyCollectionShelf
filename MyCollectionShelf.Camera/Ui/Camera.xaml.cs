@@ -27,9 +27,9 @@ public partial class Camera : IDisposable
 
     public static readonly DependencyProperty BarcodeOptionsProperty =
         DependencyProperty.Register(nameof(BarcodeOptions), typeof(DecodingOptions), typeof(Camera),
-            new PropertyMetadata(new DecodingOptions { TryHarder = true }, PropertyDecodingOptionsChanged));
+            new PropertyMetadata(new DecodingOptions { TryHarder = true }, PropertyDecodingOptions_Changed));
 
-    private static void PropertyDecodingOptionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void PropertyDecodingOptions_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         var sender = d as Camera;
         sender!.BarcodeReader.Options = (DecodingOptions)e.NewValue;
@@ -84,7 +84,7 @@ public partial class Camera : IDisposable
 
     public void StartCamera(Object.Structures.VideoCapture videoCapture)
     {
-        Capture = new OpenCvSharp.VideoCapture(videoCapture.Index);
+        Capture = new VideoCapture(videoCapture.Index);
         StartCapture();
     }
 
