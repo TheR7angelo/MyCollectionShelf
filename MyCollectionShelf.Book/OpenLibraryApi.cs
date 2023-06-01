@@ -1,4 +1,5 @@
 ﻿using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.WebApi.Book;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
@@ -40,7 +41,7 @@ public class OpenLibraryApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = openLibraryBook?.Title,
-                // Authors = authors, // a faire
+                Authors = authors,
                 BookCover = new BookCover
                 {
                     SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
@@ -54,10 +55,10 @@ public class OpenLibraryApi : IBookApi
                 // Series = "", // L'API ne le fournit pas
                 // TomeNumber = 0, // L'API ne le fournit pas
                 // Genre = new List<string>(),
-                // PublishDate = googleBook?.VolumeInfo?.PublishedDate,
-                // Editor = googleBook?.VolumeInfo?.Publisher,
-                // PageNumber = googleBook?.VolumeInfo?.PageCount,
-                // Isbn = isbn13
+                PublishDate = openLibraryBook?.PublishDate,
+                Editor = openLibraryBook?.Publishers?.FirstOrDefault(),
+                PageNumber = openLibraryBook?.NumberOfPages,
+                Isbn = isbn13
             },
             // // BookNote = new BookNote // Aucune info fournit 
             // // {
@@ -66,10 +67,8 @@ public class OpenLibraryApi : IBookApi
         };
     }
 
-    private async Task<IEnumerable<BookAuthors>> GetAuthors(IEnumerable<AuthorOpenLibrary>? authors)
+    private async Task<List<BookAuthors>> GetAuthors(IEnumerable<AuthorOpenLibrary>? authors)
     {
-        // todo à terminer
-        
         var results = new List<BookAuthors>();
 
         if (authors is null) return results;
@@ -83,6 +82,21 @@ public class OpenLibraryApi : IBookApi
             if (!message.IsSuccessStatusCode) continue;
             
             var json = await message.Content.ReadAsStringAsync();
+
+            var nameJson = (string)JsonConvert.DeserializeObject<Dictionary<string, object>>(json)!["name"];
+            
+            var names = nameJson.SplitAuthorName().ToList();
+
+            while (names.Count < 2) names.Add(string.Empty);
+            
+            var name = names[0];
+            var familyName = string.Join(' ', names.Skip(1));
+            
+            results.Add(new BookAuthors
+            {
+                Name = name,
+                FamilyName = familyName
+            });
         }
 
         return results;
