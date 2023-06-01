@@ -11,7 +11,7 @@ public partial class GoogleBooksApi : IBookApi
 {
     private static Uri BaseInformationIsbnApi { get; } = new("https://www.googleapis.com/books/v1/volumes?q=isbn:");
 
-    private string? UserAgent { get; set; }
+    private string? UserAgent { get; }
     
     public GoogleBooksApi(string? userAgent=null)
     {
@@ -77,7 +77,11 @@ public partial class GoogleBooksApi : IBookApi
                 Editor = googleBook?.VolumeInfo?.Publisher,
                 PageNumber = googleBook?.VolumeInfo?.PageCount,
                 Isbn = isbn13
-            }
+            },
+            // BookNote = new BookNote // Aucune info fournit 
+            // {
+            //     Price = 0
+            // }
         };
     }
 
