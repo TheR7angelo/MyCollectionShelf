@@ -9,7 +9,7 @@ public class TestOpenLibraryApi
     [Fact]
     private async void GetInformationTest()
     {
-        const string isbn = "9780553381689";
+        const string isbn = "9788419185143";
 
         var api = new OpenLibraryApi();
         var book = await api.GetBookInformation(isbn);

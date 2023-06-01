@@ -9,11 +9,11 @@ public class TestGoogleBooksApi
     [Fact]
     private async void GetInformationTest()
     {
-        const string isbn = "9782092552988";
+        const string isbn = "9782380712308";
 
         var api = new GoogleBooksApi();
         var book = await api.GetBookInformation(isbn);
-
+        
         var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;
         
         Assert.True(success);
