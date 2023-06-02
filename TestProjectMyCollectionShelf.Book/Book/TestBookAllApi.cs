@@ -9,7 +9,7 @@ public class TestBookAllApi
     [Fact]
     private async void TestGetBookInformation()
     {
-        const string isbn = "9782820325013";
+        const string isbn = "9782818989036";
 
         var api = new BookAllApi();
         var book = await api.GetBookInformation(isbn);

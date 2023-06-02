@@ -12,4 +12,12 @@
       <ProjectReference Include="..\MyCollectionShelf.Camera\MyCollectionShelf.Camera.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Page Update="Ui\Book\Page\AddEditBook.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
 </Project>
