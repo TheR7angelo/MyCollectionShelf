@@ -13,7 +13,7 @@
     <Grid>
         
         <userControls:BookInformation 
-            BookInformationData="{Binding BookTest, Mode=TwoWay}"/>
+            BookInformationData="{Binding BookTest.BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
         <!-- <camera:Camera x:Name="VideoPreview"  -->
         <!--                Fps="30" EnableBarCodeReader="True" -->
