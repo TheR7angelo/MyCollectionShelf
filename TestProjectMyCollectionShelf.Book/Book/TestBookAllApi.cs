@@ -14,7 +14,7 @@ public class TestBookAllApi
         var api = new BookAllApi();
         var book = await api.GetBookInformation(isbn);
         
-        var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;
+        var success = await book.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg")!;
         
         Assert.True(success);
     }

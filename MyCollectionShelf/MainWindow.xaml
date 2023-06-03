@@ -3,17 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:camera="clr-namespace:MyCollectionShelf.Camera.Ui;assembly=MyCollectionShelf.Camera"
         xmlns:local="clr-namespace:MyCollectionShelf"
+        xmlns:userControls="clr-namespace:MyCollectionShelf.Ui.Book.UserControls"
         mc:Ignorable="d"    
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
     
     <Grid>
         
-        <camera:Camera x:Name="VideoPreview" 
-                       Fps="30" EnableBarCodeReader="True"
-                       BarcodeOptions="{Binding DecodingOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                       RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
+        <userControls:BookInformation 
+            BookInformationData="{Binding BookTest, Mode=TwoWay}"/>
+        
+        <!-- <camera:Camera x:Name="VideoPreview"  -->
+        <!--                Fps="30" EnableBarCodeReader="True" -->
+        <!--                BarcodeOptions="{Binding DecodingOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, -->
+        <!--                RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/> -->
 
     </Grid>
     
