@@ -25,7 +25,7 @@
 
             <StackPanel Orientation="Vertical" 
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Top">
                 
                 <Label x:Name="LabelWatermarkTitle"
                        Padding="{StaticResource ThicknessPadding}"
