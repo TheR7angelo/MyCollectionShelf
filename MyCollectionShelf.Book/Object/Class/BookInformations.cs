@@ -47,7 +47,7 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
     
-    private ObservableCollection<BookAuthors> _authors = new();
+    private ObservableCollection<BookAuthors> _authors = new() { new BookAuthors() };
 
     public ObservableCollection<BookAuthors> Authors
     {
@@ -83,14 +83,14 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private List<string> _genre = new();
+    private List<string> _genres = new();
 
-    public List<string> Genre
+    public List<string> Genres
     {
-        get => _genre;
+        get => _genres;
         set
         {
-            _genre = value;
+            _genres = value;
             OnPropertyChanged();
         }
     }

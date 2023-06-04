@@ -60,7 +60,7 @@ public class BookAllApi
         
         Copy(tempInformations.Authors, bookInformations.Authors);
         Copy(tempInformations.BookCover, bookInformations.BookCover!);
-        Copy(tempInformations.Genre, bookInformations.Genre);
+        Copy(tempInformations.Genres, bookInformations.Genres);
     }
 
     private static void Copy(IReadOnlyCollection<string> tempInformationsGenre, ICollection<string> bookInformationsGenre)
