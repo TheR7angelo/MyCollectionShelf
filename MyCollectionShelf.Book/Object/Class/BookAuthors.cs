@@ -9,6 +9,18 @@ public class BookAuthors : INotifyPropertyChanged
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    private long _id;
+
+    public long Id
+    {
+        get => _id;
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
     
     private string _familyName = string.Empty;
 
