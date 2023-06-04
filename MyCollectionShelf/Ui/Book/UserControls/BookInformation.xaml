@@ -7,6 +7,10 @@
              xmlns:general="clr-namespace:MyCollectionShelf.Ui.General"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <local:ItemToImageConverter x:Key="ItemToImageConverter" />
+    </UserControl.Resources>
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -23,22 +27,31 @@
                  ItemsSource="{Binding BookInformationData.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                  RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}">
 
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Tag" Value="{Binding ItemsSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        
+
                         <general:TextBoxAnimated WaterMarkContent="Nom de famille" TextBoxAnimatedBorderBrush="Black"
                                                  TextBoxAnimatedCornerRadius="3"
                                                  TextBoxText="{Binding FamilyName, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged}" />
-                        
+
                         <general:TextBoxAnimated WaterMarkContent="Prénom" TextBoxAnimatedBorderBrush="Black"
                                                  TextBoxAnimatedCornerRadius="3"
                                                  TextBoxText="{Binding Name, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged}" />
-                        
-                        <Button Content="click moi mec" Click="ButtonBase_OnClick"></Button>
-                        
+
+                        <Button Background="Transparent" BorderBrush="Transparent"
+                                Content="{Binding Path=., RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}},
+                                Converter={StaticResource ItemToImageConverter}}"
+                                Click="ButtonBase_OnClick" />
+
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
