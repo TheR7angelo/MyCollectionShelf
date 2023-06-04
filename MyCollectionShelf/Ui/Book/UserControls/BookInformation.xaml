@@ -150,7 +150,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <general:TextBoxAnimated Grid.Column="0" WaterMarkContent="Nom de famille"
+                        <general:TextBoxAnimated Grid.Column="0" WaterMarkContent="Genre"
                                                  TextBoxAnimatedBorderBrush="Black"
                                                  TextBoxAnimatedCornerRadius="3"
                                                  TextBoxText="{Binding ., Mode=TwoWay,

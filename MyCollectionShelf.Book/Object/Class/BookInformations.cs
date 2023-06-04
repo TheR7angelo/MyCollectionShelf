@@ -83,9 +83,9 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private List<string> _genres = new();
+    private ObservableCollection<string> _genres = new() { "" };
 
-    public List<string> Genres
+    public ObservableCollection<string> Genres
     {
         get => _genres;
         set

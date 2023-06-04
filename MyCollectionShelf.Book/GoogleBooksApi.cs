@@ -73,7 +73,7 @@ public class GoogleBooksApi : IBookApi
                 Summarize = googleBook?.VolumeInfo?.Description,
                 // Series = "", // L'API ne le fournit pas
                 // TomeNumber = 0, // L'API ne le fournit pas
-                Genres = new List<string> { string.Empty },
+                // Genres = new ObservableCollection<string>(), // L'API ne le fournit pas
                 PublishDate = googleBook?.VolumeInfo?.PublishedDate,
                 Editor = googleBook?.VolumeInfo?.Publisher,
                 PageNumber = googleBook?.VolumeInfo?.PageCount,

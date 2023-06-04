@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,7 +30,7 @@ public partial class BookInformation
         var button = (Button)sender;
         var content = (char)button.Content;
         var item = (BookAuthors)button.DataContext;
-
+        
         if (content == '+')
         {
             BookInformationData.Authors.Add(new BookAuthors());
@@ -46,7 +46,7 @@ public partial class BookInformation
         var button = (Button)sender;
         var content = (char)button.Content;
         var item = (string)button.DataContext;
-
+        
         if (content == '+')
         {
             BookInformationData.Genres.Add(string.Empty);
@@ -64,8 +64,8 @@ internal class ItemToImageConverter : IValueConverter
     {
         var listBoxItem = (ListBoxItem)value;
 
-        var sourceItems = (ObservableCollection<BookAuthors>)listBoxItem.Tag;
-        var item = (BookAuthors)listBoxItem.DataContext;
+        var sourceItems = (IList)listBoxItem.Tag;
+        var item = listBoxItem.DataContext;
 
         var index = sourceItems.IndexOf(item);
 
