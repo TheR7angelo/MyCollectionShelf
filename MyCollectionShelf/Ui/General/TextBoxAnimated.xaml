@@ -6,25 +6,34 @@
              xmlns:local="clr-namespace:MyCollectionShelf.Ui.General"
              xmlns:common="clr-namespace:MyCollectionShelf.Ui.Common"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Thickness x:Key="ThicknessPadding" Bottom="0" Top="0" Left="0" Right="0" />
+    </UserControl.Resources>
+
     <Grid>
-       
-                <Border
-                BorderBrush="{Binding TextBoxAnimatedBorderBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+
+        <Border
+            BorderBrush="{Binding TextBoxAnimatedBorderBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
 
-                BorderThickness="{Binding TextBoxAnimatedThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            BorderThickness="{Binding TextBoxAnimatedThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
 
-                CornerRadius="{Binding TextBoxAnimatedCornerRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            CornerRadius="{Binding TextBoxAnimatedCornerRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                 RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
 
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" 
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                
                 <Label x:Name="LabelWatermarkTitle"
+                       Padding="{StaticResource ThicknessPadding}"
                        Opacity="0"
                        Visibility="Collapsed"
 
                        common:VisibilityAnimation.AnimationType="Fade"
-                       
+
                        FontSize="{Binding WaterMarkTitleFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                        RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
 
@@ -37,6 +46,8 @@
                 </Label>
                 <Grid>
                     <Label x:Name="LabelWatermark"
+                           Opacity="1"
+                           Padding="{StaticResource ThicknessPadding}"
                            Foreground="{Binding WaterMarkForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                            RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
 
@@ -45,6 +56,7 @@
                     </Label>
 
                     <TextBox
+                        Padding="{StaticResource ThicknessPadding}"
                         Text="{Binding TextBoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                         RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
                         VerticalContentAlignment="Center"

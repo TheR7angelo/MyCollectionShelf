@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
-using MyCollectionShelf.Book.Object.Static_Class;
-using MyCollectionShelf.Camera.Object.Static_Class;
-using MyCollectionShelf.WebApi.Object.Book.Enum;
-using ZXing;
-using ZXing.Common;
 
 namespace MyCollectionShelf
 {
@@ -60,7 +52,7 @@ namespace MyCollectionShelf
                 Title = "Livre de test yolo",
                 Authors = new List<BookAuthors>
                 {
-                    new() { FamilyName = "famille yolo", Name = "Nom yolo" }
+                    new() {  }
                 }
             };
 

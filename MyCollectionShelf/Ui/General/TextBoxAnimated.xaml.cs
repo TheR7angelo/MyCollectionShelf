@@ -8,7 +8,7 @@ namespace MyCollectionShelf.Ui.General;
 
 public partial class TextBoxAnimated
 {
-    private static bool _doneAnimation; 
+    private static bool _doneAnimation;
     
     public static readonly DependencyProperty TextBoxTextProperty = DependencyProperty.Register(nameof(TextBoxText),
         typeof(string), typeof(TextBoxAnimated), new PropertyMetadata(default(string)));
