@@ -58,7 +58,12 @@
                     <TextBox
                         Padding="{StaticResource ThicknessPadding}"
                         Text="{Binding TextBoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                        RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                               RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                        AcceptsReturn="{Binding TextBoxAnimatedAcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                        RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}" 
+                        AcceptsTab="{Binding TextBoxAnimatedAcceptsTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                     RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                        
                         VerticalContentAlignment="Center"
                         Background="{x:Null}"
                         BorderThickness="0"

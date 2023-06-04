@@ -14,7 +14,8 @@ public partial class TextBoxAnimated
         typeof(string), typeof(TextBoxAnimated),
         new PropertyMetadata(default(string), Property_TextBoxTextProperty_ChangedCallback));
 
-    private static void Property_TextBoxTextProperty_ChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void Property_TextBoxTextProperty_ChangedCallback(DependencyObject d,
+        DependencyPropertyChangedEventArgs e)
     {
         var sender = (TextBoxAnimated)d;
         sender.Update();
@@ -51,6 +52,14 @@ public partial class TextBoxAnimated
     public static readonly DependencyProperty TextBoxAnimatedAnimationDurationProperty =
         DependencyProperty.Register(nameof(TextBoxAnimatedAnimationDuration), typeof(Duration), typeof(TextBoxAnimated),
             new PropertyMetadata(new Duration(TimeSpan.FromMilliseconds(750))));
+
+    public static readonly DependencyProperty TextBoxAnimatedAcceptsReturnProperty =
+        DependencyProperty.Register(nameof(TextBoxAnimatedAcceptsReturn), typeof(bool), typeof(TextBoxAnimated),
+            new PropertyMetadata(default(bool)));
+
+    public static readonly DependencyProperty TextBoxAnimatedAcceptsTabProperty =
+        DependencyProperty.Register(nameof(TextBoxAnimatedAcceptsTab), typeof(bool), typeof(TextBoxAnimated),
+            new PropertyMetadata(default(bool)));
 
     public TextBoxAnimated()
     {
@@ -109,6 +118,18 @@ public partial class TextBoxAnimated
     {
         get => (Duration)GetValue(TextBoxAnimatedAnimationDurationProperty);
         set => SetValue(TextBoxAnimatedAnimationDurationProperty, value);
+    }
+
+    public bool TextBoxAnimatedAcceptsReturn
+    {
+        get => (bool)GetValue(TextBoxAnimatedAcceptsReturnProperty);
+        set => SetValue(TextBoxAnimatedAcceptsReturnProperty, value);
+    }
+
+    public bool TextBoxAnimatedAcceptsTab
+    {
+        get => (bool)GetValue(TextBoxAnimatedAcceptsTabProperty);
+        set => SetValue(TextBoxAnimatedAcceptsTabProperty, value);
     }
 
     private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
