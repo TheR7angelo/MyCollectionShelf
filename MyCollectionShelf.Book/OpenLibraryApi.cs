@@ -1,4 +1,5 @@
-﻿using MyCollectionShelf.Book.Object.Class;
+﻿using System.Collections.ObjectModel;
+using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
@@ -40,7 +41,7 @@ public class OpenLibraryApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = openLibraryBook?.Title,
-                Authors = authors,
+                Authors = new ObservableCollection<BookAuthors>(authors),
                 BookCover = new BookCover
                 {
                     SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),

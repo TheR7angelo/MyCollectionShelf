@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using MyCollectionShelf.Book.Object.Class;
@@ -50,7 +51,7 @@ namespace MyCollectionShelf
             BookTest.BookInformations = new BookInformations
             {
                 Title = "Livre de test yolo",
-                Authors = new List<BookAuthors>
+                Authors = new ObservableCollection<BookAuthors>
                 {
                     new() {  }
                 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MyCollectionShelf.Book.Object.Class;
@@ -46,9 +47,9 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
     
-    private List<BookAuthors> _authors = new();
+    private ObservableCollection<BookAuthors> _authors = new();
 
-    public List<BookAuthors> Authors
+    public ObservableCollection<BookAuthors> Authors
     {
         get => _authors;
         set

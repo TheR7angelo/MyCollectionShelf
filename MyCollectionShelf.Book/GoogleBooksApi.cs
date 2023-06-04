@@ -1,4 +1,5 @@
-﻿using MyCollectionShelf.Book.Object.Class;
+﻿using System.Collections.ObjectModel;
+using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
@@ -59,7 +60,7 @@ public class GoogleBooksApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = googleBook?.VolumeInfo?.Title,
-                Authors = authors,
+                Authors = new ObservableCollection<BookAuthors>(authors),
                 BookCover = new BookCover
                 {
                     SmallThumbnail = googleBook?.VolumeInfo?.ImageLinks?.SmallThumbnail,
