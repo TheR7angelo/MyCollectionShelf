@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="MyCollectionShelf.Ui.General.TextBoxAnimated"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MyCollectionShelf.Ui.General"
+             xmlns:common="clr-namespace:MyCollectionShelf.Ui.Common"
+             mc:Ignorable="d">
+    <Grid>
+       
+                <Border
+                BorderBrush="{Binding TextBoxAnimatedBorderBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+
+                BorderThickness="{Binding TextBoxAnimatedThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+
+                CornerRadius="{Binding TextBoxAnimatedCornerRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
+
+            <StackPanel Orientation="Vertical">
+                <Label x:Name="LabelWatermarkTitle"
+                       Opacity="0"
+                       Visibility="Collapsed"
+
+                       common:VisibilityAnimation.AnimationType="Fade"
+                       
+                       FontSize="{Binding WaterMarkTitleFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                       RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+
+                       Foreground="{Binding WaterMarkTitleForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                       RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+
+                       Content="{Binding WaterMarkContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                       RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
+
+                </Label>
+                <Grid>
+                    <Label x:Name="LabelWatermark"
+                           Foreground="{Binding WaterMarkForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                           RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+
+                           Content="{Binding WaterMarkContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                           RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
+                    </Label>
+
+                    <TextBox
+                        Text="{Binding TextBoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                        RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                        VerticalContentAlignment="Center"
+                        Background="{x:Null}"
+                        BorderThickness="0"
+                        TextChanged="TextBoxBase_OnTextChanged">
+                    </TextBox>
+                </Grid>
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</UserControl>
