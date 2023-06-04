@@ -9,9 +9,16 @@ namespace MyCollectionShelf.Ui.General;
 public partial class TextBoxAnimated
 {
     private static bool _doneAnimation;
-    
+
     public static readonly DependencyProperty TextBoxTextProperty = DependencyProperty.Register(nameof(TextBoxText),
-        typeof(string), typeof(TextBoxAnimated), new PropertyMetadata(default(string)));
+        typeof(string), typeof(TextBoxAnimated),
+        new PropertyMetadata(default(string), Property_TextBoxTextProperty_ChangedCallback));
+
+    private static void Property_TextBoxTextProperty_ChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        var sender = (TextBoxAnimated)d;
+        sender.Update();
+    }
 
     public static readonly DependencyProperty WaterMarkForegroundColorProperty = DependencyProperty.Register(
         nameof(WaterMarkForegroundColor), typeof(Brush), typeof(TextBoxAnimated),
@@ -105,6 +112,9 @@ public partial class TextBoxAnimated
     }
 
     private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
+        => Update();
+
+    private void Update()
     {
         var fadeIn = new DoubleAnimation(0, 1, TextBoxAnimatedAnimationDuration);
         var fadeOut = new DoubleAnimation(1, 0, TextBoxAnimatedAnimationDuration);
@@ -113,14 +123,14 @@ public partial class TextBoxAnimated
         {
             LabelWatermark.BeginAnimation(OpacityProperty, fadeIn);
             LabelWatermarkTitle.BeginAnimation(OpacityProperty, fadeOut);
-            _doneAnimation = false;
+            _doneAnimation = true;
             LabelWatermarkTitle.Visibility = Visibility.Collapsed;
         }
-        else if (!_doneAnimation)
+        else if (_doneAnimation || (!_doneAnimation && TextBoxText.Length == 1))
         {
             LabelWatermark.BeginAnimation(OpacityProperty, fadeOut);
             LabelWatermarkTitle.BeginAnimation(OpacityProperty, fadeIn);
-            _doneAnimation = true;
+            _doneAnimation = false;
             LabelWatermarkTitle.Visibility = Visibility.Visible;
         }
     }
