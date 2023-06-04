@@ -81,5 +81,17 @@ public class BookCover : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+    
+    private Uri? _storage;
+
+    public Uri? Storage
+    {
+        get => _storage;
+        set
+        {
+            _storage = value;
+            OnPropertyChanged();
+        }
+    }
 
 }
