@@ -19,7 +19,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" HorizontalAlignment="Left" AcceptsReturn="False" AcceptsTab="True"
+        <TextBox Grid.Row="0" HorizontalAlignment="Left" AcceptsTab="True"
                  Text="{Binding BookInformationData.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                  RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
 
@@ -82,6 +82,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                <Image Height="350" Width="247.45"/>
+            </Border>
+            
             <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Résumé" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Summarize, Mode=TwoWay,
