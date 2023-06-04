@@ -54,7 +54,8 @@ namespace MyCollectionShelf
                 {
                     new() { FamilyName = "First" },
                     new() { FamilyName = "Second" }
-                }
+                },
+                Summarize = ""
             };
 
             // VideoPreview.ResultFound += VideoPreviewResultFound;
