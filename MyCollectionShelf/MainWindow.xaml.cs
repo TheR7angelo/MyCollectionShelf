@@ -50,12 +50,12 @@ namespace MyCollectionShelf
             BookTest.BookInformations = new BookInformations
             {
                 Title = "Livre de test yolo",
-                Authors = new ObservableCollection<BookAuthors>
-                {
-                    new() { FamilyName = "First" },
-                    new() { FamilyName = "Second" }
-                },
-                Summarize = ""
+                // Authors = new ObservableCollection<BookAuthors>
+                // {
+                //     new() { FamilyName = "First" },
+                //     new() { FamilyName = "Second" }
+                // },
+                // Summarize = ""
             };
 
             // VideoPreview.ResultFound += VideoPreviewResultFound;
