@@ -25,7 +25,7 @@ public partial class BookInformation
         set => SetValue(BookInformationDataProperty, value);
     }
 
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonAuthors_OnClick(object sender, RoutedEventArgs e)
     {
         var button = (Button)sender;
         var content = (char)button.Content;
@@ -38,6 +38,22 @@ public partial class BookInformation
         else
         {
             BookInformationData.Authors.Remove(item);
+        }
+    }
+
+    private void ButtonGenres_OnClick(object sender, RoutedEventArgs e)
+    {
+        var button = (Button)sender;
+        var content = (char)button.Content;
+        var item = (string)button.DataContext;
+
+        if (content == '+')
+        {
+            BookInformationData.Genres.Add(string.Empty);
+        }
+        else
+        {
+            BookInformationData.Genres.Remove(item);
         }
     }
 }
