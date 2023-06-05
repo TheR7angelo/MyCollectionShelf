@@ -48,9 +48,10 @@ public class AmazonApi : IBookApi
         // todo à finir
 
         var authors = GetAuthors(document.DocumentNode.SelectSingleNode("//div[@id='bylineInfo']"));
-        var summarize =
-            GetSummarize(document.DocumentNode.SelectSingleNode("//div[@class='a-expander-content a-expander-partial-collapse-content']"));
-
+        var summarize = GetSummarize(document.DocumentNode.SelectSingleNode("//div[@class='a-expander-content a-expander-partial-collapse-content']"));
+        var series = document.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[2]/div[2]/div[4]/div[1]/div[6]/div[28]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ol[1]/li[1]/div[1]/div[3]/a[1]/span[1]").InnerHtml;
+        
+        
         return new MyCollectionShelf.Book.Object.Class.Book
         {
             BookInformations = new BookInformations
@@ -58,6 +59,7 @@ public class AmazonApi : IBookApi
                 Title = document.DocumentNode.SelectSingleNode("//span[@id='productTitle']").InnerHtml,
                 Authors = authors,
                 Summarize = summarize,
+                Series = series,
             }
         };
     }
