@@ -30,8 +30,4 @@
       </Page>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Ui\Book\Pages\" />
-    </ItemGroup>
-
 </Project>
