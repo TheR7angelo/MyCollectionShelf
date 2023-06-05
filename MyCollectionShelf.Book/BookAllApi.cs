@@ -5,12 +5,12 @@ namespace MyCollectionShelf.Book;
 public class BookAllApi
 {
     private string? UserAgent { get; }
-    
+
     public BookAllApi(string? userAgent = null)
     {
         UserAgent = userAgent;
     }
-    
+
     public async Task<Object.Class.Book> GetBookInformation(string isbn13)
     {
         var book = new Object.Class.Book
@@ -22,7 +22,7 @@ public class BookAllApi
             },
             BookNote = new BookNote()
         };
-        
+
         var apis = new List<IBookApi>
         {
             new GoogleBooksApi(UserAgent),
@@ -57,13 +57,14 @@ public class BookAllApi
         bookInformations.Editor ??= tempInformations.Editor;
         bookInformations.PageNumber ??= tempInformations.PageNumber;
         bookInformations.Isbn ??= tempInformations.Isbn;
-        
+
         Copy(tempInformations.Authors, bookInformations.Authors);
         Copy(tempInformations.BookCover, bookInformations.BookCover!);
         Copy(tempInformations.Genres, bookInformations.Genres);
     }
 
-    private static void Copy(IReadOnlyCollection<string> tempInformationsGenre, ICollection<string> bookInformationsGenre)
+    private static void Copy(IReadOnlyCollection<string> tempInformationsGenre,
+        ICollection<string> bookInformationsGenre)
     {
         if (tempInformationsGenre.Count.Equals(0)) return;
 
@@ -89,7 +90,11 @@ public class BookAllApi
     {
         if (tempAuthors.Count.Equals(0)) return;
 
-        foreach (var author in tempAuthors.Where(author => !bookAuthors.Contains(author)))
+        var uniqueAuthors = tempAuthors.Where(tmp => !bookAuthors.Any(book =>
+            book.Name.Equals(tmp.Name) && book.FamilyName.Equals(tmp.FamilyName) && string.IsNullOrEmpty(book.Role) &&
+            !string.IsNullOrEmpty(tmp.Role))).ToList();
+
+        foreach (var author in uniqueAuthors)
         {
             bookAuthors.Add(author);
         }
