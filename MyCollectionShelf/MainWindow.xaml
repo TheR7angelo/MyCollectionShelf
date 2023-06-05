@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyCollectionShelf"
         xmlns:userControls="clr-namespace:MyCollectionShelf.Ui.Book.UserControls"
+        xmlns:bookInformation="clr-namespace:MyCollectionShelf.Ui.Book.UserControls.BookInformation"
         mc:Ignorable="d"    
         Title="MainWindow" Height="450" Width="800"
         
@@ -12,7 +13,7 @@
     
     <Grid>
         
-        <userControls:BookInformation 
+        <bookInformation:BookInformationEdit 
             BookInformationData="{Binding BookTest.BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
         <!-- <camera:Camera x:Name="VideoPreview"  -->

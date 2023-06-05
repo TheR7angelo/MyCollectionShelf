@@ -1,14 +1,15 @@
-﻿<UserControl x:Class="MyCollectionShelf.Ui.Book.UserControls.BookInformation"
+﻿<UserControl x:Class="MyCollectionShelf.Ui.Book.UserControls.BookInformation.BookInformationEdit"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MyCollectionShelf.Ui.Book.UserControls"
              xmlns:general="clr-namespace:MyCollectionShelf.Ui.General"
+             xmlns:bookInformation="clr-namespace:MyCollectionShelf.Ui.Book.UserControls.BookInformation"
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <local:ItemToImageConverter x:Key="ItemToImageConverter" />
+        <bookInformation:ItemToImageConverter x:Key="ItemToImageConverter" />
     </UserControl.Resources>
 
     <Grid>
@@ -26,11 +27,11 @@
 
         <TextBox Grid.Row="0" HorizontalAlignment="Left" AcceptsTab="True"
                  Text="{Binding BookInformationData.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
         <ListBox Grid.Row="1"
                  ItemsSource="{Binding BookInformationData.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}">
+                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}">
 
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -91,14 +92,14 @@
                 <!-- ReSharper disable once Xaml.PossibleNullReferenceException -->
                 <Image Height="350" Width="247.45"
                        Source="{Binding BookInformationData.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
             </Border>
 
             <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Résumé" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Summarize, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}"
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}"
                                      TextBoxAnimatedAcceptsReturn="True"
                                      TextBoxAnimatedAcceptsTab="True" />
 
@@ -115,20 +116,20 @@
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Series, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
             <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Tome" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.TomeNumber, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
         </Grid>
 
         <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1">
             <ListBox
                  ItemsSource="{Binding BookInformationData.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}">
+                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}">
 
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
@@ -183,14 +184,14 @@
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.PublishDate, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
             
             <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Éditeur"
                                      TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Editor, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
         </Grid>
         
@@ -199,14 +200,14 @@
                                  TextBoxAnimatedCornerRadius="3"
                                  TextBoxText="{Binding BookInformationData.PageNumber, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
         
         <general:TextBoxAnimated Grid.Row="7" WaterMarkContent="ISBN"
                                  TextBoxAnimatedBorderBrush="Black"
                                  TextBoxAnimatedCornerRadius="3"
                                  TextBoxText="{Binding BookInformationData.Isbn, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
-                                                 RelativeSource={RelativeSource AncestorType={x:Type local:BookInformation}}}" />
+                                                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
     </Grid>
 

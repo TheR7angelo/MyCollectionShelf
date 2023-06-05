@@ -6,15 +6,15 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using MyCollectionShelf.Book.Object.Class;
 
-namespace MyCollectionShelf.Ui.Book.UserControls;
+namespace MyCollectionShelf.Ui.Book.UserControls.BookInformation;
 
-public partial class BookInformation
+public partial class BookInformationEdit
 {
     public static readonly DependencyProperty BookInformationDataProperty =
-        DependencyProperty.Register(nameof(BookInformationData), typeof(BookInformations), typeof(BookInformation),
+        DependencyProperty.Register(nameof(BookInformationData), typeof(BookInformations), typeof(BookInformationEdit),
             new PropertyMetadata(default(BookInformations)));
 
-    public BookInformation()
+    public BookInformationEdit()
     {
         InitializeComponent();
     }

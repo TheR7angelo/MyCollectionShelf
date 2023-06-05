@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MyCollectionShelf.Ui.Book.UserControls;
+namespace MyCollectionShelf.Ui.Book.UserControls.BookInformation;
 
 public partial class AddEditAuthors
 {
