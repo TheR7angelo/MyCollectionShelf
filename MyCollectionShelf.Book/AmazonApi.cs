@@ -9,7 +9,7 @@ namespace MyCollectionShelf.Book;
 public class AmazonApi : IBookApi
 {
     private static Uri BaseInformationIsbnApi { get; } = new("https://www.amazon.fr/s/ref=sr_adv_b/");
-    private static Uri BaseSite { get; } = new Uri("https://www.amazon.fr/");
+    private static Uri BaseSite { get; } = new("https://www.amazon.fr/");
 
     private string? UserAgent { get; }
 
@@ -45,12 +45,14 @@ public class AmazonApi : IBookApi
         html = await htmlPage.Content.ReadAsStringAsync();
         document.LoadHtml(html);
 
-        // todo à finir
-
         var authors = GetAuthors(document.DocumentNode.SelectSingleNode("//div[@id='bylineInfo']"));
         var summarize = GetSummarize(document.DocumentNode.SelectSingleNode("//div[@class='a-expander-content a-expander-partial-collapse-content']"));
-        var series = document.DocumentNode.SelectSingleNode("/html[1]/body[1]/div[2]/div[2]/div[4]/div[1]/div[6]/div[28]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/ol[1]/li[1]/div[1]/div[3]/a[1]/span[1]").InnerHtml;
-        
+
+        var carousel = document.DocumentNode.SelectSingleNode("//div[@class='a-carousel-row-inner']")?.InnerHtml;
+        var carouselResult = GetCarouselResult(carousel);
+
+        var img = document.DocumentNode.SelectSingleNode("//div[@id='imageBlockContainer']//img[@id='imgBlkFront']")?.GetAttributeValue("src", string.Empty);
+        var imgUri = string.IsNullOrEmpty(img) ? null : new Uri(img);
         
         return new MyCollectionShelf.Book.Object.Class.Book
         {
@@ -59,9 +61,88 @@ public class AmazonApi : IBookApi
                 Title = document.DocumentNode.SelectSingleNode("//span[@id='productTitle']").InnerHtml,
                 Authors = authors,
                 Summarize = summarize,
-                Series = series,
+                Series = carouselResult.series,
+                PageNumber = carouselResult.pageNumber,
+                Editor = carouselResult.editor,
+                PublishDate = carouselResult.publishDate,
+                Isbn = isbn13,
+                BookCover = new BookCover
+                {
+                    SmallThumbnail = imgUri,
+                    Thumbnail = imgUri,
+                    Small = imgUri,
+                    Medium = imgUri,
+                    Large = imgUri,
+                    ExtraLarge = imgUri
+                }
             }
         };
+    }
+
+    private static (string? series, long? pageNumber, string? editor, DateTime? publishDate) GetCarouselResult(string? carousel)
+    {
+        (string? series, long? pageNumber, string? editor, DateTime? publishDate) result = new();
+
+        if (carousel is null) return result;
+
+        result.series = GetSeries(carousel);
+        result.pageNumber = GetPageNumber(carousel);
+        result.editor = GetEditor(carousel);
+        result.publishDate = GetPublishDate(carousel);
+        
+        return result;
+    }
+
+    private static DateTime? GetPublishDate(string carousel)
+    {
+        var document = new HtmlDocument();
+        document.LoadHtml(carousel);
+
+        var publishElement = document.DocumentNode.SelectSingleNode("//div[@id='rpi-attribute-book_details-publication_date']//div[@class='a-section a-spacing-none a-text-center rpi-attribute-value']/span");
+        var publishValue = publishElement?.InnerText.Trim();
+        
+        if (string.IsNullOrEmpty(publishValue)) return null;
+        
+        var sucess = DateTime.TryParse(publishValue, out var value);
+        return sucess ? value : null;
+    }
+
+    private static string? GetEditor(string carousel)
+    {
+        var document = new HtmlDocument();
+        document.LoadHtml(carousel);
+
+        var editorElement = document.DocumentNode.SelectSingleNode("//div[@id='rpi-attribute-book_details-publisher']//div[@class='a-section a-spacing-none a-text-center rpi-attribute-value']/span");
+        var editorValue = editorElement?.InnerText.Trim();
+
+        return string.IsNullOrEmpty(editorValue) ? null : editorValue;
+    }
+
+    private static long? GetPageNumber(string carousel)
+    {
+        var document = new HtmlDocument();
+        document.LoadHtml(carousel);
+        
+        var pagesElement = document.DocumentNode.SelectSingleNode("//div[@id='rpi-attribute-book_details-fiona_pages']/div[@class='a-section a-spacing-none a-text-center rpi-attribute-value']/span");
+        var pagesValue = pagesElement?.InnerText.Trim();
+
+        if (string.IsNullOrEmpty(pagesValue)) return null;
+
+        var pageNumberStr = pagesValue.Split(' ');
+        var sucess = long.TryParse(pageNumberStr[0], out var value);
+
+        return sucess ? value : null;
+    }
+
+    private static string? GetSeries(string carousel)
+    {
+        var document = new HtmlDocument();
+        document.LoadHtml(carousel);
+        
+        var linkElement = document.DocumentNode.SelectSingleNode("//div[@id='rpi-attribute-book_details-series']//a[@class='a-link-normal']");
+        var linkValue = linkElement?.InnerText.Trim();
+
+        return linkValue;
     }
 
     private static string? GetSummarize(HtmlNode? selectSingleNode)
