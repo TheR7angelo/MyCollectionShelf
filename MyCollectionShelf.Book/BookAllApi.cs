@@ -26,7 +26,8 @@ public class BookAllApi
         var apis = new List<IBookApi>
         {
             new GoogleBooksApi(UserAgent),
-            new OpenLibraryApi(UserAgent)
+            new OpenLibraryApi(UserAgent),
+            new AmazonApi(UserAgent)
         };
 
         foreach (var api in apis)

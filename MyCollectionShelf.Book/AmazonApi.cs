@@ -156,7 +156,7 @@ public class AmazonApi : IBookApi
 
         foreach (var xpath in new List<string> { "//span[@class='a-text-bold']", "//p" })
         {
-            var text = document.DocumentNode.SelectSingleNode(xpath).InnerText;
+            var text = document.DocumentNode.SelectSingleNode(xpath)?.InnerText;
             if (string.IsNullOrEmpty(text)) continue;
 
             results.Add(text);
@@ -171,11 +171,7 @@ public class AmazonApi : IBookApi
 
         var nodes = singleNode?.SelectNodes("//span[@class='author notFaded']");
 
-        if (nodes is null)
-        {
-            results.Add(new BookAuthors());
-            return results;
-        }
+        if (nodes is null) return results;
 
         foreach (var node in nodes)
         {
