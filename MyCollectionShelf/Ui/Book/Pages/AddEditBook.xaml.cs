@@ -1,6 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using MyCollectionShelf.Book.Object.Class;
 
 namespace MyCollectionShelf.Ui.Book.Pages;
@@ -65,7 +69,8 @@ public partial class AddEditBook
                     GenresList.Last()
                 },
                 Series = SeriesList.First(),
-                Summarize = "Je suis un résumée à la con hehe"
+                Summarize = "Je suis un résumée à la con hehe",
+                PublishDate = new DateTime(2023, 06, 06)
             }
         };
 
@@ -101,4 +106,13 @@ public partial class AddEditBook
         get => (ObservableCollection<string>)GetValue(SeriesListProperty);
         set => SetValue(SeriesListProperty, value);
     }
+
+    private void TextBoxTomeNumber_OnTextChanged(object sender, TextCompositionEventArgs e)
+    {
+        var regex = IsNumber();
+        e.Handled = regex.IsMatch(e.Text);
+    }
+    
+    [GeneratedRegex("[^0-9]+")]
+    private static partial Regex IsNumber();
 }

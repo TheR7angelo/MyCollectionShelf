@@ -33,7 +33,6 @@
                 <ColumnDefinition Width="2*" MinWidth="330" />
                 <ColumnDefinition Width="2*" MinWidth="330" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
@@ -150,6 +149,38 @@
                 </TextBox>
 
             </StackPanel>
+            
+            <StackPanel Grid.Row="1" Grid.Column="2">
+
+                <Label Content="Date de parution" HorizontalContentAlignment="Left" />
+                
+                <DatePicker SelectedDate="{Binding BookData.BookInformations.PublishDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            </StackPanel>
+            
+            <StackPanel Grid.Row="2" Grid.Column="2">
+
+                <Label Content="Tome" HorizontalContentAlignment="Left" />
+                
+                <TextBox Text="{Binding BookData.BookInformations.TomeNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                         PreviewTextInput="TextBoxTomeNumber_OnTextChanged"/>
+
+            </StackPanel>
+            
+            <StackPanel Grid.Row="3" Grid.Column="2">
+
+                <Label Content="Commentaire" HorizontalContentAlignment="Left" />
+                
+                <TextBox AcceptsReturn="True" AcceptsTab="True"
+                         MinHeight="110" MaxHeight="110"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         Text="{Binding BookData.BookNote.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+
+            </StackPanel>
+            
+            <CheckBox Grid.Row="4" Grid.Column="2" Content="Livre lu" IsChecked="{Binding BookData.BookNote.IsRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             
         </Grid>
 

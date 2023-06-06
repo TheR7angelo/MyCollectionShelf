@@ -58,6 +58,15 @@ public class BookNote : INotifyPropertyChanged
         }
     }
 
-    
-    
+    private string? _note;
+
+    public string? Note
+    {
+        get => _note;
+        set
+        {
+            _note = value;
+            OnPropertyChanged();
+        }
+    }
 }
