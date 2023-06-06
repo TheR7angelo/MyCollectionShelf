@@ -58,4 +58,6 @@ public class BookAuthors : INotifyPropertyChanged
         }
     }
 
+    public string NameConcat => $"{FamilyName}, {Name}";
+
 }
