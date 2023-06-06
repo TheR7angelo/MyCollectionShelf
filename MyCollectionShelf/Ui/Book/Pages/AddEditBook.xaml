@@ -6,11 +6,85 @@
       xmlns:local="clr-namespace:MyCollectionShelf.Ui.Book.Pages"
       mc:Ignorable="d"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
-    
+
     <Grid>
-        
-        
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0"
+               Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               Width="163" Height="238" />
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" MinWidth="330" />
+                <ColumnDefinition Width="2*" MinWidth="330" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+
+                <Label Content="Titre" HorizontalContentAlignment="Left" />
+                <TextBox
+                    Text="{Binding BookData.BookInformations.Title, Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged}" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="0">
+
+                <Label Content="Auteur" HorizontalContentAlignment="Left" />
+
+                <ListBox ItemsSource="{Binding BookData.BookInformations.Authors}">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Tag"
+                                    Value="{Binding ItemsSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <ComboBox
+                                ItemsSource="{Binding AuthorsList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                DisplayMemberPath="NameConcat"
+                                SelectedItem="{Binding .}"
+                                SelectionChanged="Selector_OnSelectionChanged">
+                            </ComboBox>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+                
+            </StackPanel>
+
+        </Grid>
+
     </Grid>
-    
+
 </Page>
