@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:MyCollectionShelf"
         xmlns:userControls="clr-namespace:MyCollectionShelf.Ui.Book.UserControls"
         xmlns:bookInformation="clr-namespace:MyCollectionShelf.Ui.Book.UserControls.BookInformation"
+        xmlns:ui="clr-namespace:MyCollectionShelf.Camera.Ui;assembly=MyCollectionShelf.Camera"
+        xmlns:pages="clr-namespace:MyCollectionShelf.Ui.Book.Pages"
         mc:Ignorable="d"    
         Title="MainWindow" Height="450" Width="800"
         
@@ -13,10 +15,14 @@
     
     <Grid>
         
-        <bookInformation:BookInformationEdit 
-            BookInformationData="{Binding BookTest.BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <ContentControl>
+            <Frame x:Name="Frame" />
+        </ContentControl>
         
-        <!-- <camera:Camera x:Name="VideoPreview"  -->
+        <!-- <bookInformation:BookInformationEdit  -->
+        <!--     BookInformationData="{Binding BookTest.BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
+        
+        <!-- <ui:Camera x:Name="VideoPreview" -->
         <!--                Fps="30" EnableBarCodeReader="True" -->
         <!--                BarcodeOptions="{Binding DecodingOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, -->
         <!--                RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/> -->

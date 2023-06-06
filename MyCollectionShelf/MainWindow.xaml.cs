@@ -1,7 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Ui.Book.Pages;
 
 namespace MyCollectionShelf
 {
@@ -23,18 +22,18 @@ namespace MyCollectionShelf
         //         OnPropertyChanged();
         //     }
         // }
-
-        private MyCollectionShelf.Book.Object.Class.Book _bookTest = new();
-        
-        public MyCollectionShelf.Book.Object.Class.Book BookTest
-        {
-            get => _bookTest;
-            set
-            {
-                _bookTest = value;
-                OnPropertyChanged();
-            }
-        }
+        //
+        // private MyCollectionShelf.Book.Object.Class.Book _bookTest = new();
+        //
+        // public MyCollectionShelf.Book.Object.Class.Book BookTest
+        // {
+        //     get => _bookTest;
+        //     set
+        //     {
+        //         _bookTest = value;
+        //         OnPropertyChanged();
+        //     }
+        // }
         
 
         public MainWindow()
@@ -47,16 +46,18 @@ namespace MyCollectionShelf
 
             InitializeComponent();
 
-            BookTest.BookInformations = new BookInformations
-            {
-                Title = "Livre de test yolo",
-                // Authors = new ObservableCollection<BookAuthors>
-                // {
-                //     new() { FamilyName = "First" },
-                //     new() { FamilyName = "Second" }
-                // },
-                // Summarize = ""
-            };
+            Frame.Content = new AddEditBook();
+
+            // BookTest.BookInformations = new BookInformations
+            // {
+            // Title = "Livre de test yolo",
+            // Authors = new ObservableCollection<BookAuthors>
+            // {
+            //     new() { FamilyName = "First" },
+            //     new() { FamilyName = "Second" }
+            // },
+            // Summarize = ""
+            // };
 
             // VideoPreview.ResultFound += VideoPreviewResultFound;
             //
@@ -66,18 +67,22 @@ namespace MyCollectionShelf
 
         // private async void VideoPreviewResultFound(Camera.Ui.Camera sender, Result result)
         // {
-        //     Console.WriteLine(result.Text);
-        //
-        //     if (result.BarcodeFormat != BarcodeFormat.EAN_13) return;
-        //
-        //     var api = new OpenLibraryApi();
-        //
-        //     var book = await api.GetBookInformation(result.Text);
-        //
-        //     var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge,
-        //         $"{book.BookInformations.Title}.jpg")!;
-        //
-        //     Console.WriteLine($"cover download {success}");
+            // if (result.BarcodeFormat != BarcodeFormat.EAN_13) return;
+            //
+            // Console.WriteLine(result.Text);
+            // var api = new BookAllApi();
+            // var book = await api.GetBookInformation(result.Text);
+            //
+            // Console.WriteLine(book.BookInformations.Title);
+            
+            // var api = new OpenLibraryApi();
+            //
+            // var book = await api.GetBookInformation(result.Text);
+            //
+            // var success = await book?.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge,
+            //     $"{book.BookInformations.Title}.jpg")!;
+            //
+            // Console.WriteLine($"cover download {success}");
         // }
     }
 }
