@@ -72,17 +72,85 @@
                             <ComboBox
                                 ItemsSource="{Binding AuthorsList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                 DisplayMemberPath="NameConcat"
-                                SelectedItem="{Binding .}"
-                                SelectionChanged="Selector_OnSelectionChanged">
+                                SelectedItem="{Binding .}">
                             </ComboBox>
 
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
                 </ListBox>
-                
+
             </StackPanel>
 
+            <StackPanel Grid.Row="1" Grid.Column="1">
+
+                <Label Content="Éditeur" HorizontalContentAlignment="Left" />
+                
+                <ComboBox ItemsSource="{Binding EditorList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding BookData.BookInformations.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="0">
+
+                <Label Content="Genres" HorizontalContentAlignment="Left" />
+
+                <ListBox ItemsSource="{Binding BookData.BookInformations.Genres}">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Tag"
+                                    Value="{Binding ItemsSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <ComboBox
+                                ItemsSource="{Binding GenresList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                SelectedItem="{Binding .}">
+                            </ComboBox>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </StackPanel>
+            
+            <StackPanel Grid.Row="2" Grid.Column="1">
+
+                <Label Content="Serie" HorizontalContentAlignment="Left" />
+                
+                <ComboBox ItemsSource="{Binding SeriesList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding BookData.BookInformations.Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+
+            </StackPanel>
+            
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+
+                <Label Content="Résumer" HorizontalContentAlignment="Left" />
+                
+                <TextBox AcceptsReturn="True" AcceptsTab="True"
+                         MinHeight="110" MaxHeight="110"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         Text="{Binding BookData.BookInformations.Summarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+
+            </StackPanel>
+            
         </Grid>
 
     </Grid>
