@@ -4,23 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"    
-        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="1000"
         
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     
     <Grid>
         
-        <ContentControl>
+        <ContentControl HorizontalContentAlignment="Center">
             <Frame x:Name="Frame" />
         </ContentControl>
-        
-        <!-- <bookInformation:BookInformationEdit  -->
-        <!--     BookInformationData="{Binding BookTest.BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
-        
-        <!-- <ui:Camera x:Name="VideoPreview" -->
-        <!--                Fps="30" EnableBarCodeReader="True" -->
-        <!--                BarcodeOptions="{Binding DecodingOptions, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, -->
-        <!--                RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/> -->
 
     </Grid>
     
