@@ -7,6 +7,10 @@
       mc:Ignorable="d"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+    
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -30,9 +34,9 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" MinWidth="330" />
-                <ColumnDefinition Width="2*" MinWidth="330" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
@@ -180,7 +184,38 @@
 
             </StackPanel>
             
-            <CheckBox Grid.Row="4" Grid.Column="2" Content="Livre lu" IsChecked="{Binding BookData.BookNote.IsRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid Grid.Row="4" Grid.Column="2">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <CheckBox Grid.Row="0" Grid.Column="0" x:Name="CheckBoxBookIsRead" Content="Livre lu" IsChecked="{Binding BookData.BookNote.IsRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                
+                <StackPanel Grid.Row="1" Grid.Column="0">
+                    
+                    <Label Content="Date commencé" HorizontalContentAlignment="Left" />
+                    
+                    <DatePicker SelectedDate="{Binding BookData.BookNote.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    
+                </StackPanel>
+                
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            Visibility="{Binding ElementName=CheckBoxBookIsRead, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    
+                    <Label Content="Date terminé" HorizontalContentAlignment="Left" />
+                    
+                    <DatePicker SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    
+                </StackPanel>
+                
+            </Grid>
             
         </Grid>
 
