@@ -19,6 +19,8 @@ public class BookNote : INotifyPropertyChanged
         {
             _isRead = value;
             OnPropertyChanged();
+
+            if (value && EndDate is null) EndDate = DateTime.Now;
         }
     }
 
@@ -33,7 +35,7 @@ public class BookNote : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private DateTime? _endDate;
 
     public DateTime? EndDate
