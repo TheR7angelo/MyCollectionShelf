@@ -77,7 +77,30 @@ public partial class AddEditBook
         InitializeComponent();
 
         var scanner = new CameraScan();
-        scanner.Show();
+
+        if (scanner.ShowDialog() != true) return;
+        
+        foreach (var author in scanner.Book.BookInformations.Authors.Where(s => !s.NameConcat.Equals(", ")))
+        {
+            if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
+        }
+            
+        foreach (var genre in scanner.Book.BookInformations.Genres.Where(s => !s.Equals(string.Empty)))
+        {
+            if (!GenresList.Contains(genre)) GenresList.Add(genre);
+        }
+
+        if (scanner.Book.BookInformations.Editor is not null && !EditorList.Contains(scanner.Book.BookInformations.Editor))
+        {
+            if (!EditorList.Contains(scanner.Book.BookInformations.Editor)) EditorList.Add(scanner.Book.BookInformations.Editor);
+        }
+            
+        if (scanner.Book.BookInformations.Series is not null && !scanner.Book.BookInformations.Series.Equals(string.Empty))
+        {
+            if (!EditorList.Contains(scanner.Book.BookInformations.Series)) EditorList.Add(scanner.Book.BookInformations.Series);
+        }
+            
+        BookData = scanner.Book;
     }
 
     public MyCollectionShelf.Book.Object.Class.Book BookData

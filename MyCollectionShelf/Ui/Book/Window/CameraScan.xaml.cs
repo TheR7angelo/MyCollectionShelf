@@ -78,9 +78,10 @@ public partial class CameraScan : INotifyPropertyChanged
         // todo à finir
         
         var api = new BookAllApi();
-        var book = await api.GetBookInformation(isbn!);
+        Book = await api.GetBookInformation(isbn!);
         
-        Console.WriteLine(book.BookInformations.Title);
+        Console.WriteLine(Book.BookInformations.Title);
+        DialogResult = true;
 
         // var api = new OpenLibraryApi();
         //

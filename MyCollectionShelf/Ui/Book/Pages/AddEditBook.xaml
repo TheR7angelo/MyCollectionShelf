@@ -18,9 +18,11 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="0"
-               Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-               Width="163" Height="238" />
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+            <Image Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   Width="163" Height="238">
+            </Image>
+        </Border>
 
         <Grid Grid.Column="1">
 
@@ -73,9 +75,10 @@
                         <DataTemplate>
 
                             <ComboBox
-                                ItemsSource="{Binding AuthorsList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                 DisplayMemberPath="NameConcat"
-                                SelectedItem="{Binding .}">
+                                SelectedItem="{Binding .}"
+                                IsEditable="True">
                             </ComboBox>
 
                         </DataTemplate>
@@ -89,8 +92,9 @@
 
                 <Label Content="Éditeur" HorizontalContentAlignment="Left" />
                 
-                <ComboBox ItemsSource="{Binding EditorList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding BookData.BookInformations.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox ItemsSource="{Binding EditorList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding BookData.BookInformations.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="True">
                 </ComboBox>
 
             </StackPanel>
@@ -120,8 +124,9 @@
                         <DataTemplate>
 
                             <ComboBox
-                                ItemsSource="{Binding GenresList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                SelectedItem="{Binding .}">
+                                ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                SelectedItem="{Binding .}"
+                                IsEditable="True">
                             </ComboBox>
 
                         </DataTemplate>
@@ -135,8 +140,9 @@
 
                 <Label Content="Serie" HorizontalContentAlignment="Left" />
                 
-                <ComboBox ItemsSource="{Binding SeriesList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding BookData.BookInformations.Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding BookData.BookInformations.Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="True">
                 </ComboBox>
 
             </StackPanel>
