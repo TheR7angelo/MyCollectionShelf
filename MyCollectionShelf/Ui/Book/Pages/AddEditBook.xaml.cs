@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Ui.Book.Window;
 
 namespace MyCollectionShelf.Ui.Book.Pages;
 
@@ -75,6 +75,9 @@ public partial class AddEditBook
         };
 
         InitializeComponent();
+
+        var scanner = new CameraScan();
+        scanner.Show();
     }
 
     public MyCollectionShelf.Book.Object.Class.Book BookData
