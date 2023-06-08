@@ -59,9 +59,9 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private BookCover? _bookCover;
+    private BookCover _bookCover = new();
 
-    public BookCover? BookCover
+    public BookCover BookCover
     {
         get => _bookCover;
         set
