@@ -7,7 +7,9 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MyCollectionShelf.Book;
+using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Camera.Object.Static_Class;
+using MyCollectionShelf.WebApi.Object.Book.Enum;
 using ZXing;
 using ZXing.Common;
 
@@ -80,6 +82,10 @@ public partial class CameraScan : INotifyPropertyChanged
         var api = new BookAllApi();
         Book = await api.GetBookInformation(isbn!);
         
+        var uri = await Book.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, "test.jpg");
+        
+        
+        Console.WriteLine(uri);
         Console.WriteLine(Book.BookInformations.Title);
         DialogResult = true;
 
