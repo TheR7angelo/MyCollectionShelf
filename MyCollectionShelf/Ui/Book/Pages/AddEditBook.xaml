@@ -223,6 +223,14 @@
                 
             </Grid>
             
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+
+                <Button Background="Transparent" Padding="0" Click="ButtonScan_OnClick">
+                    <Image Source="/Assets/Book/barcode.png" Height="25"/>
+                </Button>
+
+            </StackPanel>
+            
         </Grid>
 
     </Grid>

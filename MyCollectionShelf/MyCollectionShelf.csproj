@@ -30,4 +30,23 @@
       </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Assets\Book\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\Book\barcode.gif" />
+      <Resource Include="Assets\Book\barcode.gif">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Book\barcode.png" />
+      <Resource Include="Assets\Book\barcode.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Book\barcode.svg" />
+      <Resource Include="Assets\Book\barcode.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
 </Project>
