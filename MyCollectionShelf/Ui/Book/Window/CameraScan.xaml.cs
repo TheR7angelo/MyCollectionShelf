@@ -67,7 +67,7 @@ public partial class CameraScan : INotifyPropertyChanged
     {
         if (result.BarcodeFormat != BarcodeFormat.EAN_13) return;
 
-        IsbnFounds.Add(result.Text);
+        if (!IsbnFounds.Contains(result.Text)) IsbnFounds.Add(result.Text);
     }
 
     private async void UIElement_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
