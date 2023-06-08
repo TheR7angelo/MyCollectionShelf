@@ -26,6 +26,9 @@ public static class BookDownloadCover
         var message = await client.GetAsync(uri);
         if (!message.IsSuccessStatusCode) return false;
 
+        var directory = Path.GetDirectoryName(savePath);
+        if (!Directory.Exists(directory)) Directory.CreateDirectory(directory!);
+        
         var imageBytes = await message.Content.ReadAsByteArrayAsync();
         await File.WriteAllBytesAsync(savePath, imageBytes);
 
