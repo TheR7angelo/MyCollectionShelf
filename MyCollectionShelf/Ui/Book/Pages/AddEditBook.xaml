@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
-            <Image Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <Image Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource UriToImageSourceConverter}}"
                    Width="163" Height="238">
             </Image>
         </Border>
