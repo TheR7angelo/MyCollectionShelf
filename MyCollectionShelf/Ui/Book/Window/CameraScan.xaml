@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:ui="clr-namespace:MyCollectionShelf.Camera.Ui;assembly=MyCollectionShelf.Camera"
         mc:Ignorable="d"
-        Title="CameraScan" Height="450" Width="800"
+        Title="CameraScan"
         
         WindowStartupLocation="CenterScreen"
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
