@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -105,5 +106,10 @@ public partial class AddEditBook
         }
 
         BookData = scanner.Book;
+    }
+
+    private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
+    {
+        Console.WriteLine("hey");
     }
 }

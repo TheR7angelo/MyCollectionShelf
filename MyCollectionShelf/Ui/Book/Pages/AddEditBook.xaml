@@ -17,12 +17,14 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
-            <Image Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource UriToImageSourceConverter}}"
-                   Width="163" Height="238">
-            </Image>
-        </Border>
+        
+            <Button Grid.Column="0" Background="Transparent"
+                    Click="ButtonSelectPicture_OnClick">
+                <Image Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource UriToImageSourceConverter}}"
+                       MinWidth="163" MinHeight="238"
+                       Stretch="Uniform">
+                </Image>
+            </Button>
 
         <Grid Grid.Column="1">
 
