@@ -92,6 +92,8 @@ public partial class CameraScan : INotifyPropertyChanged
         }
         
         Console.WriteLine(Book.BookInformations.Title);
+        
+        VideoPreview.Dispose();
         DialogResult = true;
 
         // var api = new OpenLibraryApi();
