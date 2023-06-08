@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
@@ -13,9 +14,11 @@ public class UriToImageSourceConverter : IValueConverter
         if (value is not Uri uri) return DependencyProperty.UnsetValue;
         try
         {
+            using var fileStream = new FileStream(uri.LocalPath, FileMode.Open, FileAccess.Read);
+            
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = uri;
+            bitmapImage.StreamSource = fileStream;
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             bitmapImage.EndInit();
 
