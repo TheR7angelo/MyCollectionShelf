@@ -1,7 +1,6 @@
-﻿using ObjCRuntime;
-using UIKit;
+﻿using UIKit;
 
-namespace MyCollection.Maui
+namespace MyCollectionShelf.Maui
 {
     public class Program
     {

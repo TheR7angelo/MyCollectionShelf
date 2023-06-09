@@ -1,7 +1,7 @@
 ﻿using Camera.MAUI;
 using CommunityToolkit.Maui;
 
-namespace MyCollection.Maui
+namespace MyCollectionShelf.Maui
 {
     public static class MauiProgram
     {

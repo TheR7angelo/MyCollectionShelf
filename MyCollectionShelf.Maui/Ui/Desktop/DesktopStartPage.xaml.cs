@@ -1,4 +1,4 @@
-﻿namespace MyCollection.Maui.Ui.Pages.Desktop;
+﻿namespace MyCollectionShelf.Maui.Ui.Desktop;
 
 public partial class DesktopStartPage
 {

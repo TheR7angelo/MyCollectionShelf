@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace MyCollection.Maui
+namespace MyCollectionShelf.Maui
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

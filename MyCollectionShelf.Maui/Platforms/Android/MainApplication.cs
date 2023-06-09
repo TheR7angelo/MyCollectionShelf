@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace MyCollection.Maui
+namespace MyCollectionShelf.Maui
 {
     [Application]
     public class MainApplication : MauiApplication

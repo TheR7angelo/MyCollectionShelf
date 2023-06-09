@@ -1,7 +1,7 @@
-﻿using MyCollection.Maui.Ui.Pages.Smartphone;
-using MyCollection.Maui.Ui.Pages.Desktop;
+﻿using MyCollectionShelf.Maui.Ui.Desktop;
+using MyCollectionShelf.Maui.Ui.SmartPhone;
 
-namespace MyCollection.Maui
+namespace MyCollectionShelf.Maui
 {
     public partial class App
     {

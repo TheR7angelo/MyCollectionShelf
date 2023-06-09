@@ -1,4 +1,4 @@
-﻿namespace MyCollection.Maui.Ui.Pages.Smartphone;
+﻿namespace MyCollectionShelf.Maui.Ui.SmartPhone;
 
 public partial class SmartPhoneStartPage
 {
