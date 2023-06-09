@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectMyCollectionShel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCollectionShelf.Book", "MyCollectionShelf.Book\MyCollectionShelf.Book.csproj", "{EA819049-010F-456B-AF9E-B3BCFFF5FC99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollection.Maui", "MyCollection.Maui\MyCollection.Maui.csproj", "{818DA0B7-D596-455E-83BB-2612A67603A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Maui", "MyCollectionShelf.Maui\MyCollectionShelf.Maui.csproj", "{818DA0B7-D596-455E-83BB-2612A67603A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

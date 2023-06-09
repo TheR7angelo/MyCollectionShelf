@@ -62,6 +62,23 @@
 	  <MauiXaml Update="FullScreenPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Ui\Pages\Desktop\DesktopStartPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Ui\Pages\Smartphone\SmartphoneStartPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Ui\Pages\Desktop\DesktopStartPage.xaml.cs">
+	    <DependentUpon>DesktopStartPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Ui\Pages\Smartphone\SmartphoneStartPage.xaml.cs">
+	    <DependentUpon>SmartphoneStartPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 </Project>
