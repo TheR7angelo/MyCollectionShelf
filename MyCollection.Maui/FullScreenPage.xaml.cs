@@ -1,13 +1,15 @@
 namespace MyCollection.Maui;
 
-public partial class FullScreenPage : ContentPage
+public partial class FullScreenPage
 {
     bool playing = false;
-	public FullScreenPage()
-	{
-		InitializeComponent();
+
+    public FullScreenPage()
+    {
+        InitializeComponent();
         cameraView.CamerasLoaded += CameraView_CamerasLoaded;
     }
+
     private void CameraView_CamerasLoaded(object sender, EventArgs e)
     {
         if (cameraView.Cameras.Count > 0)
@@ -25,6 +27,7 @@ public partial class FullScreenPage : ContentPage
             */
         }
     }
+
     private async void Button_Clicked(object sender, EventArgs e)
     {
         cameraView.Camera = cameraView.Cameras.First();
@@ -38,6 +41,7 @@ public partial class FullScreenPage : ContentPage
             var result = await cameraView.StartCameraAsync();
             controlButton.Text = "Stop";
         }
+
         playing = !playing;
     }
 }

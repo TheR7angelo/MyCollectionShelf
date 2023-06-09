@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
-using Camera.MAUI;
-using Microsoft.Maui.Hosting;
+﻿using Camera.MAUI;
 using CommunityToolkit.Maui;
-using MyCollection.Maui.MVVM;
 
 namespace MyCollection.Maui
 {
@@ -21,11 +18,7 @@ namespace MyCollection.Maui
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
-            builder.Services.AddSingleton<CameraViewModel>();
+            
             return builder.Build();
         }
     }
