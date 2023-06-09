@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectMyCollectionShel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCollectionShelf.Book", "MyCollectionShelf.Book\MyCollectionShelf.Book.csproj", "{EA819049-010F-456B-AF9E-B3BCFFF5FC99}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camera.MAUI.Test", "Camera.MAUI.Test\Camera.MAUI.Test.csproj", "{818DA0B7-D596-455E-83BB-2612A67603A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA819049-010F-456B-AF9E-B3BCFFF5FC99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{818DA0B7-D596-455E-83BB-2612A67603A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818DA0B7-D596-455E-83BB-2612A67603A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818DA0B7-D596-455E-83BB-2612A67603A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818DA0B7-D596-455E-83BB-2612A67603A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
