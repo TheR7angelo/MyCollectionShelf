@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace MyCollectionShelf.Ui.General;
+namespace MyCollectionShelf.Wpf.Ui.General;
 
 public partial class TextBoxAnimated
 {

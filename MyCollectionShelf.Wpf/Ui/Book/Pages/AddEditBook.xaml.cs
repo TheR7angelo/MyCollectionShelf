@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using MyCollectionShelf.Book.Object.Class;
-using MyCollectionShelf.Ui.Book.Window;
+using MyCollectionShelf.Wpf.Ui.Book.Window;
 
-namespace MyCollectionShelf.Ui.Book.Pages;
+namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
 
 public partial class AddEditBook
 {

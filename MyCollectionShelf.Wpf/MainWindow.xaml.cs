@@ -1,6 +1,6 @@
-﻿using MyCollectionShelf.Ui.Book.Pages;
+﻿using MyCollectionShelf.Wpf.Ui.Book.Pages;
 
-namespace MyCollectionShelf
+namespace MyCollectionShelf.Wpf
 {
     public partial class MainWindow
     {

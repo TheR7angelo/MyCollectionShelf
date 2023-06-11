@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="MyCollectionShelf.Ui.Book.UserControls.BookInformation.AddEditAuthors"
+﻿<UserControl x:Class="MyCollectionShelf.Wpf.Ui.Book.UserControls.BookInformation.AddEditAuthors"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MyCollectionShelf.Ui.Book.UserControls"
-             xmlns:bookInformation="clr-namespace:MyCollectionShelf.Ui.Book.UserControls.BookInformation"
+             xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.UserControls"
+             xmlns:bookInformation1="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.UserControls.BookInformation"
              mc:Ignorable="d">
     <Grid>
         <Border BorderThickness="1" BorderBrush="Black" CornerRadius="3">
@@ -12,12 +12,12 @@
                 
                 <Label HorizontalContentAlignment="Left"
                        Content="{Binding BoxTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                       RelativeSource={RelativeSource AncestorType={x:Type bookInformation:AddEditAuthors}}}">
+                       RelativeSource={RelativeSource AncestorType={x:Type bookInformation1:AddEditAuthors}}}">
                 </Label>
                 
                 <TextBox MinWidth="25"
                     Text="{Binding BoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                         RelativeSource={RelativeSource AncestorType={x:Type bookInformation:AddEditAuthors}}}"
+                         RelativeSource={RelativeSource AncestorType={x:Type bookInformation1:AddEditAuthors}}}"
                          AcceptsReturn="False">
                 </TextBox>
                 

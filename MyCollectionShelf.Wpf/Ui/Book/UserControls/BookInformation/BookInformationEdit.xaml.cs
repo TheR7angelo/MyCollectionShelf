@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using MyCollectionShelf.Book.Object.Class;
 
-namespace MyCollectionShelf.Ui.Book.UserControls.BookInformation;
+namespace MyCollectionShelf.Wpf.Ui.Book.UserControls.BookInformation;
 
 public partial class BookInformationEdit
 {

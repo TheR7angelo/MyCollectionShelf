@@ -1,4 +1,4 @@
-﻿namespace MyCollectionShelf
+﻿namespace MyCollectionShelf.Wpf
 {
     /// <summary>
     /// Interaction logic for App.xaml

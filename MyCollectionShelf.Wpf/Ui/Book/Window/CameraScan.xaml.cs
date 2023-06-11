@@ -9,12 +9,12 @@ using System.Windows.Input;
 using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Camera.Object.Static_Class;
-using MyCollectionShelf.Object.StaticClass;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
+using MyCollectionShelf.Wpf.Object.StaticClass;
 using ZXing;
 using ZXing.Common;
 
-namespace MyCollectionShelf.Ui.Book.Window;
+namespace MyCollectionShelf.Wpf.Ui.Book.Window;
 
 public partial class CameraScan : INotifyPropertyChanged
 {
