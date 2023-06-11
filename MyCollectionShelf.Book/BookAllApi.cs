@@ -60,7 +60,7 @@ public class BookAllApi
         bookInformations.Isbn ??= tempInformations.Isbn;
 
         Copy(tempInformations.Authors, bookInformations.Authors);
-        Copy(tempInformations.BookCover, bookInformations.BookCover!);
+        Copy(tempInformations.BookCover, bookInformations.BookCover);
         Copy(tempInformations.Genres, bookInformations.Genres);
     }
 
@@ -91,9 +91,17 @@ public class BookAllApi
     {
         if (tempAuthors.Count.Equals(0)) return;
 
-        var uniqueAuthors = tempAuthors.Where(tmp => !bookAuthors.Any(book =>
-            book.Name.Equals(tmp.Name) && book.FamilyName.Equals(tmp.FamilyName) && string.IsNullOrEmpty(book.Role) &&
-            !string.IsNullOrEmpty(tmp.Role))).ToList();
+        // var uniqueAuthors = tempAuthors.Where(tmp => !bookAuthors.Any(book =>
+        //     book.Name.Equals(tmp.Name) && book.FamilyName.Equals(tmp.FamilyName) && string.IsNullOrEmpty(book.Role) &&
+        //     !string.IsNullOrEmpty(tmp.Role))).ToList();
+
+        // foreach (var author in uniqueAuthors)
+        // {
+        //     bookAuthors.Add(author);
+        // }
+
+        var uniqueAuthors = tempAuthors.Where(tmp =>
+            !bookAuthors.Any(author => !author.Name.Equals(tmp.Name) && !author.FamilyName.Equals(tmp.FamilyName)));
 
         foreach (var author in uniqueAuthors)
         {
