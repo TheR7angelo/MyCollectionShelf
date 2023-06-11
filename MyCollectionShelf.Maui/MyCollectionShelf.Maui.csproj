@@ -69,6 +69,12 @@
 	  <MauiXaml Update="Ui\Pages\Smartphone\SmartphoneStartPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Ui\Desktop\SmartPhoneAppShell.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="Ui\SmartPhone\SmartPhoneAppShell.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -78,6 +84,14 @@
 	  </Compile>
 	  <Compile Update="Ui\Pages\Smartphone\SmartphoneStartPage.xaml.cs">
 	    <DependentUpon>SmartphoneStartPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Ui\Desktop\DesktopAppShell.xaml.cs">
+	    <DependentUpon>AppShell.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Ui\SmartPhone\SmartPhoneAppShell.xaml.cs">
+	    <DependentUpon>DesktopAppShell.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
 	</ItemGroup>
