@@ -6,7 +6,7 @@
     
     <ContentPage.Content>
         
-        <Label Text="Smartphone" />
+        <Button Text="test moi" Clicked="Button_OnClicked"/>
         
     </ContentPage.Content>
 

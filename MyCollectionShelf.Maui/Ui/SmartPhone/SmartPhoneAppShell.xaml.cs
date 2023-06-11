@@ -1,4 +1,4 @@
-﻿namespace MyCollectionShelf.Maui.Ui.Desktop
+﻿namespace MyCollectionShelf.Maui.Ui.SmartPhone
 {
     public partial class SmartPhoneAppShell
     {

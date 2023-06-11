@@ -8,7 +8,7 @@
 
     <ContentPage.Content>
         
-        <Label Text="Desktop" />
+        <Button Text="test moi" Clicked="Button_OnClicked"/>
         
     </ContentPage.Content>
     
