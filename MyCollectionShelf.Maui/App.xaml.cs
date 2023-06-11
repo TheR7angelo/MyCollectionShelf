@@ -1,5 +1,5 @@
-﻿using MyCollectionShelf.Maui.Ui.Desktop;
-using MyCollectionShelf.Maui.Ui.SmartPhone;
+﻿using MyCollectionShelf.Maui.Ui.SmartPhone;
+using MyCollectionShelf.Maui.Ui.Desktop;
 
 namespace MyCollectionShelf.Maui
 {
@@ -10,9 +10,9 @@ namespace MyCollectionShelf.Maui
             InitializeComponent();
             
             #if IOS || ANDROID
-                MainPage = new NavigationPage(new SmartPhoneStartPage());
+                MainPage = new SmartPhoneAppShell();
             #else
-                MainPage = new NavigationPage(new DesktopStartPage());
+                MainPage = new DesktopAppShell();
             #endif
         }
     }
