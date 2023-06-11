@@ -46,18 +46,18 @@ public class BookAuthors : INotifyPropertyChanged
         }
     }
     
-    private string _role = string.Empty;
-
-    public string Role
-    {
-        get => _role;
-        set
-        {
-            _role = value;
-            OnPropertyChanged();
-        }
-    }
-
+    // private string _role = string.Empty;
+    //
+    // public string Role
+    // {
+    //     get => _role;
+    //     set
+    //     {
+    //         _role = value;
+    //         OnPropertyChanged();
+    //     }
+    // }
+    
     public string NameConcat => $"{FamilyName}, {Name}";
 
 }

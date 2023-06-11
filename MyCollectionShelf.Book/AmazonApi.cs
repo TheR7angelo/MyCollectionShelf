@@ -192,15 +192,15 @@ public class AmazonApi : IBookApi
                 FamilyName = familyName
             };
 
-            var roleHtml = document.DocumentNode.SelectSingleNode("//span[@class='contribution']/span").InnerHtml;
-            if (roleHtml is not null)
-            {
-                var role = roleHtml.Trim().Trim(',').Trim('(').Trim(')');
-                if (!string.IsNullOrEmpty(role))
-                {
-                    author.Role = role;
-                }
-            }
+            // var roleHtml = document.DocumentNode.SelectSingleNode("//span[@class='contribution']/span").InnerHtml;
+            // if (roleHtml is not null)
+            // {
+            //     var role = roleHtml.Trim().Trim(',').Trim('(').Trim(')');
+            //     if (!string.IsNullOrEmpty(role))
+            //     {
+            //         author.Role = role;
+            //     }
+            // }
 
             results.Add(author);
         }
