@@ -2,9 +2,14 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Book.Object.Static_Class;
+using MyCollectionShelf.WebApi.Object.Book.Enum;
+using MyCollectionShelf.Wpf.Object.StaticClass;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
 
 namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
@@ -66,7 +71,7 @@ public partial class AddEditBook
         set => SetValue(SeriesListProperty, value);
     }
 
-    private void TextBoxTomeNumber_OnTextChanged(object sender, TextCompositionEventArgs e)
+    private void OnlyNumber_OnTextChanged(object sender, TextCompositionEventArgs e)
     {
         var regex = IsNumber();
         e.Handled = regex.IsMatch(e.Text);
@@ -75,41 +80,83 @@ public partial class AddEditBook
     [GeneratedRegex("[^0-9]+")]
     private static partial Regex IsNumber();
 
-    private void ButtonScan_OnClick(object sender, RoutedEventArgs e)
+    private async void ButtonScan_OnClick(object sender, RoutedEventArgs e)
     {
         var scanner = new CameraScan();
 
         if (scanner.ShowDialog() != true) return;
 
-        foreach (var author in scanner.Book.BookInformations.Authors.Where(s => !s.NameConcat.Equals(", ")))
+        var isbn = scanner.Isbn;
+
+        var book = await GetBook(isbn);
+        SetBook(book);
+    }
+    
+    private async void ButtonISBN_OnClick(object sender, RoutedEventArgs e)
+    {
+        var isbn = BookData.BookInformations.Isbn;
+        if (string.IsNullOrEmpty(isbn)) return;
+
+        var book = await GetBook(isbn);
+        SetBook(book);
+    }
+
+    private async void IsbnSearch_OnKeyDown(object sender, KeyEventArgs e)
+    {
+        if (!e.Key.Equals(Key.Enter)) return;
+        
+        var isbn = BookData.BookInformations.Isbn;
+        if (string.IsNullOrEmpty(isbn)) return;
+
+        var book = await GetBook(isbn);
+        SetBook(book);
+    }
+    
+    private static async Task<MyCollectionShelf.Book.Object.Class.Book> GetBook(string isbn)
+    {
+        var api = new BookAllApi();
+        var book = await api.GetBookInformation(isbn);
+        
+        var tempPicture = CommonPath.GetTemporaryCoverFilePath();
+        var sucess = await book.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, tempPicture);
+        
+        if (sucess)
+        {
+            book.BookInformations.BookCover.Storage = new Uri(tempPicture);
+        }
+
+        return book;
+    }
+    
+    private void SetBook(MyCollectionShelf.Book.Object.Class.Book book)
+    {
+        foreach (var author in book.BookInformations.Authors.Where(s => !s.NameConcat.Equals(", ")))
         {
             if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
         }
 
-        foreach (var genre in scanner.Book.BookInformations.Genres.Where(s => !s.Equals(string.Empty)))
+        foreach (var genre in book.BookInformations.Genres.Where(s => !s.Equals(string.Empty)))
         {
             if (!GenresList.Contains(genre)) GenresList.Add(genre);
         }
 
-        if (scanner.Book.BookInformations.Editor is not null &&
-            !EditorList.Contains(scanner.Book.BookInformations.Editor))
+        if (book.BookInformations.Editor is not null && !EditorList.Contains(book.BookInformations.Editor))
         {
-            if (!EditorList.Contains(scanner.Book.BookInformations.Editor))
-                EditorList.Add(scanner.Book.BookInformations.Editor);
+            if (!EditorList.Contains(book.BookInformations.Editor))
+                EditorList.Add(book.BookInformations.Editor);
         }
 
-        if (scanner.Book.BookInformations.Series is not null &&
-            !scanner.Book.BookInformations.Series.Equals(string.Empty))
+        if (book.BookInformations.Series is not null && !book.BookInformations.Series.Equals(string.Empty))
         {
-            if (!EditorList.Contains(scanner.Book.BookInformations.Series))
-                EditorList.Add(scanner.Book.BookInformations.Series);
+            if (!EditorList.Contains(book.BookInformations.Series))
+                EditorList.Add(book.BookInformations.Series);
         }
 
-        BookData = scanner.Book;
+        BookData = book;
     }
 
     private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
     {
-        Console.WriteLine("hey");
+        Console.WriteLine("heyy");
     }
 }

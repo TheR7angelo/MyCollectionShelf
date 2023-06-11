@@ -6,11 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Input;
-using MyCollectionShelf.Book;
-using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Camera.Object.Static_Class;
-using MyCollectionShelf.WebApi.Object.Book.Enum;
-using MyCollectionShelf.Wpf.Object.StaticClass;
 using ZXing;
 using ZXing.Common;
 
@@ -35,17 +31,29 @@ public partial class CameraScan : INotifyPropertyChanged
         }
     }
 
-    private MyCollectionShelf.Book.Object.Class.Book _book = new();
+    private string _isbn = string.Empty;
 
-    public MyCollectionShelf.Book.Object.Class.Book Book
+    public string Isbn
     {
-        get => _book;
+        get => _isbn;
         set
         {
-            _book = value;
+            _isbn = value;
             OnPropertyChanged();
         }
     }
+    
+    // private MyCollectionShelf.Book.Object.Class.Book _book = new();
+    //
+    // public MyCollectionShelf.Book.Object.Class.Book Book
+    // {
+    //     get => _book;
+    //     set
+    //     {
+    //         _book = value;
+    //         OnPropertyChanged();
+    //     }
+    // }
 
     public ObservableCollection<string> IsbnFounds { get; } = new();
 
@@ -73,25 +81,28 @@ public partial class CameraScan : INotifyPropertyChanged
         if (!IsbnFounds.Contains(result.Text)) IsbnFounds.Add(result.Text);
     }
 
-    private async void UIElement_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+    private void UIElement_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
     {
-        var isbn = ((Label)sender).Content as string;
+        var isbn = (string)((Label)sender).Content;
+
+        Isbn = isbn;
+        
         Console.WriteLine(isbn);
         
         // todo à finir
         
-        var api = new BookAllApi();
-        Book = await api.GetBookInformation(isbn!);
-
-        var tempPicture = CommonPath.GetTemporaryCoverFilePath();
-        var sucess = await Book.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, tempPicture);
-
-        if (sucess)
-        {
-            Book.BookInformations.BookCover!.Storage = new Uri(tempPicture);
-        }
-        
-        Console.WriteLine(Book.BookInformations.Title);
+        // var api = new BookAllApi();
+        // Book = await api.GetBookInformation(isbn!);
+        //
+        // var tempPicture = CommonPath.GetTemporaryCoverFilePath();
+        // var sucess = await Book.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, tempPicture);
+        //
+        // if (sucess)
+        // {
+        //     Book.BookInformations.BookCover!.Storage = new Uri(tempPicture);
+        // }
+        //
+        // Console.WriteLine(Book.BookInformations.Title);
         
         VideoPreview.Dispose();
         DialogResult = true;
