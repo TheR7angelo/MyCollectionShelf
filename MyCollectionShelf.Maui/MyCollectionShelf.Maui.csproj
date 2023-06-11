@@ -101,4 +101,8 @@
 	  <AdditionalFiles Include="Ui\SmartPhone\SmartPhoneStartPage.xaml" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\MyCollectionShelf.Book\MyCollectionShelf.Book.csproj" />
+	</ItemGroup>
+
 </Project>
