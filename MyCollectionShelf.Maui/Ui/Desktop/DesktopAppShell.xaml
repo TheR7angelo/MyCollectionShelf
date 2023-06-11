@@ -5,9 +5,27 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="using:MyCollectionShelf.Maui.Ui.Desktop"
-    FlyoutBehavior="Flyout"
-    Title="Application Title">
+    FlyoutBehavior="Flyout">
 
+    <!-- <Shell.FlyoutHeader> -->
+    <!--     <Grid> -->
+    <!--      -->
+    <!--         <Grid.ColumnDefinitions> -->
+    <!--             <ColumnDefinition Width="Auto"/> -->
+    <!--             <ColumnDefinition Width="*"/> -->
+    <!--         </Grid.ColumnDefinitions> -->
+    <!--      -->
+    <!--         <Label Grid.Column="0" Text="application name" /> -->
+    <!--         <Image Grid.Column="1" -->
+    <!--             Source="dotnet_bot.png" -->
+    <!--             SemanticProperties.Description="Cute dot net bot waving hi to you!" -->
+    <!--             HeightRequest="200" -->
+    <!--             HorizontalOptions="Center"> -->
+    <!--         </Image> -->
+    <!--      -->
+    <!--     </Grid> -->
+    <!-- </Shell.FlyoutHeader> -->
+    
     <ShellContent
         Title="Start up"
         ContentTemplate="{DataTemplate local:DesktopStartPage}"

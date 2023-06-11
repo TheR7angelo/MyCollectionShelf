@@ -6,10 +6,5 @@
         {
             InitializeComponent();
         }
-
-        private async void Button_OnClicked(object? sender, EventArgs e)
-        {
-            await Current.GoToAsync(new DesktopStartPage().Title);
-        }
     }
 }
