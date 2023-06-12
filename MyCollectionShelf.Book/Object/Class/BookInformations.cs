@@ -83,9 +83,9 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private ObservableCollection<string> _genres = new() { "" };
+    private ObservableCollection<Genre> _genres = new() { new Genre()};
 
-    public ObservableCollection<string> Genres
+    public ObservableCollection<Genre> Genres
     {
         get => _genres;
         set
@@ -142,6 +142,36 @@ public class BookInformations : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+}
+
+public class Genre : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler? PropertyChanged;
+    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    private long _id;
+
+    public long Id
+    {
+        get => _id;
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
     
+    private string _text = string.Empty;
+
+    public string Text
+    {
+        get => _text;
+        set
+        {
+            _text = value;
+            OnPropertyChanged();
+        }
+    }
     
 }
