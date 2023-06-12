@@ -12,7 +12,7 @@ using ZXing.Common;
 
 namespace MyCollectionShelf.Wpf.Ui.Book.Window;
 
-public partial class CameraScan : INotifyPropertyChanged
+public partial class CameraScan : INotifyPropertyChanged, IDisposable
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -104,7 +104,6 @@ public partial class CameraScan : INotifyPropertyChanged
         //
         // Console.WriteLine(Book.BookInformations.Title);
         
-        VideoPreview.Dispose();
         DialogResult = true;
 
         // var api = new OpenLibraryApi();
@@ -115,5 +114,10 @@ public partial class CameraScan : INotifyPropertyChanged
         //     $"{book.BookInformations.Title}.jpg")!;
         //
         // Console.WriteLine($"cover download {success}");
+    }
+
+    public void Dispose()
+    {
+        VideoPreview?.Dispose();
     }
 }

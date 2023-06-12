@@ -82,7 +82,7 @@ public partial class AddEditBook
 
     private async void ButtonScan_OnClick(object sender, RoutedEventArgs e)
     {
-        var scanner = new CameraScan();
+        using var scanner = new CameraScan();
 
         if (scanner.ShowDialog() != true) return;
 
