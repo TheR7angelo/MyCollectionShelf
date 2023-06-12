@@ -146,11 +146,23 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
 
-                                <ComboBox
-                                    ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                    SelectedItem="{Binding .}"
-                                    IsEditable="True">
-                                </ComboBox>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="15"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <ComboBox Grid.Column="0" 
+                                        ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                        SelectedItem="{Binding .}"
+                                        IsEditable="True">
+                                    </ComboBox>
+                                    
+                                    <Button Grid.Column="1" Content="-" Click="ButtonAddRemoveList_OnClick" />
+                                    <Button Grid.Column="2" Content="+" Click="ButtonAddRemoveList_OnClick" />
+                                    
+                                </Grid>
 
                             </DataTemplate>
                         </ListBox.ItemTemplate>

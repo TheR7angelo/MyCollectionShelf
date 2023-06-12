@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
@@ -148,8 +149,8 @@ public partial class AddEditBook
 
         if (book.BookInformations.Series is not null && !book.BookInformations.Series.Equals(string.Empty))
         {
-            if (!EditorList.Contains(book.BookInformations.Series))
-                EditorList.Add(book.BookInformations.Series);
+            if (!SeriesList.Contains(book.BookInformations.Series))
+                SeriesList.Add(book.BookInformations.Series);
         }
 
         BookData = book;
@@ -158,5 +159,33 @@ public partial class AddEditBook
     private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
     {
         Console.WriteLine("heyy");
+    }
+
+    private void ButtonAddRemoveList_OnClick(object sender, RoutedEventArgs e)
+    {
+        var button = (Button)sender;
+
+        var grid = (Grid)button.Parent;
+        
+        var comboBox = grid.Children.OfType<ComboBox>().First();
+        
+        if (button.Content.Equals('-'))
+        {
+            Remove(button);
+        }
+        else
+        {
+            Add(button);
+        }
+    }
+
+    private void Remove(Button button)
+    {
+        
+    }
+    
+    private void Add(Button button)
+    {
+        throw new NotImplementedException();
     }
 }
