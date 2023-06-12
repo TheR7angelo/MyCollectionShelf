@@ -126,7 +126,7 @@
 
                     <Label Content="Genres" HorizontalContentAlignment="Left" />
 
-                    <ListBox ItemsSource="{Binding BookData.BookInformations.Genres}">
+                    <ListBox ItemsSource="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -145,29 +145,27 @@
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-
+                        
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="15"/>
                                         <ColumnDefinition Width="15"/>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <ComboBox Grid.Column="0"  LostFocus="UIElement_OnLostFocus"
-                                        ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                        Text="{Binding ., Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        IsEditable="True">
-                                    </ComboBox>
-                                    
+                        
+                                    <ComboBox Grid.Column="0" IsEditable="True"
+                                              ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                              Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        
                                     <Button Grid.Column="1" Content="-"
                                             Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                             Click="ButtonAddRemoveGenres_OnClick" />
-                                    <Button Grid.Column="2" Content="+" 
+                                    <Button Grid.Column="2" Content="+"
                                             Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                             Click="ButtonAddRemoveGenres_OnClick" />
-                                    
+                        
                                 </Grid>
-
+                        
                             </DataTemplate>
                         </ListBox.ItemTemplate>
 
@@ -257,23 +255,23 @@
                     <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
 
                         <Label Content="Code ISBN" HorizontalContentAlignment="Left" />
-                        
+
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                        
+
                             <TextBox Grid.Column="0"
                                      Text="{Binding BookData.BookInformations.Isbn, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                                      MinWidth="100"
                                      PreviewTextInput="OnlyNumber_OnTextChanged"
-                                     KeyDown="IsbnSearch_OnKeyDown"/>
+                                     KeyDown="IsbnSearch_OnKeyDown" />
 
                             <Button Grid.Column="1" Content="Rechercher" Click="ButtonISBN_OnClick" />
-                        
+
                         </Grid>
-                        
+
                         <Button Click="ButtonScan_OnClick">
                             <StackPanel>
                                 <Label Content="Scanner" HorizontalAlignment="Center" />

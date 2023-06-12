@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -11,7 +9,6 @@ using System.Windows.Input;
 using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
-using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
 using MyCollectionShelf.Wpf.Object.StaticClass;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
@@ -139,9 +136,9 @@ public partial class AddEditBook
             if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
         }
 
-        foreach (var genre in book.BookInformations.Genres.Where(s => !s.Equals(string.Empty)))
+        foreach (var genre in book.BookInformations.Genres.Where(s => !s.Text.Equals(string.Empty)))
         {
-            if (!GenresList.Contains(genre)) GenresList.Add(genre);
+            if (!GenresList.Contains(genre.Text)) GenresList.Add(genre.Text);
         }
 
         if (book.BookInformations.Editor is not null && !EditorList.Contains(book.BookInformations.Editor))
@@ -168,14 +165,11 @@ public partial class AddEditBook
     {
         var button = (Button)sender;
         var function = (string)button.Content;
-        var collection = (ObservableCollection<string>)button.Tag;
+        var collection = (ObservableCollection<Genre>)button.Tag;
+
+        var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as Genre;
         
-        var combo = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First();
-        var item = combo.Text ?? string.Empty;
-        
-        var newValue = string.Empty;
-        
-        AddRemoveList(collection, function, item, newValue);
+        AddRemoveList(collection, function, item, new Genre());
     }
 
     private static void AddRemoveList<T>(object collection, string function, T item, T newItem)
@@ -190,41 +184,5 @@ public partial class AddEditBook
         {
             zcollection!.Add(newItem);
         }
-        // var button = (Button)sender;
-        //
-        // if (button.Content.Equals("-"))
-        // {
-        //     var tag = button.Tag;
-        //     var lst = tag.GetType();
-        //     
-        //     var z = 
-        //     
-        //         var item = (string)button.DataContext;
-        //     // lst!.Remove(item);
-        // }
-        // else
-        // {
-        //     BookData.BookInformations.Genres.Add(string.Empty);
-        // }
-    }
-    
-    private void Remove(Button button)
-    {
-        
-    }
-    
-    private void Add(Button button)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
-    {
-        var comboBox = (ComboBox)sender;
-
-        if (!string.IsNullOrEmpty((string)comboBox.DataContext) && !string.IsNullOrEmpty(comboBox.Text)) return;
-        
-        GenresList.Add(comboBox.Text);
-        comboBox.DataContext = comboBox.Text;
     }
 }
