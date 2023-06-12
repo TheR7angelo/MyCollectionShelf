@@ -107,7 +107,11 @@ public class BookAllApi
         //     bookAuthors.Add(author);
         // }
 
-        var uniqueAuthors = tempAuthors.Where(author => !bookAuthors.Contains(author)).ToList();
+        // var uniqueAuthors = tempAuthors.Where(author => bookAuthors
+        //     .Any(s => s.Name != author.Name && s.FamilyName != author.FamilyName)).ToList();
+
+        var uniqueAuthors = tempAuthors.Where(tmp => !bookAuthors.Any(book =>
+            book.Name.Equals(tmp.Name) && book.FamilyName.Equals(tmp.FamilyName)));
 
         foreach (var author in uniqueAuthors)
         {
