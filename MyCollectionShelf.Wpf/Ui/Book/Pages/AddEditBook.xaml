@@ -153,14 +153,18 @@
                                         <ColumnDefinition Width="15"/>
                                     </Grid.ColumnDefinitions>
                                     
-                                    <ComboBox Grid.Column="0" 
+                                    <ComboBox Grid.Column="0"  LostFocus="UIElement_OnLostFocus"
                                         ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                        SelectedItem="{Binding .}"
+                                        Text="{Binding ., Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                         IsEditable="True">
                                     </ComboBox>
                                     
-                                    <Button Grid.Column="1" Content="-" Click="ButtonAddRemoveList_OnClick" />
-                                    <Button Grid.Column="2" Content="+" Click="ButtonAddRemoveList_OnClick" />
+                                    <Button Grid.Column="1" Content="-"
+                                            Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                            Click="ButtonAddRemoveGenres_OnClick" />
+                                    <Button Grid.Column="2" Content="+" 
+                                            Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                            Click="ButtonAddRemoveGenres_OnClick" />
                                     
                                 </Grid>
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -9,6 +11,7 @@ using System.Windows.Input;
 using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
+using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
 using MyCollectionShelf.Wpf.Object.StaticClass;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
@@ -161,24 +164,50 @@ public partial class AddEditBook
         Console.WriteLine("heyy");
     }
 
-    private void ButtonAddRemoveList_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonAddRemoveGenres_OnClick(object sender, RoutedEventArgs e)
     {
         var button = (Button)sender;
+        var function = (string)button.Content;
+        var collection = (ObservableCollection<string>)button.Tag;
+        
+        var combo = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First();
+        var item = combo.Text ?? string.Empty;
+        
+        var newValue = string.Empty;
+        
+        AddRemoveList(collection, function, item, newValue);
+    }
 
-        var grid = (Grid)button.Parent;
-        
-        var comboBox = grid.Children.OfType<ComboBox>().First();
-        
-        if (button.Content.Equals('-'))
+    private static void AddRemoveList<T>(object collection, string function, T item, T newItem)
+    {
+        var zcollection = collection as ObservableCollection<T>;
+
+        if (function.Equals("-"))
         {
-            Remove(button);
+            zcollection!.Remove(item);
         }
         else
         {
-            Add(button);
+            zcollection!.Add(newItem);
         }
+        // var button = (Button)sender;
+        //
+        // if (button.Content.Equals("-"))
+        // {
+        //     var tag = button.Tag;
+        //     var lst = tag.GetType();
+        //     
+        //     var z = 
+        //     
+        //         var item = (string)button.DataContext;
+        //     // lst!.Remove(item);
+        // }
+        // else
+        // {
+        //     BookData.BookInformations.Genres.Add(string.Empty);
+        // }
     }
-
+    
     private void Remove(Button button)
     {
         
@@ -187,5 +216,15 @@ public partial class AddEditBook
     private void Add(Button button)
     {
         throw new NotImplementedException();
+    }
+
+    private void UIElement_OnLostFocus(object sender, RoutedEventArgs e)
+    {
+        var comboBox = (ComboBox)sender;
+
+        if (!string.IsNullOrEmpty((string)comboBox.DataContext) && !string.IsNullOrEmpty(comboBox.Text)) return;
+        
+        GenresList.Add(comboBox.Text);
+        comboBox.DataContext = comboBox.Text;
     }
 }
