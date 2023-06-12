@@ -45,11 +45,11 @@ public partial class BookInformationEdit
     {
         var button = (Button)sender;
         var content = (char)button.Content;
-        var item = (string)button.DataContext;
+        var item = (Genre)button.DataContext;
         
         if (content == '+')
         {
-            BookInformationData.Genres.Add(string.Empty);
+            BookInformationData.Genres.Add(new Genre());
         }
         else
         {
@@ -60,9 +60,9 @@ public partial class BookInformationEdit
 
 internal class ItemToImageConverter : IValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        var listBoxItem = (ListBoxItem)value;
+        var listBoxItem = (ListBoxItem)value!;
 
         var sourceItems = (IList)listBoxItem.Tag;
         var item = listBoxItem.DataContext;
@@ -72,7 +72,7 @@ internal class ItemToImageConverter : IValueConverter
         return index == 0 ? '+' : '-';
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }
