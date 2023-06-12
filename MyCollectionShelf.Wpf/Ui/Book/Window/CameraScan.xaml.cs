@@ -60,6 +60,7 @@ public partial class CameraScan : INotifyPropertyChanged, IDisposable
     public CameraScan()
     {
         IsbnFounds.Add("9782072934902");
+        IsbnFounds.Add("9782380713084");
         InitializeComponent();
 
         DecodingOptions = new DecodingOptions
