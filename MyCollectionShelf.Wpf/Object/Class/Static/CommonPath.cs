@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MyCollectionShelf.Wpf.Object.StaticClass;
+namespace MyCollectionShelf.Wpf.Object.Class.Static;
 
 public static class CommonPath
 {
