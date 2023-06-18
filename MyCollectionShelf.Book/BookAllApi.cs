@@ -76,7 +76,7 @@ public class BookAllApi
     {
         if (tempInformationsGenre.Count.Equals(0)) return;
 
-        foreach (var genre in tempInformationsGenre.Where(genre => !bookInformationsGenre.Contains(genre)))
+        foreach (var genre in tempInformationsGenre.Where(genre => !bookInformationsGenre.Contains(genre) && !string.IsNullOrEmpty(genre.Text)))
         {
             bookInformationsGenre.Add(genre);
         }
