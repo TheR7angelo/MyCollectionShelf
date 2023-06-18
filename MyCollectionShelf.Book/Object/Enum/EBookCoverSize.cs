@@ -1,4 +1,4 @@
-﻿namespace MyCollectionShelf.WebApi.Object.Book.Enum;
+﻿namespace MyCollectionShelf.Book.Object.Enum;
 
 public enum EBookCoverSize
 {

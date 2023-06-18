@@ -2,5 +2,5 @@
 
 public interface IBookApi
 {
-    public Task<Object.Class.Book?> GetBookInformation(string isbn13);
+    public Task<Sql.Object.Book.Class.Book?> GetBookInformation(string isbn13);
 }

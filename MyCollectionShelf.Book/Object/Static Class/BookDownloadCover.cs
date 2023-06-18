@@ -1,5 +1,5 @@
-﻿using MyCollectionShelf.Book.Object.Class;
-using MyCollectionShelf.WebApi.Object.Book.Enum;
+﻿using MyCollectionShelf.Book.Object.Enum;
+using MyCollectionShelf.Sql.Object.Book.Class;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 
 namespace MyCollectionShelf.Book.Object.Static_Class;

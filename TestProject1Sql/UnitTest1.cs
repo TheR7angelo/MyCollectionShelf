@@ -1,4 +1,4 @@
-using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Sql.Object.Book.Class;
 using SQLite;
 
 namespace TestProject1Sql;

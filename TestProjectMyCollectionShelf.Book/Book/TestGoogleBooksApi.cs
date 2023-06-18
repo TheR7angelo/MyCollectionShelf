@@ -1,6 +1,6 @@
 ﻿using MyCollectionShelf.Book;
+using MyCollectionShelf.Book.Object.Enum;
 using MyCollectionShelf.Book.Object.Static_Class;
-using MyCollectionShelf.WebApi.Object.Book.Enum;
 
 namespace TestProjectMyCollectionShelf.WebApi.Book;
 

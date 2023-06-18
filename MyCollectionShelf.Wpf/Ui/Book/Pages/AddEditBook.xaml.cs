@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MyCollectionShelf.Book;
-using MyCollectionShelf.Book.Object.Class;
+using MyCollectionShelf.Book.Object.Enum;
 using MyCollectionShelf.Book.Object.Static_Class;
-using MyCollectionShelf.WebApi.Object.Book.Enum;
+using MyCollectionShelf.Sql.Object.Book.Class;
 using MyCollectionShelf.Wpf.Object.Class.Enum;
 using MyCollectionShelf.Wpf.Object.Class.Static;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
@@ -24,8 +24,8 @@ public partial class AddEditBook
         new PropertyMetadata(new ObservableCollection<BookAuthors>()));
 
     public static readonly DependencyProperty BookDataProperty = DependencyProperty.Register(nameof(BookData),
-        typeof(MyCollectionShelf.Book.Object.Class.Book), typeof(AddEditBook),
-        new PropertyMetadata(new MyCollectionShelf.Book.Object.Class.Book()));
+        typeof(Sql.Object.Book.Class.Book), typeof(AddEditBook),
+        new PropertyMetadata(new Sql.Object.Book.Class.Book()));
 
     public static readonly DependencyProperty EditorListProperty = DependencyProperty.Register(nameof(EditorList),
         typeof(ObservableCollection<string>), typeof(AddEditBook),
@@ -44,9 +44,9 @@ public partial class AddEditBook
         InitializeComponent();
     }
 
-    public MyCollectionShelf.Book.Object.Class.Book BookData
+    public Sql.Object.Book.Class.Book BookData
     {
-        get => (MyCollectionShelf.Book.Object.Class.Book)GetValue(BookDataProperty);
+        get => (Sql.Object.Book.Class.Book)GetValue(BookDataProperty);
         set => SetValue(BookDataProperty, value);
     }
 
@@ -120,7 +120,7 @@ public partial class AddEditBook
         SetBook(book);
     }
 
-    private static async Task<MyCollectionShelf.Book.Object.Class.Book> GetBook(string isbn)
+    private static async Task<Sql.Object.Book.Class.Book> GetBook(string isbn)
     {
         var api = new BookAllApi();
         var book = await api.GetBookInformation(isbn);
@@ -136,7 +136,7 @@ public partial class AddEditBook
         return book;
     }
 
-    private void SetBook(MyCollectionShelf.Book.Object.Class.Book book)
+    private void SetBook(Sql.Object.Book.Class.Book book)
     {
         foreach (var author in book.BookInformations.Authors.Where(s => !s.NameConcat.Equals(", ")))
         {

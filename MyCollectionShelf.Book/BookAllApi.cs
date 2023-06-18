@@ -1,4 +1,4 @@
-﻿using MyCollectionShelf.Book.Object.Class;
+﻿using MyCollectionShelf.Sql.Object.Book.Class;
 
 namespace MyCollectionShelf.Book;
 
@@ -11,9 +11,9 @@ public class BookAllApi
         UserAgent = userAgent;
     }
 
-    public async Task<Object.Class.Book> GetBookInformation(string isbn13)
+    public async Task<Sql.Object.Book.Class.Book> GetBookInformation(string isbn13)
     {
-        var book = new Object.Class.Book
+        var book = new Sql.Object.Book.Class.Book
         {
             BookInformations = new BookInformations
             {

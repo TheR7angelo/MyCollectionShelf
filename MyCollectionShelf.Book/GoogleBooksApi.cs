@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
+using MyCollectionShelf.Sql.Object.Book.Class;
 using MyCollectionShelf.WebApi.Object.Book.Class.Json;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 using Newtonsoft.Json;
@@ -18,7 +18,7 @@ public class GoogleBooksApi : IBookApi
         UserAgent = userAgent;
     }
     
-    public async Task<MyCollectionShelf.Book.Object.Class.Book?> GetBookInformation(string isbn13)
+    public async Task<Sql.Object.Book.Class.Book?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
         
@@ -55,7 +55,7 @@ public class GoogleBooksApi : IBookApi
             });
         }
         
-        return new MyCollectionShelf.Book.Object.Class.Book
+        return new Sql.Object.Book.Class.Book
         {
             BookInformations = new BookInformations
             {
