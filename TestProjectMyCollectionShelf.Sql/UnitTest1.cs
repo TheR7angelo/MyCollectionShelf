@@ -10,7 +10,8 @@ public class UnitTest1
     {
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
-        
+
+        db.Execute(new BookGenre().Definition);
         db.Execute(new BookAuthors().Definition);
     }
 }
