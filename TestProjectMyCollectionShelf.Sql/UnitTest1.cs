@@ -14,7 +14,7 @@ public class UnitTest1
 
         var lstInit = new List<ISql>
         {
-            new BookGenre(), new BookAuthors(), new BookCover(), new BookNote()
+            new BookGenre(), new BookAuthors(), new BookCover(), new BookNote(), new BookSeries()
         };
 
         foreach (var cmd in lstInit.Select(s => s.Definition))
@@ -29,6 +29,6 @@ public class UnitTest1
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
 
-        db.CreateTable<BookNote>();
+        db.CreateTable<BookSeries>();
     }
 }
