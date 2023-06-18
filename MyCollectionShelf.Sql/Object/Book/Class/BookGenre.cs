@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book_genre")]
-public class BookGenre : INotifyPropertyChanged
+public class BookGenre : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
@@ -13,6 +14,7 @@ public class BookGenre : INotifyPropertyChanged
 
     private long _id;
 
+    [PrimaryKey, AutoIncrement, Column("id")]
     public long Id
     {
         get => _id;
@@ -23,15 +25,27 @@ public class BookGenre : INotifyPropertyChanged
         }
     }
     
-    private string _text = string.Empty;
+    private string _genre = string.Empty;
 
-    public string Text
+    [Column("genre")]
+    public string Genre
     {
-        get => _text;
+        get => _genre;
         set
         {
-            _text = value;
+            _genre = value;
             OnPropertyChanged();
         }
     }
+
+    public string Definition => 
+        """
+        create table if not exists book_genre
+        (
+            id    integer
+                constraint book_genre_pk
+                    primary key autoincrement,
+            genre text
+        );                     
+        """;
 }
