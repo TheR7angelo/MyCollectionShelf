@@ -37,20 +37,18 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Assets\Book\" />
+      <Folder Include="Resources\" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Assets\Book\barcode.gif" />
-      <Resource Include="Assets\Book\barcode.gif">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Assets\Book\barcode.png" />
-      <Resource Include="Assets\Book\barcode.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Assets\Book\barcode.svg" />
-      <Resource Include="Assets\Book\barcode.svg">
+      <PackageReference Include="SharpVectors" Version="1.8.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Resources\Assets\Book\barcode.gif" />
+      <Resource Include="Resources\Assets\Book\barcode.png" />
+      <Resource Include="Resources\Assets\Book\barcode.svg" />
+      <Resource Include="Resources\Assets\liste.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>
