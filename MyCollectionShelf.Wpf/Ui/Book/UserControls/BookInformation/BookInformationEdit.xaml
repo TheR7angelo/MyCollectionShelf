@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.UserControls"
              xmlns:bookInformation="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.UserControls.BookInformation"
-             xmlns:general="clr-namespace:MyCollectionShelf.Wpf.Ui.General"
+             xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Ui.General.UserControls"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -58,13 +57,13 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <general:TextBoxAnimated Grid.Column="0" WaterMarkContent="Nom de famille"
+                        <userControls:TextBoxAnimated Grid.Column="0" WaterMarkContent="Nom de famille"
                                                  TextBoxAnimatedBorderBrush="Black"
                                                  TextBoxAnimatedCornerRadius="3"
                                                  TextBoxText="{Binding FamilyName, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged}" />
 
-                        <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Prénom"
+                        <userControls:TextBoxAnimated Grid.Column="1" WaterMarkContent="Prénom"
                                                  TextBoxAnimatedBorderBrush="Black"
                                                  TextBoxAnimatedCornerRadius="3"
                                                  TextBoxText="{Binding Name, Mode=TwoWay,
@@ -95,7 +94,7 @@
                 RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
             </Border>
 
-            <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Résumé" TextBoxAnimatedBorderBrush="Black"
+            <userControls:TextBoxAnimated Grid.Column="1" WaterMarkContent="Résumé" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Summarize, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
@@ -112,13 +111,13 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <general:TextBoxAnimated Grid.Column="0" WaterMarkContent="Série" TextBoxAnimatedBorderBrush="Black"
+            <userControls:TextBoxAnimated Grid.Column="0" WaterMarkContent="Série" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Series, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
                                                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
-            <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Tome" TextBoxAnimatedBorderBrush="Black"
+            <userControls:TextBoxAnimated Grid.Column="1" WaterMarkContent="Tome" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.TomeNumber, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
@@ -155,7 +154,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <general:TextBoxAnimated Grid.Column="0" WaterMarkContent="Genre"
+                        <userControls:TextBoxAnimated Grid.Column="0" WaterMarkContent="Genre"
                                                  TextBoxAnimatedThickness="0"
                                                  TextBoxText="{Binding ., Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged}" />
@@ -179,14 +178,14 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <general:TextBoxAnimated Grid.Column="0" WaterMarkContent="Date de publication"
+            <userControls:TextBoxAnimated Grid.Column="0" WaterMarkContent="Date de publication"
                                      TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.PublishDate, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
                                                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
             
-            <general:TextBoxAnimated Grid.Column="1" WaterMarkContent="Éditeur"
+            <userControls:TextBoxAnimated Grid.Column="1" WaterMarkContent="Éditeur"
                                      TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
                                      TextBoxText="{Binding BookInformationData.Editor, Mode=TwoWay,
@@ -195,14 +194,14 @@
 
         </Grid>
         
-        <general:TextBoxAnimated Grid.Row="6" WaterMarkContent="Pages"
+        <userControls:TextBoxAnimated Grid.Row="6" WaterMarkContent="Pages"
                                  TextBoxAnimatedBorderBrush="Black"
                                  TextBoxAnimatedCornerRadius="3"
                                  TextBoxText="{Binding BookInformationData.PageNumber, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
                                                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
         
-        <general:TextBoxAnimated Grid.Row="7" WaterMarkContent="ISBN"
+        <userControls:TextBoxAnimated Grid.Row="7" WaterMarkContent="ISBN"
                                  TextBoxAnimatedBorderBrush="Black"
                                  TextBoxAnimatedCornerRadius="3"
                                  TextBoxText="{Binding BookInformationData.Isbn, Mode=TwoWay,
