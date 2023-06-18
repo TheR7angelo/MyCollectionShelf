@@ -1,0 +1,8 @@
+<svg id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
+     xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd"
+          d="m256 0c-141.2 0-256 114.8-256 256s114.8 256 256 256 256-114.8 256-256-114.8-256-256-256z" fill="#fec006"
+          fill-rule="evenodd"/>
+    <path d="m396.6 221.3h-281.2c-5.2 0-9.4 4.2-9.4 9.4v50.6c0 5.2 4.2 9.4 9.4 9.4h281.3c5.2 0 9.4-4.2 9.4-9.4v-50.6c-.1-5.2-4.3-9.4-9.5-9.4z"
+          fill="#fff"/>
+</svg>

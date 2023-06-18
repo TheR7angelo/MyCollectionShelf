@@ -45,10 +45,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Resource Include="Resources\Assets\Book\barcode.gif" />
-      <Resource Include="Resources\Assets\Book\barcode.png" />
       <Resource Include="Resources\Assets\Book\barcode.svg" />
       <Resource Include="Resources\Assets\liste.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Resources\Assets\minus.svg" />
+      <Resource Include="Resources\Assets\minus.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Resources\Assets\plus.svg" />
+      <Resource Include="Resources\Assets\plus.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>
