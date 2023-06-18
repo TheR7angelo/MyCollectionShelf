@@ -1,5 +1,6 @@
 using MyCollectionShelf.Sql;
 using MyCollectionShelf.Sql.Object.Book.Class;
+using MyCollectionShelf.Sql.Object.Interface;
 
 namespace TestProjectMyCollectionShelf.Sql;
 
@@ -11,9 +12,14 @@ public class UnitTest1
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
 
-        db.Execute(new BookGenre().Definition);
-        db.Execute(new BookAuthors().Definition);
+        var lstInit = new List<ISql>
+        {
+            new BookGenre(), new BookAuthors(), new BookCover()
+        };
 
-        db.CreateTable<BookCover>();
+        foreach (var cmd in lstInit.Select(s => s.Definition))
+        {
+            db.Execute(cmd);
+        }
     }
 }
