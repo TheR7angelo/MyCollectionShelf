@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCollectionShelf.Book", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Maui", "MyCollectionShelf.Maui\MyCollectionShelf.Maui.csproj", "{818DA0B7-D596-455E-83BB-2612A67603A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Sql", "MyCollectionShelf.Sql\MyCollectionShelf.Sql.csproj", "{C2B42DBD-97D3-4F6B-AEEB-248F45272709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1Sql", "TestProject1Sql\TestProject1Sql.csproj", "{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{818DA0B7-D596-455E-83BB-2612A67603A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{818DA0B7-D596-455E-83BB-2612A67603A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{818DA0B7-D596-455E-83BB-2612A67603A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B42DBD-97D3-4F6B-AEEB-248F45272709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B42DBD-97D3-4F6B-AEEB-248F45272709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B42DBD-97D3-4F6B-AEEB-248F45272709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B42DBD-97D3-4F6B-AEEB-248F45272709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

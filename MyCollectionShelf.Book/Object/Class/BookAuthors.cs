@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using SQLite;
 
 namespace MyCollectionShelf.Book.Object.Class;
 
+[Table("book_author")]
 public class BookAuthors : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -12,6 +14,7 @@ public class BookAuthors : INotifyPropertyChanged
 
     private long _id;
 
+    [PrimaryKey, AutoIncrement, Column("id")]
     public long Id
     {
         get => _id;
@@ -24,6 +27,7 @@ public class BookAuthors : INotifyPropertyChanged
     
     private string _familyName = string.Empty;
 
+    [Column("family_name")]
     public string FamilyName
     {
         get => _familyName;
@@ -36,6 +40,7 @@ public class BookAuthors : INotifyPropertyChanged
     
     private string _name = string.Empty;
 
+    [Column("name")]
     public string Name
     {
         get => _name;

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace MyCollectionShelf.Wpf.Object.StaticClass;
+namespace MyCollectionShelf.Wpf.Object.Class.Static;
 
 public static class CommonUi
 {

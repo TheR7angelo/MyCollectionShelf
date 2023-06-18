@@ -10,7 +10,7 @@ using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
-using MyCollectionShelf.Wpf.Object.StaticClass;
+using MyCollectionShelf.Wpf.Object.Class.Static;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
 
 namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
@@ -36,7 +36,7 @@ public partial class AddEditBook
     public static readonly DependencyProperty SeriesListProperty = DependencyProperty.Register(nameof(SeriesList),
         typeof(ObservableCollection<string>), typeof(AddEditBook),
         new PropertyMetadata(new ObservableCollection<string>()));
-
+    
     public AddEditBook()
     {
         InitializeComponent();
