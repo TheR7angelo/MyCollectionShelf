@@ -2,9 +2,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
+[Table("book_informations")]
 public class BookInformations : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -27,6 +29,7 @@ public class BookInformations : INotifyPropertyChanged
     
     private string? _title;
 
+    [Column("title")]
     public string? Title
     {
         get => _title;
@@ -39,6 +42,8 @@ public class BookInformations : INotifyPropertyChanged
 
     private BookSeries _series = new();
 
+    [Column("book_series_fk"), ForeignKey(typeof(BookSeries))]
+    [ManyToOne(CascadeOperations = CascadeOperation.All)]
     public BookSeries Series
     {
         get => _series;
@@ -51,6 +56,7 @@ public class BookInformations : INotifyPropertyChanged
     
     private long? _tomeNumber;
 
+    [Column("tome_number")]
     public long? TomeNumber
     {
         get => _tomeNumber;
@@ -63,6 +69,8 @@ public class BookInformations : INotifyPropertyChanged
     
     private ObservableCollection<BookAuthors> _authors = new() { new BookAuthors() };
 
+    [Column("book_author_fk"), ForeignKey(typeof(BookAuthors))]
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
     public ObservableCollection<BookAuthors> Authors
     {
         get => _authors;
@@ -75,6 +83,8 @@ public class BookInformations : INotifyPropertyChanged
 
     private BookCover _bookCover = new();
 
+    [Column("book_cover_fk"), ForeignKey(typeof(BookCover))]
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookCover BookCover
     {
         get => _bookCover;
@@ -87,6 +97,7 @@ public class BookInformations : INotifyPropertyChanged
     
     private string? _summarize;
 
+    [Column("summarize")]
     public string? Summarize
     {
         get => _summarize;
@@ -99,6 +110,8 @@ public class BookInformations : INotifyPropertyChanged
 
     private ObservableCollection<BookGenre> _genres = new() { new BookGenre() };
 
+    [Column("book_genre_fk"), ForeignKey(typeof(BookGenre))]
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
     public ObservableCollection<BookGenre> Genres
     {
         get => _genres;
@@ -111,6 +124,7 @@ public class BookInformations : INotifyPropertyChanged
 
     private DateTime? _publishDate;
 
+    [Column("publish_date")]
     public DateTime? PublishDate
     {
         get => _publishDate;
@@ -123,6 +137,7 @@ public class BookInformations : INotifyPropertyChanged
 
     private string? _editor;
 
+    [Column("editor")]
     public string? Editor
     {
         get => _editor;
@@ -135,6 +150,7 @@ public class BookInformations : INotifyPropertyChanged
     
     private long? _pageNumber;
 
+    [Column("page_number")]
     public long? PageNumber
     {
         get => _pageNumber;
@@ -147,6 +163,7 @@ public class BookInformations : INotifyPropertyChanged
 
     private string? _isbn;
 
+    [Column("isbn")]
     public string? Isbn
     {
         get => _isbn;

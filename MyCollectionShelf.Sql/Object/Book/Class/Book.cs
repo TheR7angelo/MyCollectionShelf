@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
+[Table("book")]
 public class Book : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -12,6 +15,21 @@ public class Book : INotifyPropertyChanged
 
     private BookInformations _bookInformations = new();
 
+    private long _id;
+
+    [PrimaryKey, AutoIncrement, Column("id")]
+    public long Id
+    {
+        get => _id;
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    [Column("book_information"), ForeignKey(typeof(BookInformations))]
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookInformations BookInformations
     {
         get => _bookInformations;
@@ -24,6 +42,8 @@ public class Book : INotifyPropertyChanged
 
     private BookNote _bookNote = new();
 
+    [Column("book_note"), ForeignKey(typeof(BookInformations))]
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookNote BookNote
     {
         get => _bookNote;
