@@ -36,7 +36,7 @@ public partial class AddEditBook
     public static readonly DependencyProperty SeriesListProperty = DependencyProperty.Register(nameof(SeriesList),
         typeof(ObservableCollection<string>), typeof(AddEditBook),
         new PropertyMetadata(new ObservableCollection<string>()));
-    
+
     public AddEditBook()
     {
         InitializeComponent();
@@ -88,16 +88,16 @@ public partial class AddEditBook
 
         ButtonValid.Visibility = Visibility.Hidden;
         BusySpinner.Visibility = Visibility.Visible;
-        
+
         var isbn = scanner.Isbn;
 
         var book = await GetBook(isbn);
         SetBook(book);
-        
+
         ButtonValid.Visibility = Visibility.Visible;
         BusySpinner.Visibility = Visibility.Hidden;
     }
-    
+
     private async void ButtonISBN_OnClick(object sender, RoutedEventArgs e)
     {
         var isbn = BookData.BookInformations.Isbn;
@@ -110,22 +110,22 @@ public partial class AddEditBook
     private async void IsbnSearch_OnKeyDown(object sender, KeyEventArgs e)
     {
         if (!e.Key.Equals(Key.Enter)) return;
-        
+
         var isbn = BookData.BookInformations.Isbn;
         if (string.IsNullOrEmpty(isbn)) return;
 
         var book = await GetBook(isbn);
         SetBook(book);
     }
-    
+
     private static async Task<MyCollectionShelf.Book.Object.Class.Book> GetBook(string isbn)
     {
         var api = new BookAllApi();
         var book = await api.GetBookInformation(isbn);
-        
+
         var tempPicture = CommonPath.GetTemporaryCoverFilePath();
         var sucess = await book.BookInformations.BookCover.DownloadCover(EBookCoverSize.ExtraLarge, tempPicture);
-        
+
         if (sucess)
         {
             book.BookInformations.BookCover.Storage = new Uri(tempPicture);
@@ -133,7 +133,7 @@ public partial class AddEditBook
 
         return book;
     }
-    
+
     private void SetBook(MyCollectionShelf.Book.Object.Class.Book book)
     {
         foreach (var author in book.BookInformations.Authors.Where(s => !s.NameConcat.Equals(", ")))
@@ -161,6 +161,17 @@ public partial class AddEditBook
         BookData = book;
     }
 
+    private void ButtonAddRemoveAuthors_OnClick(object sender, RoutedEventArgs e)
+    {
+        var button = (Button)sender;
+        var function = (string)button.Content;
+        var collection = (ObservableCollection<BookAuthors>)button.Tag;
+
+        var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as BookAuthors;
+
+        AddRemoveList(collection, function, item, new BookAuthors());
+    }
+
     private void ButtonAddRemoveGenres_OnClick(object sender, RoutedEventArgs e)
     {
         var button = (Button)sender;
@@ -168,29 +179,30 @@ public partial class AddEditBook
         var collection = (ObservableCollection<Genre>)button.Tag;
 
         var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as Genre;
-        
+
         AddRemoveList(collection, function, item, new Genre());
     }
 
     private static void AddRemoveList<T>(object collection, string function, T item, T newItem)
     {
-        var zcollection = collection as ObservableCollection<T>;
+        var zcollection = (ObservableCollection<T>)collection;
 
-        if (function.Equals("-"))
+        switch (function)
         {
-            zcollection!.Remove(item);
-        }
-        else
-        {
-            zcollection!.Add(newItem);
+            case "-" when zcollection.Count > 1:
+                zcollection.Remove(item);
+                break;
+            case "+":
+                zcollection.Add(newItem);
+                break;
         }
     }
-    
+
     private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
     {
         Console.WriteLine("heyy");
     }
-    
+
     private void ButtonValidBook_OnClick(object sender, RoutedEventArgs e)
     {
         Console.WriteLine("Book valid");

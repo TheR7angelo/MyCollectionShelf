@@ -89,13 +89,28 @@
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-
-                                <ComboBox
-                                    ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                    DisplayMemberPath="NameConcat"
-                                    SelectedItem="{Binding .}"
-                                    IsEditable="True">
-                                </ComboBox>
+                                
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="15"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <ComboBox Grid.Column="0"
+                                        ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                        DisplayMemberPath="NameConcat"
+                                        SelectedItem="{Binding .}">
+                                    </ComboBox>
+                        
+                                    <Button Grid.Column="1" Content="-"
+                                            Tag="{Binding BookData.BookInformations.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                            Click="ButtonAddRemoveAuthors_OnClick" />
+                                    <Button Grid.Column="2" Content="+"
+                                            Tag="{Binding BookData.BookInformations.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                            Click="ButtonAddRemoveAuthors_OnClick" />
+                        
+                                </Grid>
 
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -140,8 +155,6 @@
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
-                                <Setter Property="Tag"
-                                        Value="{Binding ItemsSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}" />
                             </Style>
                         </ListBox.ItemContainerStyle>
 
