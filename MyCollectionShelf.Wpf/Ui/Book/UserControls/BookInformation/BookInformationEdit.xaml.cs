@@ -45,11 +45,11 @@ public partial class BookInformationEdit
     {
         var button = (Button)sender;
         var content = (char)button.Content;
-        var item = (Genre)button.DataContext;
+        var item = (BookGenre)button.DataContext;
         
         if (content == '+')
         {
-            BookInformationData.Genres.Add(new Genre());
+            BookInformationData.Genres.Add(new BookGenre());
         }
         else
         {

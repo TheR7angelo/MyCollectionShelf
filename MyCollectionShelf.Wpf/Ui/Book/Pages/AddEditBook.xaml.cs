@@ -178,11 +178,11 @@ public partial class AddEditBook
     {
         var button = (ButtonAddRemove)sender;
         var function = button.Mode;
-        var collection = (ObservableCollection<Genre>)button.Tag;
+        var collection = (ObservableCollection<BookGenre>)button.Tag;
 
-        var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as Genre;
+        var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as BookGenre;
 
-        AddRemoveList(collection, function, item, new Genre());
+        AddRemoveList(collection, function, item, new BookGenre());
     }
 
     private static void AddRemoveList<T>(object collection, EAddRemove function, T item, T newItem)

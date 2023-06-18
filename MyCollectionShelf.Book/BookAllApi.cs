@@ -72,7 +72,7 @@ public class BookAllApi
         Copy(tempInformations.Genres, bookInformations.Genres);
     }
 
-    private static void Copy(IReadOnlyCollection<Genre> tempInformationsGenre, ICollection<Genre> bookInformationsGenre)
+    private static void Copy(IReadOnlyCollection<BookGenre> tempInformationsGenre, ICollection<BookGenre> bookInformationsGenre)
     {
         if (tempInformationsGenre.Count.Equals(0)) return;
 
