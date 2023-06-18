@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MyCollectionShelf.Book.Object.Class;
+namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 public class BookInformations : INotifyPropertyChanged
 {

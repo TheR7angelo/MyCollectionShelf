@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using SQLite;
 
-namespace MyCollectionShelf.Book.Object.Class;
+namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book_author")]
 public class BookAuthors : INotifyPropertyChanged
