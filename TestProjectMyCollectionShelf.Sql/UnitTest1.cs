@@ -13,5 +13,7 @@ public class UnitTest1
 
         db.Execute(new BookGenre().Definition);
         db.Execute(new BookAuthors().Definition);
+
+        db.CreateTable<BookCover>();
     }
 }
