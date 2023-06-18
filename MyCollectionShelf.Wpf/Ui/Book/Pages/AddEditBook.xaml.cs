@@ -10,8 +10,10 @@ using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Class;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.WebApi.Object.Book.Enum;
+using MyCollectionShelf.Wpf.Object.Class.Enum;
 using MyCollectionShelf.Wpf.Object.Class.Static;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
+using MyCollectionShelf.Wpf.Ui.General.ButtonCustom;
 
 namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
 
@@ -163,8 +165,8 @@ public partial class AddEditBook
 
     private void ButtonAddRemoveAuthors_OnClick(object sender, RoutedEventArgs e)
     {
-        var button = (Button)sender;
-        var function = (string)button.Content;
+        var button = (ButtonAddRemove)sender;
+        var function = button.Mode;
         var collection = (ObservableCollection<BookAuthors>)button.Tag;
 
         var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as BookAuthors;
@@ -174,8 +176,8 @@ public partial class AddEditBook
 
     private void ButtonAddRemoveGenres_OnClick(object sender, RoutedEventArgs e)
     {
-        var button = (Button)sender;
-        var function = (string)button.Content;
+        var button = (ButtonAddRemove)sender;
+        var function = button.Mode;
         var collection = (ObservableCollection<Genre>)button.Tag;
 
         var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as Genre;
@@ -183,17 +185,19 @@ public partial class AddEditBook
         AddRemoveList(collection, function, item, new Genre());
     }
 
-    private static void AddRemoveList<T>(object collection, string function, T item, T newItem)
+    private static void AddRemoveList<T>(object collection, EAddRemove function, T item, T newItem)
     {
         var zcollection = (ObservableCollection<T>)collection;
 
         switch (function)
         {
-            case "-" when zcollection.Count > 1:
+            case EAddRemove.Add:
+                zcollection.Add(newItem);
+                break;
+            case EAddRemove.Remove when zcollection.Count > 1:
                 zcollection.Remove(item);
                 break;
-            case "+":
-                zcollection.Add(newItem);
+            default:
                 break;
         }
     }
