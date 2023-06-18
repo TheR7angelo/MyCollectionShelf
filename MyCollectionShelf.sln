@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Maui", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCollectionShelf.Sql", "MyCollectionShelf.Sql\MyCollectionShelf.Sql.csproj", "{C2B42DBD-97D3-4F6B-AEEB-248F45272709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1Sql", "TestProject1Sql\TestProject1Sql.csproj", "{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectMyCollectionShelf.Sql", "TestProjectMyCollectionShelf.Sql\TestProjectMyCollectionShelf.Sql.csproj", "{29A89ABD-4641-4E2C-A55F-2E7C218CAD46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
