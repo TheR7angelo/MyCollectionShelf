@@ -84,13 +84,18 @@ public partial class AddEditBook
     private async void ButtonScan_OnClick(object sender, RoutedEventArgs e)
     {
         using var scanner = new CameraScan();
-
         if (scanner.ShowDialog() != true) return;
 
+        ButtonValid.Visibility = Visibility.Hidden;
+        BusySpinner.Visibility = Visibility.Visible;
+        
         var isbn = scanner.Isbn;
 
         var book = await GetBook(isbn);
         SetBook(book);
+        
+        ButtonValid.Visibility = Visibility.Visible;
+        BusySpinner.Visibility = Visibility.Hidden;
     }
     
     private async void ButtonISBN_OnClick(object sender, RoutedEventArgs e)
@@ -156,11 +161,6 @@ public partial class AddEditBook
         BookData = book;
     }
 
-    private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
-    {
-        Console.WriteLine("heyy");
-    }
-
     private void ButtonAddRemoveGenres_OnClick(object sender, RoutedEventArgs e)
     {
         var button = (Button)sender;
@@ -184,5 +184,15 @@ public partial class AddEditBook
         {
             zcollection!.Add(newItem);
         }
+    }
+    
+    private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
+    {
+        Console.WriteLine("heyy");
+    }
+    
+    private void ButtonValidBook_OnClick(object sender, RoutedEventArgs e)
+    {
+        Console.WriteLine("Book valid");
     }
 }
