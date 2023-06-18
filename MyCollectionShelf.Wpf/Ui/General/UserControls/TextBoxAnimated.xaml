@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="MyCollectionShelf.Wpf.Ui.General.TextBoxAnimated"
+﻿<UserControl x:Class="MyCollectionShelf.Wpf.Ui.General.UserControls.TextBoxAnimated"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Ui.General"
              xmlns:common="clr-namespace:MyCollectionShelf.Wpf.Ui.Common"
+             xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Ui.General.UserControls"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -15,13 +16,13 @@
 
         <Border
             BorderBrush="{Binding TextBoxAnimatedBorderBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
 
             BorderThickness="{Binding TextBoxAnimatedThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
 
             CornerRadius="{Binding TextBoxAnimatedCornerRadius, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
+                RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}">
 
             <StackPanel Orientation="Vertical" 
                         HorizontalAlignment="Left"
@@ -35,13 +36,13 @@
                        common:VisibilityAnimation.AnimationType="Fade"
 
                        FontSize="{Binding WaterMarkTitleFontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                       RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                       RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
 
                        Foreground="{Binding WaterMarkTitleForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                       RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                       RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
 
                        Content="{Binding WaterMarkContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                       RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
+                       RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}">
 
                 </Label>
                 <Grid>
@@ -49,20 +50,20 @@
                            Opacity="1"
                            Padding="{StaticResource ThicknessPadding}"
                            Foreground="{Binding WaterMarkForegroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                           RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                           RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
 
                            Content="{Binding WaterMarkContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                           RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}">
+                           RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}">
                     </Label>
 
                     <TextBox
                         Padding="{StaticResource ThicknessPadding}"
                         Text="{Binding TextBoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                               RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                               RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
                         AcceptsReturn="{Binding TextBoxAnimatedAcceptsReturn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                                        RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}" 
+                                        RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}" 
                         AcceptsTab="{Binding TextBoxAnimatedAcceptsTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                                     RelativeSource={RelativeSource AncestorType={x:Type local:TextBoxAnimated}}}"
+                                     RelativeSource={RelativeSource AncestorType={x:Type userControls:TextBoxAnimated}}}"
                         
                         VerticalContentAlignment="Center"
                         Background="{x:Null}"
