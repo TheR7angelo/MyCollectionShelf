@@ -143,9 +143,9 @@ public partial class AddEditBook
             if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
         }
 
-        foreach (var genre in book.BookInformations.Genres.Where(s => !s.Text.Equals(string.Empty)))
+        foreach (var genre in book.BookInformations.Genres.Where(s => !s.Genre.Equals(string.Empty)))
         {
-            if (!GenresList.Contains(genre.Text)) GenresList.Add(genre.Text);
+            if (!GenresList.Contains(genre.Genre)) GenresList.Add(genre.Genre);
         }
 
         if (book.BookInformations.Editor is not null && !EditorList.Contains(book.BookInformations.Editor))

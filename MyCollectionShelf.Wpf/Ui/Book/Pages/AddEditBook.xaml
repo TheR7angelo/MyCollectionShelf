@@ -177,7 +177,7 @@
                         
                                     <ComboBox Grid.Column="0"
                                               ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                              Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                              Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         
                                     <buttonCustom:ButtonAddRemove Grid.Column="1" Mode="Remove" 
                                                                   Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"

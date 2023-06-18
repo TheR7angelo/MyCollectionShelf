@@ -1,17 +1,18 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book_author")]
-public class BookAuthors : INotifyPropertyChanged
+public class BookAuthors : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
+    
     private long _id;
 
     [PrimaryKey, AutoIncrement, Column("id")]
@@ -65,4 +66,15 @@ public class BookAuthors : INotifyPropertyChanged
     
     public string NameConcat => $"{FamilyName}, {Name}";
 
+    public string Definition => 
+    """
+    create table book_author
+    (
+        id          integer
+            constraint book_author_pk
+                primary key autoincrement,
+        family_name text,
+        name        text
+    );
+    """;
 }
