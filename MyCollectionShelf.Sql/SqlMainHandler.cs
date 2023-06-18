@@ -5,7 +5,7 @@ namespace MyCollectionShelf.Sql;
 public class SqlMainHandler : IDisposable
 {
     private readonly SQLiteConnection _sqLiteConnection = new("MyCollectionShelf.sqlite",
-        SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite);
+        SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite, false);
 
     public void Dispose()
     {
