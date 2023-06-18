@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using SQLite;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
@@ -11,6 +12,19 @@ public class BookInformations : INotifyPropertyChanged
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+    private long _id;
+
+    [PrimaryKey, AutoIncrement, Column("id")]
+    public long Id
+    {
+        get => _id;
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
+    
     private string? _title;
 
     public string? Title
@@ -23,9 +37,9 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private string? _series;
+    private BookSeries _series = new();
 
-    public string? Series
+    public BookSeries Series
     {
         get => _series;
         set

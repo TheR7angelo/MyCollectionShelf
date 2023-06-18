@@ -36,8 +36,8 @@ public partial class AddEditBook
         new PropertyMetadata(new ObservableCollection<string>()));
 
     public static readonly DependencyProperty SeriesListProperty = DependencyProperty.Register(nameof(SeriesList),
-        typeof(ObservableCollection<string>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<string>()));
+        typeof(ObservableCollection<BookSeries>), typeof(AddEditBook),
+        new PropertyMetadata(new ObservableCollection<BookSeries>()));
 
     public AddEditBook()
     {
@@ -68,9 +68,9 @@ public partial class AddEditBook
         set => SetValue(GenresListProperty, value);
     }
 
-    public ObservableCollection<string> SeriesList
+    public ObservableCollection<BookSeries> SeriesList
     {
-        get => (ObservableCollection<string>)GetValue(SeriesListProperty);
+        get => (ObservableCollection<BookSeries>)GetValue(SeriesListProperty);
         set => SetValue(SeriesListProperty, value);
     }
 
@@ -154,7 +154,7 @@ public partial class AddEditBook
                 EditorList.Add(book.BookInformations.Editor);
         }
 
-        if (book.BookInformations.Series is not null && !book.BookInformations.Series.Equals(string.Empty))
+        if (book.BookInformations.Series.Title is not null && !book.BookInformations.Series.Title.Equals(string.Empty))
         {
             if (!SeriesList.Contains(book.BookInformations.Series))
                 SeriesList.Add(book.BookInformations.Series);
