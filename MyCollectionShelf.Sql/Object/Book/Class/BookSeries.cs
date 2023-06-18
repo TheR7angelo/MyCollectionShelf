@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
-public class BookSeries : INotifyPropertyChanged
+[Table("book_series")]
+public class BookSeries : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -50,4 +52,14 @@ public class BookSeries : INotifyPropertyChanged
         }
     }
 
+    public string Definition =>
+        """
+        create table if not exists book_series
+        (
+            id           integer
+                primary key autoincrement,
+            title        text,
+            series_cover text
+        );
+        """;
 }
