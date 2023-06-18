@@ -66,15 +66,15 @@ public class BookAuthors : ISql, INotifyPropertyChanged
     
     public string NameConcat => $"{FamilyName}, {Name}";
 
-    public string Definition => 
-    """
-    create table book_author
-    (
-        id          integer
-            constraint book_author_pk
-                primary key autoincrement,
-        family_name text,
-        name        text
-    );
-    """;
+    public string Definition =>
+        """
+        create table if not exists book_author
+        (
+            id          integer
+                constraint book_author_pk
+                    primary key autoincrement,
+            family_name text,
+            name        text
+        );
+        """;
 }
