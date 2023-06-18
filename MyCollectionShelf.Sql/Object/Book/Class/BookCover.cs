@@ -1,17 +1,34 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
+using SQLite;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
-public class BookCover : INotifyPropertyChanged
+[Table("book_cover")]
+public class BookCover : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+    private long _id;
+
+    [PrimaryKey, AutoIncrement, Column("id")]
+    public long Id
+    {
+        get => _id;
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
+    }
+    
     private Uri? _smallThumbnail;
 
+    [Column("small_thumbnail")]
     public Uri? SmallThumbnail
     {
         get => _smallThumbnail;
@@ -24,6 +41,7 @@ public class BookCover : INotifyPropertyChanged
 
     private Uri? _thumbnail;
 
+    [Column("thumbnail")]
     public Uri? Thumbnail
     {
         get => _thumbnail;
@@ -36,6 +54,7 @@ public class BookCover : INotifyPropertyChanged
 
     private Uri? _small;
 
+    [Column("small")]
     public Uri? Small
     {
         get => _small;
@@ -48,6 +67,7 @@ public class BookCover : INotifyPropertyChanged
 
     private Uri? _medium;
 
+    [Column("medium")]
     public Uri? Medium
     {
         get => _medium;
@@ -60,6 +80,7 @@ public class BookCover : INotifyPropertyChanged
 
     private Uri? _large;
 
+    [Column("large")]
     public Uri? Large
     {
         get => _large;
@@ -72,6 +93,7 @@ public class BookCover : INotifyPropertyChanged
 
     private Uri? _extraLarge;
 
+    [Column("extra_large")]
     public Uri? ExtraLarge
     {
         get => _extraLarge;
@@ -84,6 +106,7 @@ public class BookCover : INotifyPropertyChanged
     
     private Uri? _storage;
 
+    [Column("storage")]
     public Uri? Storage
     {
         get => _storage;
@@ -94,4 +117,20 @@ public class BookCover : INotifyPropertyChanged
         }
     }
 
+    public string Definition =>
+        """
+        create table if not exists book_cover
+        (
+            id              integer
+                constraint book_cover_pk
+                    primary key autoincrement,
+            small_thumbnail text,
+            thumbnail       text,
+            small           text,
+            medium          text,
+            large           text,
+            extra_large     text,
+            storage         text
+        );
+        """;
 }
