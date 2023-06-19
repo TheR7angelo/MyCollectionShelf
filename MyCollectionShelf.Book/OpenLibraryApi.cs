@@ -56,7 +56,7 @@ public class OpenLibraryApi : IBookApi
                 // TomeNumber = 0, // L'API ne le fournit pas
                 // Genre = new List<string>(),
                 PublishDate = openLibraryBook?.PublishDate,
-                Editor = openLibraryBook?.Publishers?.FirstOrDefault(),
+                Editor = new BookEditorList { Editor = openLibraryBook?.Publishers?.FirstOrDefault() },
                 PageNumber = openLibraryBook?.NumberOfPages,
                 Isbn = isbn13
             },

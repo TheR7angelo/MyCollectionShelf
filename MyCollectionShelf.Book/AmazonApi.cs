@@ -63,7 +63,7 @@ public class AmazonApi : IBookApi
                 Summarize = summarize,
                 BookSeries = new BookSeries { Title = carouselResult.series },
                 PageNumber = carouselResult.pageNumber,
-                Editor = carouselResult.editor,
+                Editor = new BookEditorList { Editor = carouselResult.editor },
                 PublishDate = carouselResult.publishDate,
                 Isbn = isbn13,
                 BookCover = new BookCover

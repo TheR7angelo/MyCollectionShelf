@@ -29,7 +29,7 @@ public partial class AddEditBook
 
     public static readonly DependencyProperty EditorListProperty = DependencyProperty.Register(nameof(EditorList),
         typeof(ObservableCollection<string>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<string>()));
+        new PropertyMetadata(new ObservableCollection<BookEditorList>()));
 
     public static readonly DependencyProperty GenresListProperty = DependencyProperty.Register(nameof(GenresList),
         typeof(ObservableCollection<string>), typeof(AddEditBook),
@@ -56,9 +56,9 @@ public partial class AddEditBook
         set => SetValue(AuthorsListProperty, value);
     }
 
-    public ObservableCollection<string> EditorList
+    public ObservableCollection<BookEditorList> EditorList
     {
-        get => (ObservableCollection<string>)GetValue(EditorListProperty);
+        get => (ObservableCollection<BookEditorList>)GetValue(EditorListProperty);
         set => SetValue(EditorListProperty, value);
     }
 
@@ -148,7 +148,7 @@ public partial class AddEditBook
             if (!GenresList.Contains(genre.Genre)) GenresList.Add(genre.Genre);
         }
 
-        if (book.BookInformations.Editor is not null && !EditorList.Contains(book.BookInformations.Editor))
+        if (book.BookInformations.Editor.Editor is not null && !EditorList.Contains(book.BookInformations.Editor))
         {
             if (!EditorList.Contains(book.BookInformations.Editor))
                 EditorList.Add(book.BookInformations.Editor);

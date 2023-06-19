@@ -1,13 +1,14 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book_informations")]
-public class BookInformations : INotifyPropertyChanged
+public class BookInformations : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -140,11 +141,15 @@ public class BookInformations : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-
-    private string? _editor;
-
-    [Column("editor")]
-    public string? Editor
+    
+    [Column("book_editor_fk")]
+    [ForeignKey(typeof(BookEditorList))]
+    public long BookEditorId { get; set; }
+    
+    private BookEditorList _editor = new();
+    
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    public BookEditorList Editor
     {
         get => _editor;
         set
@@ -179,4 +184,29 @@ public class BookInformations : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public string Definition =>
+        """
+        create table book_informations
+        (
+            id             integer
+                constraint book_informations_pk
+                    primary key autoincrement,
+            title          text,
+            book_series_fk integer
+                constraint book_informations_book_series_id_fk
+                    references book_series,
+            tome_number    integer default -1,
+            book_cover_fk  integer
+                constraint book_informations_book_cover_id_fk
+                    references book_cover,
+            summarize      text,
+            publish_date   text,
+            book_editor_fk integer
+                constraint book_informations_book_editor_list_id_fk
+                    references book_editor_list,
+            page_number    integer,
+            isbn           text
+        );
+        """;
 }
