@@ -19,8 +19,8 @@ public class UnitTest1
             new BookAuthor(), new BookGenre(),
             new BookSeries(), new BookCover(),
             new BookAuthorList(), new BookGenreList(), new BookEditorList(),
-            
-            new BookInformations(),
+            new BookInformations(), new BookNote(),
+            new Book()
         };
 
         foreach (var cmd in lstInit.Select(s => s.Definition))
@@ -35,7 +35,7 @@ public class UnitTest1
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
 
-        db.CreateTable<BookInformations>();
+        db.CreateTable<Book>();
     }
     
     [Fact]
