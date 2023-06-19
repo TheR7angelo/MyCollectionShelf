@@ -75,22 +75,27 @@ public class UnitTest1
     {
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
-
+    
         db.CreateTable<BookAuthor>();
         db.CreateTable<BookAuthorList>();
         db.CreateTable<BookGenre>();
         db.CreateTable<BookGenreList>();
-
+    
         db.CreateTable<BookSeries>();
         db.CreateTable<BookInformations>();
-
+    
         var info = new BookInformations
         {
             BookSeries = new BookSeries { Title = "Série de test" }
         };
 
-        db.InsertWithChildren(info);
-
+        var book = new Book
+        {
+            BookInformations = info,
+        };
+        
+        db.InsertWithChildren(book, true);
+    
         var z = db.GetWithChildren<BookInformations>(info.Id);
     }
 
@@ -128,30 +133,30 @@ public class UnitTest1
                 Price = 9.25
             }
         };
-
+    
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
-
-        var series = new BookSeries { Title = "yolo" };
-        db.Insert(series);
-
-        var cover = new BookCover { Large = new Uri("Merde", UriKind.Relative) };
-        db.Insert(cover);
-
-        var editor = new BookEditorList { Editor = "Kurokawa" };
-        db.Insert(editor);
-
-        var genre = new ObservableCollection<BookGenre> { new() { Genre = "Fantastique" } };
-        db.InsertAllWithChildren(genre);
+    
+        // var series = new BookSeries { Title = "yolo" };
+        // db.Insert(series);
+        //
+        // var cover = new BookCover { Large = new Uri("Merde", UriKind.Relative) };
+        // db.Insert(cover);
+        //
+        // var editor = new BookEditorList { Editor = "Kurokawa" };
+        // db.Insert(editor);
+        //
+        // var genre = new ObservableCollection<BookGenre> { new() { Genre = "Fantastique" } };
+        // db.InsertAllWithChildren(genre);
+        //
+        // var test = new BookInformations
+        // {
+        //     BookSeries = series,
+        //     BookCover = cover,
+        //     BookEditor = editor,
+        //     BookGenres = genre
+        // };
         
-        var test = new BookInformations
-        {
-            BookSeries = series,
-            BookCover = cover,
-            BookEditor = editor,
-            BookGenres = genre
-        };
-        
-        db.InsertWithChildren(test, true);
+        db.InsertWithChildren(book, true);
     }
 }

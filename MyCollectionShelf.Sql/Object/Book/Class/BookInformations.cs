@@ -116,7 +116,7 @@ public class BookInformations : ISql, INotifyPropertyChanged
     }
 
     private ObservableCollection<BookGenre> _bookGenres = new() { new BookGenre() };
-
+    
     [Column("book_genre_fk"), ForeignKey(typeof(BookGenreList))]
     [ManyToMany(typeof(BookGenreList), CascadeOperations = CascadeOperation.All)]
     public ObservableCollection<BookGenre> BookGenres

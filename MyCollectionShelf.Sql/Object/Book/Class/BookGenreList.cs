@@ -42,7 +42,7 @@ public class BookGenreList : ISql, INotifyPropertyChanged
     
     private long _bookGenreId;
 
-    [Column("book_author_fk"), ForeignKey(typeof(BookGenre))]
+    [Column("book_genre_fk"), ForeignKey(typeof(BookGenre))]
     public long BookGenreId
     {
         get => _bookGenreId;
