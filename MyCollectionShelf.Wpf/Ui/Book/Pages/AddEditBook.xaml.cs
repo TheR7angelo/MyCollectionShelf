@@ -20,8 +20,8 @@ namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
 public partial class AddEditBook
 {
     public static readonly DependencyProperty AuthorsListProperty = DependencyProperty.Register(nameof(AuthorsList),
-        typeof(ObservableCollection<BookAuthors>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<BookAuthors>()));
+        typeof(ObservableCollection<BookAuthor>), typeof(AddEditBook),
+        new PropertyMetadata(new ObservableCollection<BookAuthor>()));
 
     public static readonly DependencyProperty BookDataProperty = DependencyProperty.Register(nameof(BookData),
         typeof(Sql.Object.Book.Class.Book), typeof(AddEditBook),
@@ -50,9 +50,9 @@ public partial class AddEditBook
         set => SetValue(BookDataProperty, value);
     }
 
-    public ObservableCollection<BookAuthors> AuthorsList
+    public ObservableCollection<BookAuthor> AuthorsList
     {
-        get => (ObservableCollection<BookAuthors>)GetValue(AuthorsListProperty);
+        get => (ObservableCollection<BookAuthor>)GetValue(AuthorsListProperty);
         set => SetValue(AuthorsListProperty, value);
     }
 
@@ -138,12 +138,12 @@ public partial class AddEditBook
 
     private void SetBook(Sql.Object.Book.Class.Book book)
     {
-        foreach (var author in book.BookInformations.Authors.Where(s => !s.NameConcat.Equals(", ")))
+        foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
         {
             if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
         }
 
-        foreach (var genre in book.BookInformations.Genres.Where(s => !s.Genre.Equals(string.Empty)))
+        foreach (var genre in book.BookInformations.BookGenres.Where(s => !s.Genre.Equals(string.Empty)))
         {
             if (!GenresList.Contains(genre.Genre)) GenresList.Add(genre.Genre);
         }
@@ -167,11 +167,11 @@ public partial class AddEditBook
     {
         var button = (ButtonAddRemove)sender;
         var function = button.Mode;
-        var collection = (ObservableCollection<BookAuthors>)button.Tag;
+        var collection = (ObservableCollection<BookAuthor>)button.Tag;
 
-        var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as BookAuthors;
+        var item = button.FindParent<Grid>()!.Children.OfType<ComboBox>().First().DataContext as BookAuthor;
 
-        AddRemoveList(collection, function, item, new BookAuthors());
+        AddRemoveList(collection, function, item, new BookAuthor());
     }
 
     private void ButtonAddRemoveGenres_OnClick(object sender, RoutedEventArgs e)

@@ -29,15 +29,15 @@ public partial class BookInformationEdit
     {
         var button = (Button)sender;
         var content = (char)button.Content;
-        var item = (BookAuthors)button.DataContext;
+        var item = (BookAuthor)button.DataContext;
         
         if (content == '+')
         {
-            BookInformationData.Authors.Add(new BookAuthors());
+            BookInformationData.BookAuthors.Add(new BookAuthor());
         }
         else
         {
-            BookInformationData.Authors.Remove(item);
+            BookInformationData.BookAuthors.Remove(item);
         }
     }
 
@@ -49,11 +49,11 @@ public partial class BookInformationEdit
         
         if (content == '+')
         {
-            BookInformationData.Genres.Add(new BookGenre());
+            BookInformationData.BookGenres.Add(new BookGenre());
         }
         else
         {
-            BookInformationData.Genres.Remove(item);
+            BookInformationData.BookGenres.Remove(item);
         }
     }
 }

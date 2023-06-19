@@ -29,7 +29,7 @@
                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 
         <ListBox Grid.Row="1"
-                 ItemsSource="{Binding BookInformationData.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                 ItemsSource="{Binding BookInformationData.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}">
 
             <ListBox.ItemContainerStyle>
@@ -127,7 +127,7 @@
 
         <Border Grid.Row="4" BorderBrush="Black" BorderThickness="1">
             <ListBox
-                 ItemsSource="{Binding BookInformationData.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                 ItemsSource="{Binding BookInformationData.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}">
 
             <ListBox.ItemContainerStyle>

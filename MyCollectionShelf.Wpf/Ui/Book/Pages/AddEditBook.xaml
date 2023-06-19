@@ -72,7 +72,7 @@
 
                     <Label Content="Auteur" HorizontalContentAlignment="Left" />
 
-                    <ListBox ItemsSource="{Binding BookData.BookInformations.Authors}">
+                    <ListBox ItemsSource="{Binding BookData.BookInformations.BookAuthors}">
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -107,11 +107,11 @@
                                     </ComboBox>
                         
                                     <buttonCustom:ButtonAddRemove Grid.Column="1" Mode="Remove" 
-                                                                  Tag="{Binding BookData.BookInformations.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                                  Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveAuthors_OnClick" />
                                     
                                     <buttonCustom:ButtonAddRemove Grid.Column="2" Mode="Add" 
-                                                                  Tag="{Binding BookData.BookInformations.Authors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                                  Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveAuthors_OnClick" />
                                     
                                     <buttonCustom:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
@@ -149,7 +149,7 @@
 
                     <Label Content="Genres" HorizontalContentAlignment="Left" />
 
-                    <ListBox ItemsSource="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox ItemsSource="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -180,11 +180,11 @@
                                               Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         
                                     <buttonCustom:ButtonAddRemove Grid.Column="1" Mode="Remove" 
-                                                                  Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                                  Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveGenres_OnClick" />
                                     
                                     <buttonCustom:ButtonAddRemove Grid.Column="2" Mode="Add" 
-                                                                  Tag="{Binding BookData.BookInformations.Genres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                                  Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveGenres_OnClick" />
                                     
                                     <buttonCustom:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
