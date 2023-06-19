@@ -17,15 +17,25 @@ public class UnitTest1
         var lstInit = new List<ISql>
         {
             new BookAuthor(), new BookGenre(),
-            new BookSeries(),
-            // new BookInformations(), 
-            new BookAuthorList(), new BookGenreList()
+            new BookSeries(), new BookCover(),
+            new BookAuthorList(), new BookGenreList(), new BookEditorList(),
+            
+            new BookInformations(),
         };
 
         foreach (var cmd in lstInit.Select(s => s.Definition))
         {
             db.Execute(cmd);
         }
+    }
+    
+    [Fact]
+    private void CreateBaseTable()
+    {
+        using var handler = new SqlMainHandler();
+        var db = handler.GetSqlConnection();
+
+        db.CreateTable<BookInformations>();
     }
     
     [Fact]
