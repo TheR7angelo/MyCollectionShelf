@@ -28,7 +28,7 @@ public partial class AddEditBook
         new PropertyMetadata(new Sql.Object.Book.Class.Book()));
 
     public static readonly DependencyProperty EditorListProperty = DependencyProperty.Register(nameof(EditorList),
-        typeof(ObservableCollection<string>), typeof(AddEditBook),
+        typeof(ObservableCollection<BookEditorList>), typeof(AddEditBook),
         new PropertyMetadata(new ObservableCollection<BookEditorList>()));
 
     public static readonly DependencyProperty GenresListProperty = DependencyProperty.Register(nameof(GenresList),
@@ -209,6 +209,7 @@ public partial class AddEditBook
 
     private void ButtonValidBook_OnClick(object sender, RoutedEventArgs e)
     {
-        Console.WriteLine("Book valid");
+        // todo à réparer
+        Console.WriteLine(BookData.BookInformations.BookSeries.Title);
     }
 }
