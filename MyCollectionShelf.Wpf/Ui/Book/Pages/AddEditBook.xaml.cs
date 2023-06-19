@@ -9,11 +9,13 @@ using System.Windows.Input;
 using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Enum;
 using MyCollectionShelf.Book.Object.Static_Class;
+using MyCollectionShelf.Sql;
 using MyCollectionShelf.Sql.Object.Book.Class;
 using MyCollectionShelf.Wpf.Object.Class.Enum;
 using MyCollectionShelf.Wpf.Object.Class.Static;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
 using MyCollectionShelf.Wpf.Ui.General.ButtonCustom;
+using SQLiteNetExtensions.Extensions;
 
 namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
 
@@ -211,5 +213,10 @@ public partial class AddEditBook
     {
         Console.WriteLine(BookData.BookInformations.BookSeries.Title);
         Console.WriteLine(BookData.BookInformations.BookSeries.Id);
+
+        using var sqlHandler = new SqlMainHandler();
+        var db = sqlHandler.GetSqlConnection();
+        
+        db.InsertWithChildren(BookData);
     }
 }

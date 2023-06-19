@@ -130,7 +130,9 @@
                     <Label Content="Éditeur" HorizontalContentAlignment="Left" />
 
                     <ComboBox ItemsSource="{Binding EditorList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="Editor"
                               SelectedItem="{Binding BookData.BookInformations.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding BookData.BookInformations.Editor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEditable="True">
                     </ComboBox>
 
@@ -177,6 +179,7 @@
                         
                                     <ComboBox Grid.Column="0" IsEditable="True"
                                               ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                              DisplayMemberPath="Genre"
                                               Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         
                                     <buttonCustom:ButtonAddRemove Grid.Column="1" Mode="Remove" 
