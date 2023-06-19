@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book_author_list")]
-public class BookAuthorList : INotifyPropertyChanged
+public class BookAuthorList : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -51,4 +52,20 @@ public class BookAuthorList : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public string Definition =>
+        """
+        create table if not exists book_author_list
+        (
+            id                   integer
+                constraint book_author_list_pk
+                    primary key autoincrement,
+            book_informations_fk integer
+                constraint book_author_list_book_informations_id_fk
+                    references book_informations,
+            book_author          integer
+                constraint book_author_list_book_author_id_fk
+                    references book_author
+        );
+        """;
 }
