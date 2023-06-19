@@ -40,19 +40,22 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private BookSeries _series = new();
+    // private BookSeries _series = new();
+    //
+    // [Column("book_series_fk")]
+    // [ManyToOne(CascadeOperations = CascadeOperation.All)]
+    // public BookSeries Series
+    // {
+    //     get => _series;
+    //     set
+    //     {
+    //         _series = value;
+    //         OnPropertyChanged();
+    //     }
+    // }
 
-    [Column("book_series_fk"), ForeignKey(typeof(BookSeries))]
-    [ManyToOne(CascadeOperations = CascadeOperation.All)]
-    public BookSeries Series
-    {
-        get => _series;
-        set
-        {
-            _series = value;
-            OnPropertyChanged();
-        }
-    }
+    // [ForeignKey(typeof(BookSeries))]
+    // public long BokSerieId { get; set; }
     
     private long? _tomeNumber;
 
@@ -67,33 +70,33 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
     
-    private ObservableCollection<BookAuthors> _authors = new() { new BookAuthors() };
+    // private ObservableCollection<BookAuthors> _authors = new() { new BookAuthors() };
+    //
+    // [Column("book_author_fk"), ForeignKey(typeof(BookAuthors))]
+    // [ManyToOne(CascadeOperations = CascadeOperation.All)]
+    // public ObservableCollection<BookAuthors> Authors
+    // {
+    //     get => _authors;
+    //     set
+    //     {
+    //         _authors = value;
+    //         OnPropertyChanged();
+    //     }
+    // }
 
-    [Column("book_author_fk"), ForeignKey(typeof(BookAuthors))]
-    [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public ObservableCollection<BookAuthors> Authors
-    {
-        get => _authors;
-        set
-        {
-            _authors = value;
-            OnPropertyChanged();
-        }
-    }
-
-    private BookCover _bookCover = new();
-
-    [Column("book_cover_fk"), ForeignKey(typeof(BookCover))]
-    [OneToOne(CascadeOperations = CascadeOperation.All)]
-    public BookCover BookCover
-    {
-        get => _bookCover;
-        set
-        {
-            _bookCover = value;
-            OnPropertyChanged();
-        }
-    }
+    // private BookCover _bookCover = new();
+    //
+    // [Column("book_cover_fk"), ForeignKey(typeof(BookCover))]
+    // [OneToMany(CascadeOperations = CascadeOperation.All)]
+    // public BookCover BookCover
+    // {
+    //     get => _bookCover;
+    //     set
+    //     {
+    //         _bookCover = value;
+    //         OnPropertyChanged();
+    //     }
+    // }
     
     private string? _summarize;
 
@@ -110,8 +113,8 @@ public class BookInformations : INotifyPropertyChanged
 
     private ObservableCollection<BookGenre> _genres = new() { new BookGenre() };
 
-    [Column("book_genre_fk"), ForeignKey(typeof(BookGenre))]
-    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    [Column("book_genre_fk"), ForeignKey(typeof(BookGenreList))]
+    [ManyToMany(typeof(BookGenreList), CascadeOperations = CascadeOperation.All)]
     public ObservableCollection<BookGenre> Genres
     {
         get => _genres;

@@ -18,7 +18,8 @@ public class BookAllApi
             BookInformations = new BookInformations
             {
                 Isbn = isbn13,
-                BookCover = new BookCover()
+                // todo à remettre
+                // BookCover = new BookCover()
             },
             BookNote = new BookNote()
         };
@@ -39,13 +40,14 @@ public class BookAllApi
             Copy(bookTemp.BookNote, book.BookNote);
         }
 
-        var tmp = book.BookInformations.Authors.Where(s =>
-            s.Name.Equals(string.Empty) && s.FamilyName.Equals(string.Empty)).ToList();
-        
-        foreach (var author in tmp)
-        {
-            book.BookInformations.Authors.Remove(author);
-        }
+        // todo à remettre
+        // var tmp = book.BookInformations.Authors.Where(s =>
+        //     s.Name.Equals(string.Empty) && s.FamilyName.Equals(string.Empty)).ToList();
+        //
+        // foreach (var author in tmp)
+        // {
+        //     book.BookInformations.Authors.Remove(author);
+        // }
             
         return book;
     }
@@ -58,7 +60,8 @@ public class BookAllApi
     private static void Copy(BookInformations tempInformations, BookInformations bookInformations)
     {
         bookInformations.Title ??= tempInformations.Title;
-        bookInformations.Series ??= tempInformations.Series;
+        // todo à remettre
+        // bookInformations.Series ??= tempInformations.Series;
         bookInformations.TomeNumber ??= tempInformations.TomeNumber;
 
         bookInformations.Summarize ??= tempInformations.Summarize;
@@ -67,8 +70,10 @@ public class BookAllApi
         bookInformations.PageNumber ??= tempInformations.PageNumber;
         bookInformations.Isbn ??= tempInformations.Isbn;
 
-        Copy(tempInformations.Authors, bookInformations.Authors);
-        Copy(tempInformations.BookCover, bookInformations.BookCover);
+        // todo à remettre
+        // Copy(tempInformations.Authors, bookInformations.Authors);
+        // todo à remettre
+        // Copy(tempInformations.BookCover, bookInformations.BookCover);
         Copy(tempInformations.Genres, bookInformations.Genres);
     }
 

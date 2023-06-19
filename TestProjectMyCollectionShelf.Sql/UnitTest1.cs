@@ -1,6 +1,8 @@
+using System.Collections.ObjectModel;
 using MyCollectionShelf.Sql;
 using MyCollectionShelf.Sql.Object.Book.Class;
 using MyCollectionShelf.Sql.Object.Interface;
+using SQLiteNetExtensions.Extensions;
 
 namespace TestProjectMyCollectionShelf.Sql;
 
@@ -52,6 +54,26 @@ public class UnitTest1
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
 
+        db.CreateTable<BookSeries>();
+        db.CreateTable<BookAuthors>();
+        db.CreateTable<BookCover>();
+        db.CreateTable<BookGenre>();
         db.CreateTable<BookGenreList>();
+        db.CreateTable<BookInformations>();
+
+
+        var info = new BookInformations
+        {
+            Genres = new ObservableCollection<BookGenre>
+            {
+                new() { Genre = "Test 1" },
+                new() { Genre = "Test 2" },
+                new() { Genre = "Test 3" },
+            }
+        };
+
+        db.InsertWithChildren(info);
+        
+        var z = db.GetWithChildren<BookInformations>(info.Id);
     }
 }

@@ -29,7 +29,7 @@ public class BookGenreList : ISql, INotifyPropertyChanged
     
     private long _bookId;
 
-    [Column("book_fk"), ForeignKey(typeof(Book))]
+    [Column("book_informations_fk"), ForeignKey(typeof(BookInformations))]
     public long BookId
     {
         get => _bookId;
@@ -60,9 +60,9 @@ public class BookGenreList : ISql, INotifyPropertyChanged
             id            integer
                 constraint book_genre_list_pk
                     primary key autoincrement,
-            book_fk    integer
-                constraint book_genre_list_book_fk
-                    references book,
+            book_informations_fk    integer
+                constraint book_genre_list_book_informations_fk
+                    references book_informations,
             book_genre_fk integer
                 constraint book_genre_list_book_genre_fk
                     references book_genre

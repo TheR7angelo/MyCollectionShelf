@@ -59,22 +59,25 @@ public class AmazonApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = document.DocumentNode.SelectSingleNode("//span[@id='productTitle']").InnerHtml,
-                Authors = authors,
+                // todo à remettre
+                // Authors = authors,
                 Summarize = summarize,
-                Series = new BookSeries { Title = carouselResult.series },
+                // todo à remettre
+                // Series = new BookSeries { Title = carouselResult.series },
                 PageNumber = carouselResult.pageNumber,
                 Editor = carouselResult.editor,
                 PublishDate = carouselResult.publishDate,
                 Isbn = isbn13,
-                BookCover = new BookCover
-                {
-                    SmallThumbnail = imgUri,
-                    Thumbnail = imgUri,
-                    Small = imgUri,
-                    Medium = imgUri,
-                    Large = imgUri,
-                    ExtraLarge = imgUri
-                }
+                // todo à remettre
+                // BookCover = new BookCover
+                // {
+                //     SmallThumbnail = imgUri,
+                //     Thumbnail = imgUri,
+                //     Small = imgUri,
+                //     Medium = imgUri,
+                //     Large = imgUri,
+                //     ExtraLarge = imgUri
+                // }
             }
         };
     }

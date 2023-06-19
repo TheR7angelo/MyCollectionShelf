@@ -60,16 +60,18 @@ public class GoogleBooksApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = googleBook?.VolumeInfo?.Title,
-                Authors = new ObservableCollection<BookAuthors>(authors),
-                BookCover = new BookCover
-                {
-                    SmallThumbnail = googleBook?.VolumeInfo?.ImageLinks?.SmallThumbnail,
-                    Thumbnail = googleBook?.VolumeInfo?.ImageLinks?.Thumbnail,
-                    Small = googleBook?.VolumeInfo?.ImageLinks?.Small,
-                    Medium = googleBook?.VolumeInfo?.ImageLinks?.Medium,
-                    Large = googleBook?.VolumeInfo?.ImageLinks?.Large,
-                    ExtraLarge = googleBook?.VolumeInfo?.ImageLinks?.ExtraLarge
-                },
+                // todo à remettre
+                // Authors = new ObservableCollection<BookAuthors>(authors),
+                // todo à remettre
+                // BookCover = new BookCover
+                // {
+                //     SmallThumbnail = googleBook?.VolumeInfo?.ImageLinks?.SmallThumbnail,
+                //     Thumbnail = googleBook?.VolumeInfo?.ImageLinks?.Thumbnail,
+                //     Small = googleBook?.VolumeInfo?.ImageLinks?.Small,
+                //     Medium = googleBook?.VolumeInfo?.ImageLinks?.Medium,
+                //     Large = googleBook?.VolumeInfo?.ImageLinks?.Large,
+                //     ExtraLarge = googleBook?.VolumeInfo?.ImageLinks?.ExtraLarge
+                // },
                 Summarize = googleBook?.VolumeInfo?.Description,
                 // Series = "", // L'API ne le fournit pas
                 // TomeNumber = 0, // L'API ne le fournit pas
