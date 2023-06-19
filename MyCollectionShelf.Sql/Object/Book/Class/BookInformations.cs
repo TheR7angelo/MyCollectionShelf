@@ -201,7 +201,7 @@ public class BookInformations : ISql, INotifyPropertyChanged
                 constraint book_informations_book_cover_id_fk
                     references book_cover,
             summarize      text,
-            publish_date   text,
+            publish_date   datetime,
             book_editor_fk integer
                 constraint book_informations_book_editor_list_id_fk
                     references book_editor_list,
