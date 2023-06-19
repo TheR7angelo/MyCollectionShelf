@@ -187,7 +187,7 @@ public class BookInformations : ISql, INotifyPropertyChanged
 
     public string Definition =>
         """
-        create table book_informations
+        create table if not exists book_informations
         (
             id             integer
                 constraint book_informations_pk

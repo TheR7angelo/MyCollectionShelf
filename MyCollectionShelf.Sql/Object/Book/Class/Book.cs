@@ -43,7 +43,7 @@ public class Book : ISql, INotifyPropertyChanged
         }
     }
 
-    [Column("book_note"), ForeignKey(typeof(BookNote))]
+    [Column("book_note_fk"), ForeignKey(typeof(BookNote))]
     public long BookNoteId { get; set; }
     
     private BookNote _bookNote = new();
@@ -66,10 +66,10 @@ public class Book : ISql, INotifyPropertyChanged
             id                integer
                 constraint book_pk
                     primary key autoincrement,
-            book_informations integer
+            book_information_fk integer
                 constraint book_book_informations_id_fk
                     references book_informations,
-            book_note         integer
+            book_note_fk         integer
                 constraint book_book_note_id_fk
                     references book_note
         );
