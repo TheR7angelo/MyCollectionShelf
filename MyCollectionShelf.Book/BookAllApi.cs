@@ -63,7 +63,7 @@ public class BookAllApi
 
         bookInformations.Summarize ??= tempInformations.Summarize;
         bookInformations.PublishDate ??= tempInformations.PublishDate;
-        bookInformations.Editor ??= tempInformations.Editor;
+        bookInformations.BookEditor ??= tempInformations.BookEditor;
         bookInformations.PageNumber ??= tempInformations.PageNumber;
         bookInformations.Isbn ??= tempInformations.Isbn;
         

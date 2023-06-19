@@ -131,8 +131,8 @@
 
                     <ComboBox ItemsSource="{Binding EditorList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="Editor"
-                              SelectedItem="{Binding BookData.BookInformations.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Text="{Binding BookData.BookInformations.Editor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding BookData.BookInformations.BookEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Text="{Binding BookData.BookInformations.BookEditor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEditable="True">
                     </ComboBox>
 

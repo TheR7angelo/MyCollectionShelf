@@ -150,10 +150,10 @@ public partial class AddEditBook
             if (!GenresList.Contains(genre.Genre)) GenresList.Add(genre.Genre);
         }
 
-        if (book.BookInformations.Editor.Editor is not null && !EditorList.Contains(book.BookInformations.Editor))
+        if (book.BookInformations.BookEditor.Editor is not null && !EditorList.Contains(book.BookInformations.BookEditor))
         {
-            if (!EditorList.Contains(book.BookInformations.Editor))
-                EditorList.Add(book.BookInformations.Editor);
+            if (!EditorList.Contains(book.BookInformations.BookEditor))
+                EditorList.Add(book.BookInformations.BookEditor);
         }
 
         if (book.BookInformations.BookSeries.Title is not null && !book.BookInformations.BookSeries.Title.Equals(string.Empty))

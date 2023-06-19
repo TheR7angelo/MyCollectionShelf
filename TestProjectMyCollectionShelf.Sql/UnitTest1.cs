@@ -108,7 +108,7 @@ public class UnitTest1
                 {
                     new() { Genre = "Fantastique" }
                 },
-                Editor = new BookEditorList
+                BookEditor = new BookEditorList
                 {
                     Editor = "Kurokawa"
                 },
@@ -132,11 +132,26 @@ public class UnitTest1
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
 
-        var editor = new BookGenre
+        var series = new BookSeries { Title = "yolo" };
+        db.Insert(series);
+
+        var cover = new BookCover { Large = new Uri("Merde", UriKind.Relative) };
+        db.Insert(cover);
+
+        var editor = new BookEditorList { Editor = "Kurokawa" };
+        db.Insert(editor);
+
+        var genre = new ObservableCollection<BookGenre> { new() { Genre = "Fantastique" } };
+        db.InsertAllWithChildren(genre);
+        
+        var test = new BookInformations
         {
-            Genre = "Kurokawa"
+            BookSeries = series,
+            BookCover = cover,
+            BookEditor = editor,
+            BookGenres = genre
         };
         
-        db.InsertWithChildren(editor);
+        db.InsertWithChildren(test, true);
     }
 }

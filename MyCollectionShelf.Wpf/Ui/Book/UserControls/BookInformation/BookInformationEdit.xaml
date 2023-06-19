@@ -188,7 +188,7 @@
             <userControls:TextBoxAnimated Grid.Column="1" WaterMarkContent="Éditeur"
                                      TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
-                                     TextBoxText="{Binding BookInformationData.Editor, Mode=TwoWay,
+                                     TextBoxText="{Binding BookInformationData.BookEditor, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged, 
                                                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 

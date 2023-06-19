@@ -91,7 +91,7 @@ public class BookInformations : ISql, INotifyPropertyChanged
     
     private BookCover _bookCover = new();
     
-    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookCover BookCover
     {
         get => _bookCover;
@@ -146,15 +146,15 @@ public class BookInformations : ISql, INotifyPropertyChanged
     [ForeignKey(typeof(BookEditorList))]
     public long BookEditorId { get; set; }
     
-    private BookEditorList _editor = new();
+    private BookEditorList _bookEditor = new();
     
-    [OneToMany(CascadeOperations = CascadeOperation.All)]
-    public BookEditorList Editor
+    [ManyToOne(CascadeOperations = CascadeOperation.All)]
+    public BookEditorList BookEditor
     {
-        get => _editor;
+        get => _bookEditor;
         set
         {
-            _editor = value;
+            _bookEditor = value;
             OnPropertyChanged();
         }
     }
