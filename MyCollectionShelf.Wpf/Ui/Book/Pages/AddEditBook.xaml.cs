@@ -154,10 +154,10 @@ public partial class AddEditBook
                 EditorList.Add(book.BookInformations.Editor);
         }
 
-        if (book.BookInformations.Series.Title is not null && !book.BookInformations.Series.Title.Equals(string.Empty))
+        if (book.BookInformations.BookSeries.Title is not null && !book.BookInformations.BookSeries.Title.Equals(string.Empty))
         {
-            if (!SeriesList.Contains(book.BookInformations.Series))
-                SeriesList.Add(book.BookInformations.Series);
+            if (!SeriesList.Contains(book.BookInformations.BookSeries))
+                SeriesList.Add(book.BookInformations.BookSeries);
         }
 
         BookData = book;

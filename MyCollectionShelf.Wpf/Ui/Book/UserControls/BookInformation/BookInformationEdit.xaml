@@ -113,7 +113,7 @@
 
             <userControls:TextBoxAnimated Grid.Column="0" WaterMarkContent="Série" TextBoxAnimatedBorderBrush="Black"
                                      TextBoxAnimatedCornerRadius="3"
-                                     TextBoxText="{Binding BookInformationData.Series, Mode=TwoWay,
+                                     TextBoxText="{Binding BookInformationData.BookSeries, Mode=TwoWay,
                                                  UpdateSourceTrigger=PropertyChanged,
                                                  RelativeSource={RelativeSource AncestorType={x:Type bookInformation:BookInformationEdit}}}" />
 

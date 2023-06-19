@@ -203,7 +203,7 @@
                     <Label Content="Serie" HorizontalContentAlignment="Left" />
 
                     <ComboBox ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding BookData.BookInformations.Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding BookData.BookInformations.BookSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               DisplayMemberPath="Title"
                               IsEditable="True">
                     </ComboBox>
