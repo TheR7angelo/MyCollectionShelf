@@ -6,7 +6,7 @@ using SQLite;
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book_author")]
-public class BookAuthors : ISql, INotifyPropertyChanged
+public class BookAuthor : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 

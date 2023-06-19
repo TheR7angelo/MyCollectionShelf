@@ -39,15 +39,14 @@ public class BookAllApi
             Copy(bookTemp.BookInformations, book.BookInformations);
             Copy(bookTemp.BookNote, book.BookNote);
         }
-
-        // todo à remettre
-        // var tmp = book.BookInformations.Authors.Where(s =>
-        //     s.Name.Equals(string.Empty) && s.FamilyName.Equals(string.Empty)).ToList();
-        //
-        // foreach (var author in tmp)
-        // {
-        //     book.BookInformations.Authors.Remove(author);
-        // }
+        
+        var tmp = book.BookInformations.BookAuthors.Where(s =>
+            s.Name.Equals(string.Empty) && s.FamilyName.Equals(string.Empty)).ToList();
+        
+        foreach (var author in tmp)
+        {
+            book.BookInformations.BookAuthors.Remove(author);
+        }
             
         return book;
     }
@@ -74,7 +73,7 @@ public class BookAllApi
         // Copy(tempInformations.Authors, bookInformations.Authors);
         // todo à remettre
         // Copy(tempInformations.BookCover, bookInformations.BookCover);
-        Copy(tempInformations.Genres, bookInformations.Genres);
+        Copy(tempInformations.BookGenres, bookInformations.BookGenres);
     }
 
     private static void Copy(IReadOnlyCollection<BookGenre> tempInformationsGenre, ICollection<BookGenre> bookInformationsGenre)
@@ -99,7 +98,7 @@ public class BookAllApi
         bookCover.ExtraLarge ??= tempBookCover.ExtraLarge;
     }
 
-    private static void Copy(IReadOnlyCollection<BookAuthors> tempAuthors, ICollection<BookAuthors> bookAuthors)
+    private static void Copy(IReadOnlyCollection<BookAuthor> tempAuthors, ICollection<BookAuthor> bookAuthors)
     {
         if (tempAuthors.Count.Equals(0)) return;
 

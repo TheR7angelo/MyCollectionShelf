@@ -70,19 +70,19 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
     
-    // private ObservableCollection<BookAuthors> _authors = new() { new BookAuthors() };
-    //
-    // [Column("book_author_fk"), ForeignKey(typeof(BookAuthors))]
-    // [ManyToOne(CascadeOperations = CascadeOperation.All)]
-    // public ObservableCollection<BookAuthors> Authors
-    // {
-    //     get => _authors;
-    //     set
-    //     {
-    //         _authors = value;
-    //         OnPropertyChanged();
-    //     }
-    // }
+    private ObservableCollection<BookAuthor> _bookAuthors = new() { new BookAuthor() };
+    
+    [Column("book_author_fk"), ForeignKey(typeof(BookAuthor))]
+    [ManyToMany(typeof(BookAuthorList), CascadeOperations = CascadeOperation.All)]
+    public ObservableCollection<BookAuthor> BookAuthors
+    {
+        get => _bookAuthors;
+        set
+        {
+            _bookAuthors = value;
+            OnPropertyChanged();
+        }
+    }
 
     // private BookCover _bookCover = new();
     //
@@ -111,16 +111,16 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    private ObservableCollection<BookGenre> _genres = new() { new BookGenre() };
+    private ObservableCollection<BookGenre> _bookGenres = new() { new BookGenre() };
 
     [Column("book_genre_fk"), ForeignKey(typeof(BookGenreList))]
     [ManyToMany(typeof(BookGenreList), CascadeOperations = CascadeOperation.All)]
-    public ObservableCollection<BookGenre> Genres
+    public ObservableCollection<BookGenre> BookGenres
     {
-        get => _genres;
+        get => _bookGenres;
         set
         {
-            _genres = value;
+            _bookGenres = value;
             OnPropertyChanged();
         }
     }

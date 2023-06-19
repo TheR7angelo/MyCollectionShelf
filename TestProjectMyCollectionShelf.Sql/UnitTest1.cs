@@ -16,7 +16,7 @@ public class UnitTest1
 
         var lstInit = new List<ISql>
         {
-            new BookAuthors(), new BookCover(), new BookNote(),
+            new BookAuthor(), new BookCover(), new BookNote(),
             new BookGenre(), new BookGenreList(),
         };
 
@@ -42,7 +42,7 @@ public class UnitTest1
 
         db.Execute("INSERT INTO book(title) VALUES ('Test livre')");
         db.InsertAll(genres);
-        var bookGenreList = genres.Select(genre => new BookGenreList { BookId = 1, GenreId = genre.Id });
+        var bookGenreList = genres.Select(genre => new BookGenreList { BookInformationsId = 1, BookGenreId = genre.Id });
 
         db.InsertAll(bookGenreList);
         // db.InsertAll(genreList);
@@ -53,10 +53,9 @@ public class UnitTest1
     {
         using var handler = new SqlMainHandler();
         var db = handler.GetSqlConnection();
-
-        db.CreateTable<BookSeries>();
-        db.CreateTable<BookAuthors>();
-        db.CreateTable<BookCover>();
+        
+        db.CreateTable<BookAuthor>();
+        db.CreateTable<BookAuthorList>();
         db.CreateTable<BookGenre>();
         db.CreateTable<BookGenreList>();
         db.CreateTable<BookInformations>();
@@ -64,7 +63,11 @@ public class UnitTest1
 
         var info = new BookInformations
         {
-            Genres = new ObservableCollection<BookGenre>
+            BookAuthors = new ObservableCollection<BookAuthor>
+            {
+                new() { FamilyName = "family Name", Name = "name" }
+            },
+            BookGenres = new ObservableCollection<BookGenre>
             {
                 new() { Genre = "Test 1" },
                 new() { Genre = "Test 2" },

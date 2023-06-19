@@ -42,7 +42,7 @@ public class OpenLibraryApi : IBookApi
             {
                 Title = openLibraryBook?.Title,
                 // todo à remettre
-                // Authors = new ObservableCollection<BookAuthors>(authors),
+                BookAuthors = new ObservableCollection<BookAuthor>(authors),
                 // todo à remettre
                 // BookCover = new BookCover
                 // {
@@ -69,9 +69,9 @@ public class OpenLibraryApi : IBookApi
         };
     }
 
-    private async Task<List<BookAuthors>> GetAuthors(IEnumerable<AuthorOpenLibrary>? authors)
+    private async Task<List<BookAuthor>> GetAuthors(IEnumerable<AuthorOpenLibrary>? authors)
     {
-        var results = new List<BookAuthors>();
+        var results = new List<BookAuthor>();
 
         if (authors is null) return results;
 
@@ -94,7 +94,7 @@ public class OpenLibraryApi : IBookApi
             var name = names[0];
             var familyName = string.Join(' ', names.Skip(1));
             
-            results.Add(new BookAuthors
+            results.Add(new BookAuthor
             {
                 Name = name,
                 FamilyName = familyName

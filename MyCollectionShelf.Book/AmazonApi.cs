@@ -59,8 +59,7 @@ public class AmazonApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = document.DocumentNode.SelectSingleNode("//span[@id='productTitle']").InnerHtml,
-                // todo à remettre
-                // Authors = authors,
+                BookAuthors = authors,
                 Summarize = summarize,
                 // todo à remettre
                 // Series = new BookSeries { Title = carouselResult.series },
@@ -168,9 +167,9 @@ public class AmazonApi : IBookApi
         return results.Count.Equals(0) ? null : string.Join('\n', results);
     }
 
-    private static ObservableCollection<BookAuthors> GetAuthors(HtmlNode? singleNode)
+    private static ObservableCollection<BookAuthor> GetAuthors(HtmlNode? singleNode)
     {
-        var results = new ObservableCollection<BookAuthors>();
+        var results = new ObservableCollection<BookAuthor>();
 
         var nodes = singleNode?.SelectNodes("//span[@class='author notFaded']");
 
@@ -189,7 +188,7 @@ public class AmazonApi : IBookApi
             var name = authors[0];
             var familyName = string.Join(' ', authors.Skip(1));
 
-            var author = new BookAuthors
+            var author = new BookAuthor
             {
                 Name = name,
                 FamilyName = familyName

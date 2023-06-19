@@ -38,7 +38,7 @@ public class GoogleBooksApi : IBookApi
         json = await message.Content.ReadAsStringAsync();
         var googleBook = JsonConvert.DeserializeObject<GoogleBooksBook>(json);
 
-        var authors = new List<BookAuthors>();
+        var authors = new List<BookAuthor>();
         foreach (var authorStr in googleBook?.VolumeInfo?.Authors ?? new List<string>())
         {
             var author = authorStr.SplitAuthorName().ToList();
@@ -48,7 +48,7 @@ public class GoogleBooksApi : IBookApi
             var name = author[0];
             var familyName = string.Join(' ', author.Skip(1));
             
-            authors.Add(new BookAuthors
+            authors.Add(new BookAuthor
             {
                 Name = name,
                 FamilyName = familyName
@@ -60,8 +60,7 @@ public class GoogleBooksApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = googleBook?.VolumeInfo?.Title,
-                // todo à remettre
-                // Authors = new ObservableCollection<BookAuthors>(authors),
+                BookAuthors = new ObservableCollection<BookAuthor>(authors),
                 // todo à remettre
                 // BookCover = new BookCover
                 // {

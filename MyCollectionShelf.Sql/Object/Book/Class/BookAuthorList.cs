@@ -1,13 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
-[Table("book_genre_list")]
-public class BookGenreList : ISql, INotifyPropertyChanged
+[Table("book_author_list")]
+public class BookAuthorList : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -40,32 +39,16 @@ public class BookGenreList : ISql, INotifyPropertyChanged
         }
     }
     
-    private long _bookGenreId;
+    private long _bookAuthorId;
 
-    [Column("book_author_fk"), ForeignKey(typeof(BookGenre))]
-    public long BookGenreId
+    [Column("book_author_fk"), ForeignKey(typeof(BookAuthor))]
+    public long BookAuthorId
     {
-        get => _bookGenreId;
+        get => _bookAuthorId;
         set
         {
-            _bookGenreId = value;
+            _bookAuthorId = value;
             OnPropertyChanged();
         }
     }
-
-    public string Definition =>
-        """
-        create table if not exists book_genre_list
-        (
-            id            integer
-                constraint book_genre_list_pk
-                    primary key autoincrement,
-            book_informations_fk    integer
-                constraint book_genre_list_book_informations_fk
-                    references book_informations,
-            book_genre_fk integer
-                constraint book_genre_list_book_genre_fk
-                    references book_genre
-        );
-        """;
 }
