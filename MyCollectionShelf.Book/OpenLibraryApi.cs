@@ -42,16 +42,15 @@ public class OpenLibraryApi : IBookApi
             {
                 Title = openLibraryBook?.Title,
                 BookAuthors = new ObservableCollection<BookAuthor>(authors),
-                // todo à remettre
-                // BookCover = new BookCover
-                // {
-                //     SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
-                //     Thumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
-                //     Small = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
-                //     Medium = new Uri($"{BaseCoverIsbnApi}{isbn13}-M.jpg"),
-                //     Large = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
-                //     ExtraLarge = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
-                // },
+                BookCover = new BookCover
+                {
+                    SmallThumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+                    Thumbnail = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+                    Small = new Uri($"{BaseCoverIsbnApi}{isbn13}-S.jpg"),
+                    Medium = new Uri($"{BaseCoverIsbnApi}{isbn13}-M.jpg"),
+                    Large = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
+                    ExtraLarge = new Uri($"{BaseCoverIsbnApi}{isbn13}-L.jpg"),
+                },
                 // Summarize = "", // Non fournit
                 // Series = "", // L'API ne le fournit pas
                 // TomeNumber = 0, // L'API ne le fournit pas

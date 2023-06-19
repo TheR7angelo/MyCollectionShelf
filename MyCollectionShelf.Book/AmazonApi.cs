@@ -66,16 +66,15 @@ public class AmazonApi : IBookApi
                 Editor = carouselResult.editor,
                 PublishDate = carouselResult.publishDate,
                 Isbn = isbn13,
-                // todo à remettre
-                // BookCover = new BookCover
-                // {
-                //     SmallThumbnail = imgUri,
-                //     Thumbnail = imgUri,
-                //     Small = imgUri,
-                //     Medium = imgUri,
-                //     Large = imgUri,
-                //     ExtraLarge = imgUri
-                // }
+                BookCover = new BookCover
+                {
+                    SmallThumbnail = imgUri,
+                    Thumbnail = imgUri,
+                    Small = imgUri,
+                    Medium = imgUri,
+                    Large = imgUri,
+                    ExtraLarge = imgUri
+                }
             }
         };
     }

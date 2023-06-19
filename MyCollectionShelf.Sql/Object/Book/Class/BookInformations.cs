@@ -84,19 +84,22 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    // private BookCover _bookCover = new();
-    //
-    // [Column("book_cover_fk"), ForeignKey(typeof(BookCover))]
-    // [OneToMany(CascadeOperations = CascadeOperation.All)]
-    // public BookCover BookCover
-    // {
-    //     get => _bookCover;
-    //     set
-    //     {
-    //         _bookCover = value;
-    //         OnPropertyChanged();
-    //     }
-    // }
+    [Column("book_cover_fk")]
+    [ForeignKey(typeof(BookCover))]
+    public long BookCoverId { get; set; }
+    
+    private BookCover _bookCover = new();
+    
+    [OneToMany(CascadeOperations = CascadeOperation.All)]
+    public BookCover BookCover
+    {
+        get => _bookCover;
+        set
+        {
+            _bookCover = value;
+            OnPropertyChanged();
+        }
+    }
     
     private string? _summarize;
 

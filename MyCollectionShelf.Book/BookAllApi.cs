@@ -18,8 +18,7 @@ public class BookAllApi
             BookInformations = new BookInformations
             {
                 Isbn = isbn13,
-                // todo à remettre
-                // BookCover = new BookCover()
+                BookCover = new BookCover()
             },
             BookNote = new BookNote()
         };
@@ -69,8 +68,7 @@ public class BookAllApi
         bookInformations.Isbn ??= tempInformations.Isbn;
         
         Copy(tempInformations.BookAuthors, bookInformations.BookAuthors);
-        // todo à remettre
-        // Copy(tempInformations.BookCover, bookInformations.BookCover);
+        Copy(tempInformations.BookCover, bookInformations.BookCover);
         Copy(tempInformations.BookGenres, bookInformations.BookGenres);
     }
 
