@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class;
 
 [Table("book")]
-public class Book : INotifyPropertyChanged
+public class Book : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -28,7 +29,9 @@ public class Book : INotifyPropertyChanged
         }
     }
     
-    [Column("book_information"), ForeignKey(typeof(BookInformations))]
+    [Column("book_information_fk"), ForeignKey(typeof(BookInformations))]
+    public long BookInformationsId { get; set; }
+    
     [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookInformations BookInformations
     {
@@ -40,9 +43,11 @@ public class Book : INotifyPropertyChanged
         }
     }
 
+    [Column("book_note"), ForeignKey(typeof(BookNote))]
+    public long BookNoteId { get; set; }
+    
     private BookNote _bookNote = new();
-
-    [Column("book_note"), ForeignKey(typeof(BookInformations))]
+    
     [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookNote BookNote
     {
@@ -53,4 +58,20 @@ public class Book : INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    public string Definition =>
+        """
+        create table if not exists book
+        (
+            id                integer
+                constraint book_pk
+                    primary key autoincrement,
+            book_informations integer
+                constraint book_book_informations_id_fk
+                    references book_informations,
+            book_note         integer
+                constraint book_book_note_id_fk
+                    references book_note
+        );
+        """;
 }
