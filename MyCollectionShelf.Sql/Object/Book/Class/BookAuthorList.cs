@@ -63,7 +63,7 @@ public class BookAuthorList : ISql, INotifyPropertyChanged
             book_informations_fk integer
                 constraint book_author_list_book_informations_id_fk
                     references book_informations,
-            book_author          integer
+            book_author_fk          integer
                 constraint book_author_list_book_author_id_fk
                     references book_author
         );
