@@ -209,7 +209,7 @@ public partial class AddEditBook
 
     private void ButtonValidBook_OnClick(object sender, RoutedEventArgs e)
     {
-        // todo à réparer
         Console.WriteLine(BookData.BookInformations.BookSeries.Title);
+        Console.WriteLine(BookData.BookInformations.BookSeries.Id);
     }
 }
