@@ -13,7 +13,7 @@ public class SqlMainHandler : IDisposable
 
     public SqlMainHandler()
     {
-        _sqLiteConnection.Execute("PRAGMA foreign_keys = OFF");
+        SetPragma(false);
         InitDataBase();
     }
     
@@ -21,6 +21,12 @@ public class SqlMainHandler : IDisposable
     {
         _sqLiteConnection.Dispose();
         GC.SuppressFinalize(this);
+    }
+
+    public void SetPragma(bool on)
+    {
+        var onOff = on ? "ON" : "OFF";
+        _sqLiteConnection.Execute($"PRAGMA foreign_keys = {onOff}");
     }
 
     public SQLiteConnection GetSqlConnection() => _sqLiteConnection;
