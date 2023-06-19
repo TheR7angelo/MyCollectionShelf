@@ -40,22 +40,22 @@ public class BookInformations : INotifyPropertyChanged
         }
     }
 
-    // private BookSeries _series = new();
-    //
-    // [Column("book_series_fk")]
-    // [ManyToOne(CascadeOperations = CascadeOperation.All)]
-    // public BookSeries Series
-    // {
-    //     get => _series;
-    //     set
-    //     {
-    //         _series = value;
-    //         OnPropertyChanged();
-    //     }
-    // }
-
-    // [ForeignKey(typeof(BookSeries))]
-    // public long BokSerieId { get; set; }
+    [Column("book_series_fk")]
+    [ForeignKey(typeof(BookSeries))]
+    public long BookSeriesId { get; set; }
+    
+    private BookSeries _bookSeries = new();
+    
+    [ManyToOne(CascadeOperations = CascadeOperation.All)]
+    public BookSeries BookSeries
+    {
+        get => _bookSeries;
+        set
+        {
+            _bookSeries = value;
+            OnPropertyChanged();
+        }
+    }
     
     private long? _tomeNumber;
 

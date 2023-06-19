@@ -41,7 +41,6 @@ public class OpenLibraryApi : IBookApi
             BookInformations = new BookInformations
             {
                 Title = openLibraryBook?.Title,
-                // todo à remettre
                 BookAuthors = new ObservableCollection<BookAuthor>(authors),
                 // todo à remettre
                 // BookCover = new BookCover

@@ -59,8 +59,7 @@ public class BookAllApi
     private static void Copy(BookInformations tempInformations, BookInformations bookInformations)
     {
         bookInformations.Title ??= tempInformations.Title;
-        // todo à remettre
-        // bookInformations.Series ??= tempInformations.Series;
+        bookInformations.BookSeries ??= tempInformations.BookSeries;
         bookInformations.TomeNumber ??= tempInformations.TomeNumber;
 
         bookInformations.Summarize ??= tempInformations.Summarize;
@@ -68,9 +67,8 @@ public class BookAllApi
         bookInformations.Editor ??= tempInformations.Editor;
         bookInformations.PageNumber ??= tempInformations.PageNumber;
         bookInformations.Isbn ??= tempInformations.Isbn;
-
-        // todo à remettre
-        // Copy(tempInformations.Authors, bookInformations.Authors);
+        
+        Copy(tempInformations.BookAuthors, bookInformations.BookAuthors);
         // todo à remettre
         // Copy(tempInformations.BookCover, bookInformations.BookCover);
         Copy(tempInformations.BookGenres, bookInformations.BookGenres);

@@ -61,8 +61,7 @@ public class AmazonApi : IBookApi
                 Title = document.DocumentNode.SelectSingleNode("//span[@id='productTitle']").InnerHtml,
                 BookAuthors = authors,
                 Summarize = summarize,
-                // todo à remettre
-                // Series = new BookSeries { Title = carouselResult.series },
+                BookSeries = new BookSeries { Title = carouselResult.series },
                 PageNumber = carouselResult.pageNumber,
                 Editor = carouselResult.editor,
                 PublishDate = carouselResult.publishDate,

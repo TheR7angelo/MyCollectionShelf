@@ -17,6 +17,7 @@ public class UnitTest1
         var lstInit = new List<ISql>
         {
             new BookAuthor(), new BookGenre(),
+            new BookSeries(),
             // new BookInformations(), 
             new BookAuthorList(), new BookGenreList()
         };
@@ -56,6 +57,30 @@ public class UnitTest1
 
         db.InsertWithChildren(info);
         
+        var z = db.GetWithChildren<BookInformations>(info.Id);
+    }
+
+    [Fact]
+    private void TestManyToOne()
+    {
+        using var handler = new SqlMainHandler();
+        var db = handler.GetSqlConnection();
+
+        db.CreateTable<BookAuthor>();
+        db.CreateTable<BookAuthorList>();
+        db.CreateTable<BookGenre>();
+        db.CreateTable<BookGenreList>();
+        
+        db.CreateTable<BookSeries>();
+        db.CreateTable<BookInformations>();
+
+        var info = new BookInformations
+        {
+            BookSeries = new BookSeries { Title = "Série de test" }
+        };
+        
+        db.InsertWithChildren(info);
+
         var z = db.GetWithChildren<BookInformations>(info.Id);
     }
 }
