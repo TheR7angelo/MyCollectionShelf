@@ -7,14 +7,16 @@ using System.Windows.Media.Imaging;
 
 namespace MyCollectionShelf.Wpf.Object.Class.Converter;
 
-public class UriToImageSourceConverter : IValueConverter
+public class StringToImageSourceConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is not Uri uri) return DependencyProperty.UnsetValue;
+        if (value is not string str) return DependencyProperty.UnsetValue;
+        if (string.IsNullOrEmpty(str)) return DependencyProperty.UnsetValue;
+        
         try
         {
-            using var fileStream = new FileStream(uri.LocalPath, FileMode.Open, FileAccess.Read);
+            using var fileStream = new FileStream(str, FileMode.Open, FileAccess.Read);
             
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
