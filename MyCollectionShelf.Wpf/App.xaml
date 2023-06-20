@@ -7,7 +7,7 @@
     
     <Application.Resources>
 
-        <converter:UriToImageSourceConverter x:Key="UriToImageSourceConverter" />
+        <converter:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
         
     </Application.Resources>
     
