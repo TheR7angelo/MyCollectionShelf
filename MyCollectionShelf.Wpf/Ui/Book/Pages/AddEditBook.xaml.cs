@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,35 +18,39 @@ using MyCollectionShelf.Wpf.Object.Class.Enum;
 using MyCollectionShelf.Wpf.Object.Class.Static;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
 using MyCollectionShelf.Wpf.Ui.General.ButtonCustom;
+using SQLite;
 using SQLiteNetExtensions.Extensions;
 
 namespace MyCollectionShelf.Wpf.Ui.Book.Pages;
 
 public partial class AddEditBook
 {
-    public static readonly DependencyProperty AuthorsListProperty = DependencyProperty.Register(nameof(AuthorsList),
-        typeof(ObservableCollection<BookAuthor>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<BookAuthor>()));
-
     public static readonly DependencyProperty BookDataProperty = DependencyProperty.Register(nameof(BookData),
         typeof(Sql.Object.Book.Class.Book), typeof(AddEditBook),
         new PropertyMetadata(new Sql.Object.Book.Class.Book()));
 
-    public static readonly DependencyProperty EditorListProperty = DependencyProperty.Register(nameof(EditorList),
-        typeof(ObservableCollection<BookEditorList>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<BookEditorList>()));
-
-    public static readonly DependencyProperty GenresListProperty = DependencyProperty.Register(nameof(GenresList),
-        typeof(ObservableCollection<string>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<string>()));
-
-    public static readonly DependencyProperty SeriesListProperty = DependencyProperty.Register(nameof(SeriesList),
-        typeof(ObservableCollection<BookSeries>), typeof(AddEditBook),
-        new PropertyMetadata(new ObservableCollection<BookSeries>()));
-
     public AddEditBook()
     {
+        using var sqlHandler = new SqlMainHandler();
+        var db = sqlHandler.GetSqlConnection();
+        
+        SetCollection(AuthorsList, db);
+        SetCollection(EditorsList, db);
+        SetCollection(GenresList, db);
+        SetCollection(SeriesList, db);
+        
         InitializeComponent();
+    }
+
+    private static void SetCollection<T>(ICollection<T> collection, ISQLiteConnection connection) where T : class, new()
+    {
+        var tableAttribute = (TableAttribute)typeof(T).GetCustomAttributes(typeof(TableAttribute)).First();
+        
+        var list = connection.Query<T>($"SELECT * FROM {tableAttribute.Name}");
+        foreach (var lst in list)
+        {
+            collection.Add(lst);
+        }
     }
 
     public Sql.Object.Book.Class.Book BookData
@@ -52,29 +59,13 @@ public partial class AddEditBook
         set => SetValue(BookDataProperty, value);
     }
 
-    public ObservableCollection<BookAuthor> AuthorsList
-    {
-        get => (ObservableCollection<BookAuthor>)GetValue(AuthorsListProperty);
-        set => SetValue(AuthorsListProperty, value);
-    }
+    public ObservableCollection<BookAuthor> AuthorsList { get; set; } = new();
 
-    public ObservableCollection<BookEditorList> EditorList
-    {
-        get => (ObservableCollection<BookEditorList>)GetValue(EditorListProperty);
-        set => SetValue(EditorListProperty, value);
-    }
+    public ObservableCollection<BookEditorList> EditorsList { get; set; } = new();
 
-    public ObservableCollection<string> GenresList
-    {
-        get => (ObservableCollection<string>)GetValue(GenresListProperty);
-        set => SetValue(GenresListProperty, value);
-    }
+    public ObservableCollection<BookGenre> GenresList { get; set; } = new();
 
-    public ObservableCollection<BookSeries> SeriesList
-    {
-        get => (ObservableCollection<BookSeries>)GetValue(SeriesListProperty);
-        set => SetValue(SeriesListProperty, value);
-    }
+    public ObservableCollection<BookSeries> SeriesList { get; set; } = new();
 
     private void OnlyNumber_OnTextChanged(object sender, TextCompositionEventArgs e)
     {
@@ -132,7 +123,7 @@ public partial class AddEditBook
 
         if (sucess)
         {
-            book.BookInformations.BookCover.Storage = new Uri(tempPicture);
+            book.BookInformations.BookCover.Storage = tempPicture;
         }
 
         return book;
@@ -144,18 +135,18 @@ public partial class AddEditBook
         {
             if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
         }
-
+        
         foreach (var genre in book.BookInformations.BookGenres.Where(s => !s.Genre.Equals(string.Empty)))
         {
-            if (!GenresList.Contains(genre.Genre)) GenresList.Add(genre.Genre);
+            if (!GenresList.Contains(genre)) GenresList.Add(genre);
         }
-
-        if (book.BookInformations.BookEditor.Editor is not null && !EditorList.Contains(book.BookInformations.BookEditor))
+        
+        if (book.BookInformations.BookEditor.Editor is not null && !EditorsList.Contains(book.BookInformations.BookEditor))
         {
-            if (!EditorList.Contains(book.BookInformations.BookEditor))
-                EditorList.Add(book.BookInformations.BookEditor);
+            if (!EditorsList.Contains(book.BookInformations.BookEditor))
+                EditorsList.Add(book.BookInformations.BookEditor);
         }
-
+        
         if (book.BookInformations.BookSeries.Title is not null && !book.BookInformations.BookSeries.Title.Equals(string.Empty))
         {
             if (!SeriesList.Contains(book.BookInformations.BookSeries))
@@ -211,12 +202,41 @@ public partial class AddEditBook
 
     private void ButtonValidBook_OnClick(object sender, RoutedEventArgs e)
     {
-        Console.WriteLine(BookData.BookInformations.BookSeries.Title);
-        Console.WriteLine(BookData.BookInformations.BookSeries.Id);
+        const string coverName = "cover";
+        
+        if (string.IsNullOrEmpty(BookData.BookInformations.BookSeries.Title)) return;
+        
+        var scan = BookData.BookInformations.BookCover.Storage;
+        if (!string.IsNullOrEmpty(scan))
+        {
+            var fileExtension = Path.GetExtension(Path.GetFileName(scan));
+            
+            var collectionPath = Path.Combine("Collection", "Book", BookData.BookInformations.BookSeries.Title);
+            var collectionFullPath = Path.GetFullPath(collectionPath);
+            Directory.CreateDirectory(collectionFullPath);
+            
+            var coverExist = Directory.GetFiles(collectionFullPath).Any(s => Path.GetFileNameWithoutExtension(s).Equals(coverName));
+            if (!coverExist)
+            {
+                var coverPath = Path.Combine(collectionPath, $"{coverName}{fileExtension}");
+                BookData.BookInformations.BookSeries.SeriesCover = coverPath;
+                
+                var coverFullPath = Path.Combine(collectionFullPath, $"{coverName}{fileExtension}");
+                File.Copy(scan, coverFullPath);
+            }
 
+            var filePath = Path.Combine(collectionFullPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
+            var fileCollectionPath = Path.Combine(collectionPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
+            File.Copy(scan, filePath, true);
+            
+            File.Delete(scan);
+
+            BookData.BookInformations.BookCover.Storage = fileCollectionPath;
+        }
+        
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
         
-        db.InsertWithChildren(BookData);
+        db.InsertWithChildren(BookData, true);
     }
 }
