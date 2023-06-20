@@ -23,7 +23,7 @@ public class SqlMainHandler : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    public void SetPragma(bool on)
+    private void SetPragma(bool on)
     {
         var onOff = on ? "ON" : "OFF";
         _sqLiteConnection.Execute($"PRAGMA foreign_keys = {onOff}");
