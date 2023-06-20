@@ -104,10 +104,10 @@ public class BookCover : ISql, INotifyPropertyChanged
         }
     }
     
-    private Uri? _storage;
+    private string? _storage;
 
     [Column("storage")]
-    public Uri? Storage
+    public string? Storage
     {
         get => _storage;
         set

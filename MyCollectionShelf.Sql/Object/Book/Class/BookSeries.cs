@@ -40,10 +40,10 @@ public class BookSeries : ISql, INotifyPropertyChanged
         }
     }
 
-    private Uri? _seriesCover;
+    private string? _seriesCover;
 
     [Column("series_cover")]
-    public Uri? SeriesCover
+    public string? SeriesCover
     {
         get => _seriesCover;
         set
