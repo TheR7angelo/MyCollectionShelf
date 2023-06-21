@@ -1,4 +1,5 @@
-﻿using MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls;
+﻿using MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
+using MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls;
 
 namespace MyCollectionShelf.Wpf
 {
@@ -8,7 +9,8 @@ namespace MyCollectionShelf.Wpf
         {
             InitializeComponent();
 
-            Frame.Content = new UserControl1();
+            Frame.Content = new AddEditBook();
+            // Frame.Content = new UserControl1();
         }
     }
 }
