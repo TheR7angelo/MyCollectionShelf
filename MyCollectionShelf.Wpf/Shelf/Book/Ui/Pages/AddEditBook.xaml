@@ -350,8 +350,7 @@
 
                     <Label Content="Date terminé" HorizontalContentAlignment="Left" />
 
-                    <DatePicker
-                        SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <DatePicker SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
 

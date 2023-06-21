@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class;
+using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Interface;
 using SQLiteNetExtensions.Extensions;
 

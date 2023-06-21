@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using HtmlAgilityPack;
 using MyCollectionShelf.Book.Object.Static_Class;
-using MyCollectionShelf.Sql.Object.Book.Class;
+using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.WebApi.Object.Static_Class;
 
 namespace MyCollectionShelf.Book;
@@ -18,7 +18,7 @@ public class AmazonApi : IBookApi
         UserAgent = userAgent;
     }
 
-    public async Task<Sql.Object.Book.Class.Book?> GetBookInformation(string isbn13)
+    public async Task<Sql.Object.Book.Class.Table.Book?> GetBookInformation(string isbn13)
     {
         using var client = WebClient.GetWebClient(UserAgent);
 
@@ -54,7 +54,7 @@ public class AmazonApi : IBookApi
         var img = document.DocumentNode.SelectSingleNode("//div[@id='imageBlockContainer']//img[@id='imgBlkFront']")?.GetAttributeValue("src", string.Empty);
         var imgUri = string.IsNullOrEmpty(img) ? null : new Uri(img);
         
-        return new Sql.Object.Book.Class.Book
+        return new Sql.Object.Book.Class.Table.Book
         {
             BookInformations = new BookInformations
             {

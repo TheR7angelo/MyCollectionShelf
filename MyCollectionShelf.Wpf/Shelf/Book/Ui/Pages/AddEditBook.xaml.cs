@@ -13,7 +13,7 @@ using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Enum;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class;
+using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
 using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.Window;
@@ -26,8 +26,8 @@ namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 public partial class AddEditBook
 {
     public static readonly DependencyProperty BookDataProperty = DependencyProperty.Register(nameof(BookData),
-        typeof(Sql.Object.Book.Class.Book), typeof(AddEditBook),
-        new PropertyMetadata(new Sql.Object.Book.Class.Book()));
+        typeof(Sql.Object.Book.Class.Table.Book), typeof(AddEditBook),
+        new PropertyMetadata(new Sql.Object.Book.Class.Table.Book()));
 
     public AddEditBook()
     {
@@ -53,9 +53,9 @@ public partial class AddEditBook
         }
     }
 
-    public Sql.Object.Book.Class.Book BookData
+    public Sql.Object.Book.Class.Table.Book BookData
     {
-        get => (Sql.Object.Book.Class.Book)GetValue(BookDataProperty);
+        get => (Sql.Object.Book.Class.Table.Book)GetValue(BookDataProperty);
         set => SetValue(BookDataProperty, value);
     }
 
@@ -81,16 +81,8 @@ public partial class AddEditBook
         using var scanner = new CameraScan();
         if (scanner.ShowDialog() != true) return;
 
-        ButtonValid.Visibility = Visibility.Hidden;
-        BusySpinner.Visibility = Visibility.Visible;
-
         var isbn = scanner.Isbn;
-
-        var book = await GetBook(isbn);
-        SetBook(book);
-
-        ButtonValid.Visibility = Visibility.Visible;
-        BusySpinner.Visibility = Visibility.Hidden;
+        await GetIsbnBook(isbn);
     }
 
     private async void ButtonISBN_OnClick(object sender, RoutedEventArgs e)
@@ -98,8 +90,19 @@ public partial class AddEditBook
         var isbn = BookData.BookInformations.Isbn;
         if (string.IsNullOrEmpty(isbn)) return;
 
+        await GetIsbnBook(isbn);
+    }
+
+    private async Task GetIsbnBook(string isbn)
+    {
+        ButtonValid.Visibility = Visibility.Hidden;
+        BusySpinner.Visibility = Visibility.Visible;
+
         var book = await GetBook(isbn);
         SetBook(book);
+
+        ButtonValid.Visibility = Visibility.Visible;
+        BusySpinner.Visibility = Visibility.Hidden;
     }
 
     private async void IsbnSearch_OnKeyDown(object sender, KeyEventArgs e)
@@ -113,7 +116,7 @@ public partial class AddEditBook
         SetBook(book);
     }
 
-    private static async Task<Sql.Object.Book.Class.Book> GetBook(string isbn)
+    private static async Task<Sql.Object.Book.Class.Table.Book> GetBook(string isbn)
     {
         var api = new BookAllApi();
         var book = await api.GetBookInformation(isbn);
@@ -129,7 +132,7 @@ public partial class AddEditBook
         return book;
     }
 
-    private void SetBook(Sql.Object.Book.Class.Book book)
+    private void SetBook(Sql.Object.Book.Class.Table.Book book)
     {
         foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
         {
@@ -228,8 +231,6 @@ public partial class AddEditBook
             var filePath = Path.Combine(collectionFullPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
             var fileCollectionPath = Path.Combine(collectionPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
             File.Copy(scan, filePath, true);
-            
-            File.Delete(scan);
 
             BookData.BookInformations.BookCover.Storage = fileCollectionPath;
         }
@@ -237,6 +238,6 @@ public partial class AddEditBook
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
         
-        db.InsertWithChildren(BookData, true);
+        db.InsertOrReplaceWithChildren(BookData, true);
     }
 }
