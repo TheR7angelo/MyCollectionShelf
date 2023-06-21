@@ -29,12 +29,22 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Ui\General\UserControls\TextBoxAnimated.xaml">
+      <Page Update="Ui\Common\Controls\Buttons\ButtonAddRemove.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Ui\General\ButtonCustom\ButtonAddRemove.xaml">
+      <Page Update="Ui\Common\Controls\Buttons\SvgButton.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Ui\Common\UserControls\BusySpinner.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Ui\Common\UserControls\TextBoxAnimated.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
