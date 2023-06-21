@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
-namespace MyCollectionShelf.Wpf.Ui.General.UserControls;
+namespace MyCollectionShelf.Wpf.Ui.Common.UserControls;
 
 public partial class BusySpinner
 {

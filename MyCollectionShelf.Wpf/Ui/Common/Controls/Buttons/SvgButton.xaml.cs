@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace MyCollectionShelf.Wpf.Ui.General.ButtonCustom;
+namespace MyCollectionShelf.Wpf.Ui.Common.Controls.Buttons;
 
 public partial class SvgButton
 {

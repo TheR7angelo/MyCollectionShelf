@@ -2,7 +2,7 @@
 using System.Windows;
 using MyCollectionShelf.Wpf.Object.Class.Enum;
 
-namespace MyCollectionShelf.Wpf.Ui.General.ButtonCustom;
+namespace MyCollectionShelf.Wpf.Ui.Common.Controls.Buttons;
 
 public partial class ButtonAddRemove
 {

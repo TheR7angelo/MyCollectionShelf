@@ -1,17 +1,17 @@
-﻿<UserControl x:Class="MyCollectionShelf.Wpf.Ui.General.UserControls.BusySpinner"
+﻿<UserControl x:Class="MyCollectionShelf.Wpf.Ui.Common.UserControls.BusySpinner"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Ui.General.UserControls"
+    xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Ui.Common.UserControls"
     Width="{Binding RelativeSource={RelativeSource Self}, Path=Height, Mode=TwoWay}"
     Height="120">
 
     <Viewbox
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
-        <Grid Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BusySpinner}}}">
+        <Grid Background="{Binding Path=Background, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:BusySpinner}}}">
             <Canvas
-                Width="{Binding Path=Diameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BusySpinner}}}"
-                Height="{Binding Path=Diameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BusySpinner}}}"
+                Width="{Binding Path=Diameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:BusySpinner}}}"
+                Height="{Binding Path=Diameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:BusySpinner}}}"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Background="Transparent"
@@ -20,11 +20,11 @@
 
                 <Canvas.Resources>
                     <Style TargetType="Ellipse">
-                        <Setter Property="Fill" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BusySpinner}}}" />
-                        <Setter Property="Height" Value="{Binding Path=ItemDiameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BusySpinner}}}" />
+                        <Setter Property="Fill" Value="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:BusySpinner}}}" />
+                        <Setter Property="Height" Value="{Binding Path=ItemDiameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:BusySpinner}}}" />
                         <Setter Property="Stretch" Value="Fill" />
                         <Setter Property="StrokeThickness" Value="0" />
-                        <Setter Property="Width" Value="{Binding Path=ItemDiameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:BusySpinner}}}" />
+                        <Setter Property="Width" Value="{Binding Path=ItemDiameter, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type userControls:BusySpinner}}}" />
                     </Style>
                 </Canvas.Resources>
 

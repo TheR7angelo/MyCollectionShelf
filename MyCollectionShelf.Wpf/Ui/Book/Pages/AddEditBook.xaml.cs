@@ -17,7 +17,7 @@ using MyCollectionShelf.Sql.Object.Book.Class;
 using MyCollectionShelf.Wpf.Object.Class.Enum;
 using MyCollectionShelf.Wpf.Object.Class.Static;
 using MyCollectionShelf.Wpf.Ui.Book.Window;
-using MyCollectionShelf.Wpf.Ui.General.ButtonCustom;
+using MyCollectionShelf.Wpf.Ui.Common.Controls.Buttons;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
 

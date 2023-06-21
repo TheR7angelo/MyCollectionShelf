@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:bookInformation="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.UserControls.BookInformation"
-             xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Ui.General.UserControls"
+             xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Ui.Common.UserControls"
              mc:Ignorable="d">
 
     <UserControl.Resources>

@@ -4,9 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.Pages"
-      xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Ui.General.UserControls"
       xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-      xmlns:buttonCustom="clr-namespace:MyCollectionShelf.Wpf.Ui.General.ButtonCustom"
+      xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Ui.Common.Controls.Buttons"
+      xmlns:userControls1="clr-namespace:MyCollectionShelf.Wpf.Ui.Common.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
@@ -106,15 +106,15 @@
                                         SelectedItem="{Binding .}">
                                     </ComboBox>
                         
-                                    <buttonCustom:ButtonAddRemove Grid.Column="1" Mode="Remove" 
+                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" 
                                                                   Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveAuthors_OnClick" />
                                     
-                                    <buttonCustom:ButtonAddRemove Grid.Column="2" Mode="Add" 
+                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" 
                                                                   Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveAuthors_OnClick" />
                                     
-                                    <buttonCustom:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
+                                    <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
                         
                                 </Grid>
 
@@ -181,15 +181,15 @@
                                               DisplayMemberPath="Genre"
                                               Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         
-                                    <buttonCustom:ButtonAddRemove Grid.Column="1" Mode="Remove" 
+                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" 
                                                                   Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveGenres_OnClick" />
                                     
-                                    <buttonCustom:ButtonAddRemove Grid.Column="2" Mode="Add" 
+                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" 
                                                                   Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                                   Click="ButtonAddRemoveGenres_OnClick" />
                                     
-                                    <buttonCustom:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
+                                    <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
                         
                                 </Grid>
                         
@@ -218,7 +218,7 @@
                                   Text="{Binding BookData.BookInformations.BookSeries.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
                         
-                        <buttonCustom:SvgButton Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" Height="25" />
+                        <buttons:SvgButton Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" Height="25" />
                         
                     </Grid>
 
@@ -360,7 +360,7 @@
             <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                 
                 <Button x:Name="ButtonValid" Content="Valider" Click="ButtonValidBook_OnClick" />
-                <userControls:BusySpinner x:Name="BusySpinner" Width="32" Background="Transparent" Foreground="Black" Visibility="Hidden" />
+                <userControls1:BusySpinner x:Name="BusySpinner" Width="32" Background="Transparent" Foreground="Black" Visibility="Hidden" />
                 
             </Grid>
 
