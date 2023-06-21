@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Enum;
+using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
 
 namespace MyCollectionShelf.Wpf.Shelf.Common.Controls.Buttons;
 
