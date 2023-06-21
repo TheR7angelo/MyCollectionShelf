@@ -4,7 +4,7 @@ using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace MyCollectionShelf.Sql.Object.Book.Class;
+namespace MyCollectionShelf.Sql.Object.Book.Class.Table;
 
 [Table("book")]
 public class Book : ISql, INotifyPropertyChanged

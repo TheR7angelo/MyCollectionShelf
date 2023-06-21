@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 
-namespace MyCollectionShelf.Sql.Object.Book.Class;
+namespace MyCollectionShelf.Sql.Object.Book.Class.Table;
 
 [Table("book_note")]
 public class BookNote : ISql, INotifyPropertyChanged
