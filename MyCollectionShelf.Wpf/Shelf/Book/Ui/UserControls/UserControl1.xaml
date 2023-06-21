@@ -3,74 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+             xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls"
+
              mc:Ignorable="d">
 
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        
+
         <Border BorderBrush="Black" BorderThickness="1" Background="LightGray">
 
             <Button BorderThickness="0">
-                
+
                 <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                       MinWidth="187" MaxWidth="187"
-                       MinHeight="265" MaxHeight="265"
-                       Source="/Resources/cover.jpg" Stretch="Uniform">
-                </Image>
+                    <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                           MinWidth="187" MaxWidth="187"
+                           MinHeight="265" MaxHeight="265"
+                           Source="{Binding CoverPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                    RelativeSource={RelativeSource AncestorType={x:Type local:UserControl1}},
+                                    Converter={StaticResource StringToImageSourceConverter}}"
+                           Stretch="Uniform">
+                    </Image>
 
-                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                       HorizontalContentAlignment="Center"
-                       VerticalContentAlignment="Top"
-                       Content="Oshi no ko">
-                </Label>
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                           HorizontalContentAlignment="Center"
+                           VerticalContentAlignment="Top"
+                           Content="Oshi no ko">
+                    </Label>
 
-                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                    
-                    <StackPanel Orientation="Horizontal">
-                        <Label HorizontalContentAlignment="Right"
-                               Content="Possédé:">
-                        </Label>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
 
-                        <Label HorizontalContentAlignment="Left"
-                               Content="0">
-                        </Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label HorizontalContentAlignment="Right"
+                                   Content="Possédé:">
+                            </Label>
+
+                            <Label HorizontalContentAlignment="Left"
+                                   Content="0">
+                            </Label>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label HorizontalContentAlignment="Right"
+                                   Content="Lu:">
+                            </Label>
+
+                            <Label HorizontalContentAlignment="Left"
+                                   Content="0">
+                            </Label>
+                        </StackPanel>
+
                     </StackPanel>
-                    
-                    <StackPanel Orientation="Horizontal">
-                        <Label HorizontalContentAlignment="Right"
-                               Content="Lu:">
-                        </Label>
 
-                        <Label HorizontalContentAlignment="Left"
-                               Content="0">
-                        </Label>
-                    </StackPanel>
-                    
-                </StackPanel>
+                </Grid>
 
-            </Grid>
-                
             </Button>
 
         </Border>
