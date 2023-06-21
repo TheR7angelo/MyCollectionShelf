@@ -1,4 +1,5 @@
 ﻿using MyCollectionShelf.Sql.Object.Book.Class.Table;
+using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 
@@ -39,7 +40,9 @@ public class SqlMainHandler : IDisposable
             new BookSeries(), new BookCover(),
             new BookAuthorList(), new BookGenreList(), new BookEditorList(),
             new BookInformations(), new BookNote(),
-            new Book()
+            new Book(),
+            
+            new VBookShelf()
         };
 
         foreach (var cmd in lstInit.Select(s => s.Definition))
