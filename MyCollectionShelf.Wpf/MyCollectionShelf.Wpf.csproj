@@ -19,16 +19,6 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="Ui\Book\UserControls\BookInformation\BookInformationEdit.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="Ui\Book\UserControls\BookInformation\AddEditAuthors.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
       <Page Update="Ui\Common\Controls\Buttons\ButtonAddRemove.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
@@ -48,6 +38,24 @@
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
+      </Page>
+      <Page Update="Ui\Book\Ui\Window\CameraScan.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Ui\Book\Ui\UserControls\BookInformation\AddEditAuthors.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Ui\Book\Ui\UserControls\BookInformation\BookInformationEdit.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Ui\Book\Ui\UserControls\UserControl1.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Ui\Book\Ui\Pages\AddEditBook.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="Ui\Book\Ui\Pages\BookShelf.xaml">
+        <Generator>MSBuild:Compile</Generator>
       </Page>
     </ItemGroup>
 
@@ -72,6 +80,10 @@
       <Resource Include="Resources\cover.jpg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Shelf\Book\Ui\" />
     </ItemGroup>
 
 </Project>

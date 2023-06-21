@@ -1,4 +1,4 @@
-﻿using MyCollectionShelf.Wpf.Ui.Book.UserControls;
+﻿using MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls;
 
 namespace MyCollectionShelf.Wpf
 {

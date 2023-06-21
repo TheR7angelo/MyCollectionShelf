@@ -2,12 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MyCollectionShelf"
-             xmlns:converter="clr-namespace:MyCollectionShelf.Wpf.Object.Class.Converter"
+             xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
              StartupUri="MainWindow.xaml">
     
     <Application.Resources>
 
-        <converter:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
         
     </Application.Resources>
     
