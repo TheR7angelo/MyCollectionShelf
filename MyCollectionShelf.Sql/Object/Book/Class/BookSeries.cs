@@ -52,6 +52,19 @@ public class BookSeries : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+    
+    private string? _seriesSummarize;
+
+    [Column("series_summarize")]
+    public string? SeriesSummarize
+    {
+        get => _seriesSummarize;
+        set
+        {
+            _seriesSummarize = value;
+            OnPropertyChanged();
+        }
+    }
 
     public string Definition =>
         """
@@ -60,7 +73,8 @@ public class BookSeries : ISql, INotifyPropertyChanged
             id           integer
                 primary key autoincrement,
             title        text,
-            series_cover text
+            series_cover text,
+            series_summarize text
         );
         """;
 }
