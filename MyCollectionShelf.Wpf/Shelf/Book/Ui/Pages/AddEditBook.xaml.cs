@@ -130,9 +130,6 @@ public partial class AddEditBook
             var coverExist = File.Exists(coverPath);
             if (!coverExist)
             {
-                var coverPath = Path.Combine(collectionPath, $"{coverName}{fileExtension}");
-                BookData.BookInformations.BookSeries.SeriesCover = coverPath;
-                
                 var coverFullPath = Path.Combine(collectionFullPath, $"{coverName}{fileExtension}");
                 File.Copy(scan, coverFullPath);
             }
