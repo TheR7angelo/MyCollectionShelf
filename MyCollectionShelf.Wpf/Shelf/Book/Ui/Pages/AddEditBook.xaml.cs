@@ -150,6 +150,8 @@ public partial class AddEditBook
         
         db.InsertOrReplaceWithChildren(BookData, true);
         // todo ne fonctionne pas il faut le faire à la main ...
+        
+        MessageBox.Show("Livre importé");
     }
 
     private async Task GetIsbnBook(string isbn)
