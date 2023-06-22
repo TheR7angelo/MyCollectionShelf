@@ -184,10 +184,24 @@ public partial class AddEditBook
 
     private void SetBook(Sql.Object.Book.Class.Table.Book book)
     {
+        #region Author
+
+        foreach (var author in book.BookInformations.BookAuthors)
+        {
+            var id = AuthorsList.FirstOrDefault(s => s.NameConcat.Equals(author.NameConcat))?.Id;
+            if (id is not null) author.Id = (long)id;
+        }
+        
+        
         foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
         {
-            if (!AuthorsList.Contains(author)) AuthorsList.Add(author);
+            if (!AuthorsList.Contains(author))
+            {
+                AuthorsList.Add(author);
+            }
         }
+
+        #endregion
         
         foreach (var genre in book.BookInformations.BookGenres.Where(s => !s.Genre.Equals(string.Empty)))
         {
