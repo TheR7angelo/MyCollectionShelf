@@ -126,7 +126,8 @@ public partial class AddEditBook
             var collectionFullPath = Path.GetFullPath(collectionPath);
             Directory.CreateDirectory(collectionFullPath);
             
-            var coverExist = Directory.GetFiles(collectionFullPath).Any(s => Path.GetFileNameWithoutExtension(s).Equals(coverName));
+            var coverPath = Path.Combine(collectionPath, $"{coverName}{fileExtension}");
+            var coverExist = File.Exists(coverPath);
             if (!coverExist)
             {
                 var coverPath = Path.Combine(collectionPath, $"{coverName}{fileExtension}");
@@ -135,6 +136,7 @@ public partial class AddEditBook
                 var coverFullPath = Path.Combine(collectionFullPath, $"{coverName}{fileExtension}");
                 File.Copy(scan, coverFullPath);
             }
+            BookData.BookInformations.BookSeries.SeriesCover = coverPath;
 
             var filePath = Path.Combine(collectionFullPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
             var fileCollectionPath = Path.Combine(collectionPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
