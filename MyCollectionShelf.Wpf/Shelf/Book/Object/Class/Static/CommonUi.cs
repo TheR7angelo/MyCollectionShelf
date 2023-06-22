@@ -1,5 +1,11 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
+using System.Windows;
 using System.Windows.Media;
+using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
+using SQLite;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
 
@@ -15,5 +21,33 @@ public static class CommonUi
         }
     
         return parent as T;
+    }
+    
+    public static void SetCollection<T>(this ICollection<T> collection, ISQLiteConnection connection) where T : class, new()
+    {
+        var tableAttribute = (TableAttribute)typeof(T).GetCustomAttributes(typeof(TableAttribute)).First();
+        
+        var list = connection.Query<T>($"SELECT * FROM {tableAttribute.Name}");
+        foreach (var lst in list)
+        {
+            collection.Add(lst);
+        }
+    }
+    
+    public static void AddRemoveList<T>(this object collection, EAddRemove function, T item, T newItem)
+    {
+        var zcollection = (ObservableCollection<T>)collection;
+
+        switch (function)
+        {
+            case EAddRemove.Add:
+                zcollection.Add(newItem);
+                break;
+            case EAddRemove.Remove when zcollection.Count > 1:
+                zcollection.Remove(item);
+                break;
+            default:
+                break;
+        }
     }
 }
