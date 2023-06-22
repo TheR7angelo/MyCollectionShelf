@@ -140,7 +140,14 @@ public partial class AddEditBook
 
             var filePath = Path.Combine(collectionFullPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
             var fileCollectionPath = Path.Combine(collectionPath, $"{BookData.BookInformations.Isbn}{fileExtension}");
-            File.Copy(scan, filePath, true);
+            try
+            {
+                File.Copy(scan, filePath, true);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
 
             BookData.BookInformations.BookCover.Storage = fileCollectionPath;
         }
