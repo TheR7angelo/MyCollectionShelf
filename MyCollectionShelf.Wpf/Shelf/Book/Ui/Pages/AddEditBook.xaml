@@ -103,7 +103,8 @@
                                     <ComboBox Grid.Column="0"
                                         ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                         DisplayMemberPath="NameConcat"
-                                        SelectedItem="{Binding .}">
+                                        SelectedItem="{Binding .}"
+                                        SelectionChanged="Selector_OnSelectionChanged">
                                     </ComboBox>
                         
                                     <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" 
