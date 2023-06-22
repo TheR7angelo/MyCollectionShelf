@@ -14,8 +14,6 @@ public class Book : ISql, INotifyPropertyChanged
     protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-    private BookInformations _bookInformations = new();
-
     private long _id;
 
     [PrimaryKey, AutoIncrement, Column("id")]
@@ -31,6 +29,8 @@ public class Book : ISql, INotifyPropertyChanged
     
     [Column("book_information_fk"), ForeignKey(typeof(BookInformations))]
     public long BookInformationsId { get; set; }
+    
+    private BookInformations _bookInformations = new();
     
     [OneToOne(CascadeOperations = CascadeOperation.All)]
     public BookInformations BookInformations
