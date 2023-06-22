@@ -239,5 +239,6 @@ public partial class AddEditBook
         var db = sqlHandler.GetSqlConnection();
         
         db.InsertOrReplaceWithChildren(BookData, true);
+        // todo ne fonctionne pas il faut le faire à la main ...
     }
 }
