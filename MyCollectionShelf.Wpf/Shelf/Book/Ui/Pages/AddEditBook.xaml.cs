@@ -148,7 +148,7 @@ public partial class AddEditBook
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
         
-        db.InsertOrReplaceWithChildren(BookData, true);
+        // db.InsertOrReplaceWithChildren(BookData, true);
         // todo ne fonctionne pas il faut le faire à la main ...
         
         MessageBox.Show("Livre importé");
