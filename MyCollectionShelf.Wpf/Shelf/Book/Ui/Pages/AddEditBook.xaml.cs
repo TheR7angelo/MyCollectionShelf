@@ -130,6 +130,7 @@ public partial class AddEditBook
             var coverExist = File.Exists(coverPath);
             if (!coverExist)
             {
+                BookData.BookInformations.BookSeries.SeriesSummarize = BookData.BookInformations.Summarize;
                 var coverFullPath = Path.Combine(collectionFullPath, $"{coverName}{fileExtension}");
                 File.Copy(scan, coverFullPath);
             }
@@ -152,7 +153,7 @@ public partial class AddEditBook
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
         
-        // db.InsertOrReplaceWithChildren(BookData, true);
+        db.InsertOrReplaceWithChildren(BookData, true);
         // todo ne fonctionne pas il faut le faire à la main ...
         
         MessageBox.Show("Livre importé");
