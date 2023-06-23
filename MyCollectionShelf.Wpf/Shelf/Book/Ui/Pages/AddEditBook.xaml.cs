@@ -202,7 +202,7 @@ public partial class AddEditBook
 
     private void SetBook(Sql.Object.Book.Class.Table.Book book)
     {
-        UpdateAuthor(ref book);
+        UpdateAuthor(book);
         
         foreach (var genre in book.BookInformations.BookGenres.Where(s => !s.Genre.Equals(string.Empty)))
         {
@@ -235,14 +235,13 @@ public partial class AddEditBook
         if (!EditorsList.Contains(book.BookInformations.BookEditor)) EditorsList.Add(book.BookInformations.BookEditor);
     }
 
-    private void UpdateAuthor(ref Sql.Object.Book.Class.Table.Book book)
+    private void UpdateAuthor(Sql.Object.Book.Class.Table.Book book)
     {
         foreach (var author in book.BookInformations.BookAuthors)
         {
             var id = AuthorsList.FirstOrDefault(s => s.NameConcat.Equals(author.NameConcat))?.Id;
             if (id is not null) author.Id = (long)id;
         }
-
 
         foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
         {
