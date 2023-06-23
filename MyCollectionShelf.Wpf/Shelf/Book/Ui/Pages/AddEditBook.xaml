@@ -181,11 +181,13 @@
                                     <ComboBox Grid.Column="0" IsEditable="True"
                                               ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                               DisplayMemberPath="Genre"
-                                              Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                        
+                                              Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              SelectionChanged="SelectorGenre_OnSelectionChanged">
+                                    </ComboBox>
+
                                     <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" 
-                                                                  Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                                  Click="ButtonAddRemoveGenres_OnClick" />
+                                                             Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                             Click="ButtonAddRemoveGenres_OnClick" />
                                     
                                     <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" 
                                                                   Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"

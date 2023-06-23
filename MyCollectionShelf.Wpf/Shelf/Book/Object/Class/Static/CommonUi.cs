@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
 using SQLite;
@@ -32,6 +33,18 @@ public static class CommonUi
         {
             collection.Add(lst);
         }
+    }
+    
+    public static void UpdateCollection<T>(this ObservableCollection<T> collection, ComboBox comboBox) where T : class, new()
+    {
+        var selected = (T)comboBox.SelectedItem!;
+        
+        var listBoxItem = comboBox.FindParent<ListBoxItem>();
+        var listBox = listBoxItem!.FindParent<ListBox>();
+        
+        var index = listBox!.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
+        
+        collection[index] = selected;
     }
     
     public static void AddRemoveList<T>(this object collection, EAddRemove function, T item, T newItem)

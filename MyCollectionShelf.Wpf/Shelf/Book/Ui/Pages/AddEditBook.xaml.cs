@@ -160,16 +160,14 @@ public partial class AddEditBook
     
     private void SelectorAuthor_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var comboBox = sender as ComboBox;
-        
-        var selectedBookAuthor = (BookAuthor)comboBox!.SelectedItem!;
-        
-        var listBoxItem = comboBox.FindParent<ListBoxItem>();
-        var listBox = listBoxItem!.FindParent<ListBox>();
-        
-        var index = listBox!.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
-
-        BookData.BookInformations.BookAuthors[index] = selectedBookAuthor;
+        var comboBox = (ComboBox)sender;
+        BookData.BookInformations.BookAuthors.UpdateCollection(comboBox);
+    }
+    
+    private void SelectorGenre_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var comboBox = (ComboBox)sender;
+        BookData.BookInformations.BookGenres.UpdateCollection(comboBox);
     }
 
     private async Task GetIsbnBook(string isbn)
@@ -245,7 +243,7 @@ public partial class AddEditBook
 
         foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
         {
-            if (!AuthorsList.Contains(author))
+            if (!AuthorsList.Any(s => s.NameConcat.Equals(author.NameConcat)))
             {
                 AuthorsList.Add(author);
             }
