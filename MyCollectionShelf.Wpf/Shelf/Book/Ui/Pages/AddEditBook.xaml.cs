@@ -158,6 +158,21 @@ public partial class AddEditBook
         
         MessageBox.Show("Livre importé");
     }
+    
+    private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var comboBox = sender as ComboBox;
+        
+        var selectedBookAuthor = (BookAuthor)comboBox!.SelectedItem!;
+        
+        var listBoxItem = comboBox.FindParent<ListBoxItem>();
+        var listBox = listBoxItem!.FindParent<ListBox>();
+        if (listBox == null) return;
+        
+        var index = listBox.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
+
+        BookData.BookInformations.BookAuthors[index] = selectedBookAuthor;
+    }
 
     private async Task GetIsbnBook(string isbn)
     {
@@ -226,20 +241,5 @@ public partial class AddEditBook
         }
 
         BookData = book;
-    }
-
-    private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var comboBox = sender as ComboBox;
-        
-        var selectedBookAuthor = (BookAuthor)comboBox!.SelectedItem!;
-        
-        var listBoxItem = comboBox.FindParent<ListBoxItem>();
-        var listBox = listBoxItem!.FindParent<ListBox>();
-        if (listBox == null) return;
-        
-        var index = listBox.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
-
-        BookData.BookInformations.BookAuthors[index] = selectedBookAuthor;
     }
 }
