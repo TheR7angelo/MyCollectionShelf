@@ -154,7 +154,6 @@ public partial class AddEditBook
         var db = sqlHandler.GetSqlConnection();
         
         db.InsertOrReplaceWithChildren(BookData, true);
-        // todo ne fonctionne pas il faut le faire à la main ...
         
         MessageBox.Show("Livre importé");
     }
@@ -203,36 +202,15 @@ public partial class AddEditBook
 
     private void SetBook(Sql.Object.Book.Class.Table.Book book)
     {
-        #region Author
-
-        foreach (var author in book.BookInformations.BookAuthors)
-        {
-            var id = AuthorsList.FirstOrDefault(s => s.NameConcat.Equals(author.NameConcat))?.Id;
-            if (id is not null) author.Id = (long)id;
-        }
-        
-        
-        foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
-        {
-            if (!AuthorsList.Contains(author))
-            {
-                AuthorsList.Add(author);
-            }
-        }
-
-        #endregion
+        UpdateAuthor(ref book);
         
         foreach (var genre in book.BookInformations.BookGenres.Where(s => !s.Genre.Equals(string.Empty)))
         {
             if (!GenresList.Contains(genre)) GenresList.Add(genre);
         }
-        
-        if (book.BookInformations.BookEditor.Editor is not null && !EditorsList.Contains(book.BookInformations.BookEditor))
-        {
-            if (!EditorsList.Contains(book.BookInformations.BookEditor))
-                EditorsList.Add(book.BookInformations.BookEditor);
-        }
-        
+
+        UpdateEditor(book);
+
         if (book.BookInformations.BookSeries.Title is not null && !book.BookInformations.BookSeries.Title.Equals(string.Empty))
         {
             if (!SeriesList.Contains(book.BookInformations.BookSeries))
@@ -240,5 +218,38 @@ public partial class AddEditBook
         }
 
         BookData = book;
+    }
+
+    private void UpdateEditor(Sql.Object.Book.Class.Table.Book book)
+    {
+        if (string.IsNullOrEmpty(book.BookInformations.BookEditor.Editor)) return;
+        
+        if (book.BookInformations.BookEditor.Id.Equals(0))
+        {
+            var id = EditorsList.FirstOrDefault(s => s.Editor!.Equals(book.BookInformations.BookEditor.Editor))?.Id;
+            if (id is not null) book.BookInformations.BookEditor.Id = (long)id;
+        }
+
+        if (EditorsList.Contains(book.BookInformations.BookEditor)) return;
+        
+        if (!EditorsList.Contains(book.BookInformations.BookEditor)) EditorsList.Add(book.BookInformations.BookEditor);
+    }
+
+    private void UpdateAuthor(ref Sql.Object.Book.Class.Table.Book book)
+    {
+        foreach (var author in book.BookInformations.BookAuthors)
+        {
+            var id = AuthorsList.FirstOrDefault(s => s.NameConcat.Equals(author.NameConcat))?.Id;
+            if (id is not null) author.Id = (long)id;
+        }
+
+
+        foreach (var author in book.BookInformations.BookAuthors.Where(s => !s.NameConcat.Equals(", ")))
+        {
+            if (!AuthorsList.Contains(author))
+            {
+                AuthorsList.Add(author);
+            }
+        }
     }
 }
