@@ -159,7 +159,7 @@ public partial class AddEditBook
         MessageBox.Show("Livre importé");
     }
     
-    private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void SelectorAuthor_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var comboBox = sender as ComboBox;
         
@@ -167,9 +167,8 @@ public partial class AddEditBook
         
         var listBoxItem = comboBox.FindParent<ListBoxItem>();
         var listBox = listBoxItem!.FindParent<ListBox>();
-        if (listBox == null) return;
         
-        var index = listBox.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
+        var index = listBox!.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
 
         BookData.BookInformations.BookAuthors[index] = selectedBookAuthor;
     }
