@@ -5,6 +5,7 @@ using SQLite;
 
 namespace MyCollectionShelf.Sql.Object.Book.Class.View;
 
+[Table("v_book_shelf")]
 public class VBookShelf : ISql, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -128,6 +129,19 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
+
+    private long _total;
+
+    [Column("total")]
+    public long Total
+    {
+        get => _total;
+        set
+        {
+            _total = value;
+            OnPropertyChanged();
+        }
+    }
     
     public string Definition =>
         """
@@ -140,7 +154,8 @@ public class VBookShelf : ISql, INotifyPropertyChanged
                bel.id                                           AS book_editor_list_id,
                bel.editor,
                SUM(CASE WHEN bn.is_read == 0 THEN 1 ELSE 0 END) AS not_read,
-               SUM(CASE WHEN bn.is_read == 1 THEN 1 ELSE 0 END) AS read
+               SUM(CASE WHEN bn.is_read == 1 THEN 1 ELSE 0 END) AS read,
+               COUNT(*)                                         AS total
 
         FROM book
                  INNER JOIN book_informations bi
