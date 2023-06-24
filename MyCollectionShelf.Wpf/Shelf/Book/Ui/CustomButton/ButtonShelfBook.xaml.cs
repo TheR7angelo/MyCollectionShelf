@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 
-namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls.CustomButton;
+namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 
 public partial class ButtonShelfBook
 {
