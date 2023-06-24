@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using MyCollectionShelf.Sql;
 using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
 using SQLite;
 
@@ -33,6 +34,17 @@ public static class CommonUi
         {
             collection.Add(lst);
         }
+    }
+
+    public static IEnumerable<T> SetCollection<T>() where T : class, new()
+    {
+        using var sqlHandler = new SqlMainHandler();
+        var db = sqlHandler.GetSqlConnection();
+        
+        var tableAttribute = (TableAttribute)typeof(T).GetCustomAttributes(typeof(TableAttribute)).First();
+        
+        var list = db.Query<T>($"SELECT * FROM {tableAttribute.Name}");
+        return list;
     }
     
     public static void UpdateCollection<T>(this ObservableCollection<T> collection, ComboBox comboBox) where T : class, new()
