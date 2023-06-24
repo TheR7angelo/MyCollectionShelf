@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
-using MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls.CustomButton;
+using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
 public partial class BookShelf
 {
-    public ObservableCollection<VBookShelf> BookShelves;
+    public ObservableCollection<VBookShelf> BookShelves { get; set; }
     
     public BookShelf()
     {
@@ -20,8 +20,6 @@ public partial class BookShelf
         BookShelves = new ObservableCollection<VBookShelf>(vBookShelves);
         
         InitializeComponent();
-
-        ShelfBook.VBookShelf = BookShelves.First();
     }
 
     private void ShelfBook_OnClick(object sender, RoutedEventArgs e)
