@@ -12,9 +12,9 @@ public class SqlMainHandler : IDisposable
         SQLiteOpenFlags.Create | SQLiteOpenFlags.FullMutex | SQLiteOpenFlags.ReadWrite, 
         false);
 
-    public SqlMainHandler()
+    public SqlMainHandler(bool foreignKeys=false)
     {
-        SetPragma(false);
+        SetForeignKeys(foreignKeys);
         InitDataBase();
     }
     
@@ -24,7 +24,7 @@ public class SqlMainHandler : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    private void SetPragma(bool on)
+    private void SetForeignKeys(bool on)
     {
         var onOff = on ? "ON" : "OFF";
         _sqLiteConnection.Execute($"PRAGMA foreign_keys = {onOff}");

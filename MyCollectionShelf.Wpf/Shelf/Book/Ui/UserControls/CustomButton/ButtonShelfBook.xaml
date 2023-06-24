@@ -7,37 +7,16 @@
 
         mc:Ignorable="d">
 
-    <Grid>
+    <Button.ToolTip>
+        <ToolTip
+            Content="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                      RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+        </ToolTip>
+    </Button.ToolTip>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Button.Content>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-
-        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-               MinWidth="187" MaxWidth="187"
-               MinHeight="265" MaxHeight="265"
-               Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                                    RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}},
-                                    Converter={StaticResource StringToImageSourceConverter}}"
-               Stretch="Uniform">
-        </Image>
-
-        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-               HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Top"
-               Content="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                                     RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
-        </Label>
-
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-              HorizontalAlignment="Center">
+        <Grid>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -48,56 +27,88 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                   HorizontalContentAlignment="Right" HorizontalAlignment="Right"
-                   Content="Possédé:">
+            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   MinWidth="187" MaxWidth="187"
+                   MinHeight="265" MaxHeight="265"
+                   Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                    RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}},
+                                    Converter={StaticResource StringToImageSourceConverter}}"
+                   Stretch="Uniform">
+            </Image>
+
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Top"
+                   Content="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                     RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
             </Label>
 
-            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
-                   HorizontalContentAlignment="Left" HorizontalAlignment="Left"
-                   Content="{Binding VBookShelf.Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                  HorizontalAlignment="Center">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                       Content="Possédé:">
+                </Label>
+
+                <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                       Content="{Binding VBookShelf.Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
-            </Label>
+                </Label>
 
-            <Label Grid.Row="1" Grid.Column="0"
-                   HorizontalContentAlignment="Right" HorizontalAlignment="Right"
-                   Content="Lu:">
-            </Label>
+                <Label Grid.Row="1" Grid.Column="0"
+                       HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                       Content="Lu:">
+                </Label>
 
-            <Label Grid.Row="1" Grid.Column="1"
-                   HorizontalContentAlignment="Left" HorizontalAlignment="Left"
-                   Content="{Binding VBookShelf.Read, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                <Label Grid.Row="1" Grid.Column="1"
+                       HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                       Content="{Binding VBookShelf.Read, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
-            </Label>
+                </Label>
 
-            <Label Grid.Row="1" Grid.Column="2"
-                   HorizontalContentAlignment="Right" HorizontalAlignment="Right"
-                   Content="Non lu:">
-            </Label>
+                <Label Grid.Row="1" Grid.Column="2"
+                       HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                       Content="Non lu:">
+                </Label>
 
-            <Label Grid.Row="1" Grid.Column="3"
-                   HorizontalContentAlignment="Left" HorizontalAlignment="Left"
-                   Content="{Binding VBookShelf.NotRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                <Label Grid.Row="1" Grid.Column="3"
+                       HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                       Content="{Binding VBookShelf.NotRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
-            </Label>
+                </Label>
 
-            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                   HorizontalContentAlignment="Right" HorizontalAlignment="Right"
-                   Content="Page en moyenne:">
-            </Label>
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                       Content="Page en moyenne:">
+                </Label>
 
-            <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
-                   HorizontalContentAlignment="Left" HorizontalAlignment="Left"
-                   Content="{Binding VBookShelf.AveragePage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                       Content="{Binding VBookShelf.AveragePage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
-            </Label>
+                </Label>
+
+            </Grid>
 
         </Grid>
 
-    </Grid>
+    </Button.Content>
 
 </Button>
