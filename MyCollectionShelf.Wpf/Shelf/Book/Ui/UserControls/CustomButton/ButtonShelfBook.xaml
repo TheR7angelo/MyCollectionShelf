@@ -49,31 +49,67 @@
                                      RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
                     </Label>
 
-                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center">
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                          HorizontalAlignment="Center">
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
+                               HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                               Content="Possédé:">
+                        </Label>
+                        
+                        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" 
+                               HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                               Content="{Binding VBookShelf.Total, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                               RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                        </Label>
+                        
+                        <Label Grid.Row="1" Grid.Column="0"
+                               HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                               Content="Lu:">
+                        </Label>
 
-                        <StackPanel Orientation="Horizontal">
-                            <Label HorizontalContentAlignment="Right"
-                                   Content="Possédé:">
-                            </Label>
+                        <Label Grid.Row="1" Grid.Column="1" 
+                               HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                               Content="{Binding VBookShelf.Read, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                               RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                        </Label>
+                        
+                        <Label Grid.Row="1" Grid.Column="2"
+                               HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                               Content="Non lu:">
+                        </Label>
 
-                            <Label HorizontalContentAlignment="Left"
-                                   Content="0">
-                            </Label>
-                        </StackPanel>
+                        <Label Grid.Row="1" Grid.Column="3" 
+                               HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                               Content="{Binding VBookShelf.NotRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                               RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                        </Label>
+                        
+                        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                               HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                               Content="Page en moyenne:">
+                        </Label>
 
-                        <StackPanel Orientation="Horizontal">
-                            <Label HorizontalContentAlignment="Right"
-                                   Content="Lu:">
-                            </Label>
-
-                            <Label HorizontalContentAlignment="Left"
-                                   Content="0">
-                            </Label>
-                        </StackPanel>
-
-                    </StackPanel>
+                        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+                               HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                               Content="{Binding VBookShelf.AveragePage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                               RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                        </Label>
+                        
+                    </Grid>
 
                 </Grid>
 
