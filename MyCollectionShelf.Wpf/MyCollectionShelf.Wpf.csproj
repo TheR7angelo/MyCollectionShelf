@@ -57,6 +57,11 @@
       <Page Update="Ui\Book\Ui\Pages\BookShelf.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+      <Page Update="Shelf\Book\Ui\UserControls\Button\ButtonShelfBook.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
