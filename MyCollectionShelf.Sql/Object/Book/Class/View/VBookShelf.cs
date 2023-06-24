@@ -164,7 +164,7 @@ public class VBookShelf : ISql, INotifyPropertyChanged
                             ON bn.id = book.book_note_fk
                  INNER JOIN book_series bs
                             ON bi.book_series_fk = bs.id
-                 INNER JOIN book_editor_list bel
+                 LEFT JOIN book_editor_list bel
                             ON bi.book_editor_fk = bel.id
         GROUP BY bs.id
         """;
