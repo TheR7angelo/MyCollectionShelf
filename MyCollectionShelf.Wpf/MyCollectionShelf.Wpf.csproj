@@ -74,6 +74,9 @@
       <Page Update="Shelf\Common\Ui\Controls\Buttons\SvgButton.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+      <Page Update="Shelf\Book\Ui\CustomButton\ButtonShelfBook.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
