@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
-using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
+using MyCollectionShelf.Wpf.Shelf.Common.Enum;
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Controls.Buttons;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons;
 
 public partial class ButtonAddRemove
 {

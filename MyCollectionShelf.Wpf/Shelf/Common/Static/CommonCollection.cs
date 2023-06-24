@@ -2,29 +2,15 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Wpf.Shelf.Book.Object.Enum;
+using MyCollectionShelf.Wpf.Shelf.Common.Enum;
 using SQLite;
 
-namespace MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Static;
 
-public static class CommonUi
+public static class CommonCollection
 {
-    public static T? FindParent<T>(this DependencyObject child) where T : DependencyObject
-    {
-        var parent = VisualTreeHelper.GetParent(child);
-    
-        while (parent != null && parent is not T)
-        {
-            parent = VisualTreeHelper.GetParent(parent);
-        }
-    
-        return parent as T;
-    }
-    
     public static void SetCollection<T>(this ICollection<T> collection, ISQLiteConnection connection) where T : class, new()
     {
         var tableAttribute = (TableAttribute)typeof(T).GetCustomAttributes(typeof(TableAttribute)).First();

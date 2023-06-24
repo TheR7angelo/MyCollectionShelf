@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 public static partial class RegexFunction
 {

@@ -11,9 +11,9 @@ using MyCollectionShelf.Book.Object.Enum;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Sql;
 using MyCollectionShelf.Sql.Object.Book.Class.Table;
-using MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.Window;
-using MyCollectionShelf.Wpf.Shelf.Common.Controls.Buttons;
+using MyCollectionShelf.Wpf.Shelf.Common.Static;
+using MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons;
 using SQLiteNetExtensions.Extensions;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;

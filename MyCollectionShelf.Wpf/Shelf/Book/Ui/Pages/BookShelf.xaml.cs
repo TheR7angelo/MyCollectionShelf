@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
-using MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls.CustomButton;
+using MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
@@ -15,7 +15,7 @@ public partial class BookShelf
     
     public BookShelf()
     {
-        var vBookShelves = CommonUi.SetCollection<VBookShelf>().ToList();
+        var vBookShelves = CommonCollection.SetCollection<VBookShelf>().ToList();
         
         foreach (var vBookShelf in vBookShelves)
         {

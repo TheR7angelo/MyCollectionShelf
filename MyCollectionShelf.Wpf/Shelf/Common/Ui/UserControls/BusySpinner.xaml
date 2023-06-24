@@ -1,7 +1,7 @@
-﻿<UserControl x:Class="MyCollectionShelf.Wpf.Shelf.Common.UserControls.BusySpinner"
+﻿<UserControl x:Class="MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls.BusySpinner"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.UserControls"
+    xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls"
     Width="{Binding RelativeSource={RelativeSource Self}, Path=Height, Mode=TwoWay}"
     Height="120">
 

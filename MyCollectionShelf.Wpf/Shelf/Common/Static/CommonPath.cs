@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MyCollectionShelf.Wpf.Shelf.Book.Object.Class.Static;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 public static class CommonPath
 {

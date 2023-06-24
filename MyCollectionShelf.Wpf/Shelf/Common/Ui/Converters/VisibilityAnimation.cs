@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Animation;
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Converters;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters;
 
 /// <summary>
 /// Supplies attached properties that provides visibility of animations

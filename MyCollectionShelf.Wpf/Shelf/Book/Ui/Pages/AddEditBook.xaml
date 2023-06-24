@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
-      xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Controls.Buttons"
-      xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.UserControls"
+      xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons"
+      xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
