@@ -4,12 +4,21 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
+      xmlns:customButton="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls.CustomButton"
       mc:Ignorable="d"
       Title="BookShelf" Height="450" Width="800">
     
     <Grid>
         
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <customButton:ButtonShelfBook x:Name="ShelfBook" />
         
     </Grid>
     
