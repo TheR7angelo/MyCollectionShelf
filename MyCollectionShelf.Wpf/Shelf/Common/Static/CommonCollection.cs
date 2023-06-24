@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using MyCollectionShelf.Sql;
+using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Common.Enum;
 using SQLite;
 
@@ -11,6 +13,26 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 public static class CommonCollection
 {
+    public static void UpdateCollection(this IEnumerable<VBookShelf> bookShelves)
+    {
+        foreach (var bookShelf in bookShelves)
+        {
+            bookShelf.BookSeriesCover = Path.GetFullPath(bookShelf.BookSeriesCover);
+        }
+    }
+    
+    public static void UpdateCollection<T>(this ObservableCollection<T> collection, ComboBox comboBox) where T : class, new()
+    {
+        var selected = (T)comboBox.SelectedItem!;
+        
+        var listBoxItem = comboBox.FindParent<ListBoxItem>();
+        var listBox = listBoxItem!.FindParent<ListBox>();
+        
+        var index = listBox!.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
+        
+        collection[index] = selected;
+    }
+    
     public static void SetCollection<T>(this ICollection<T> collection, ISQLiteConnection connection) where T : class, new()
     {
         var tableAttribute = (TableAttribute)typeof(T).GetCustomAttributes(typeof(TableAttribute)).First();
@@ -31,18 +53,6 @@ public static class CommonCollection
         
         var list = db.Query<T>($"SELECT * FROM {tableAttribute.Name}");
         return list;
-    }
-    
-    public static void UpdateCollection<T>(this ObservableCollection<T> collection, ComboBox comboBox) where T : class, new()
-    {
-        var selected = (T)comboBox.SelectedItem!;
-        
-        var listBoxItem = comboBox.FindParent<ListBoxItem>();
-        var listBox = listBoxItem!.FindParent<ListBox>();
-        
-        var index = listBox!.ItemContainerGenerator.IndexFromContainer(listBoxItem!);
-        
-        collection[index] = selected;
     }
     
     public static void AddRemoveList<T>(this object collection, EAddRemove function, T item, T newItem)
