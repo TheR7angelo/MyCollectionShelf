@@ -33,6 +33,7 @@ public partial class BookShelf
         var bookShelf = shelfBook.VBookShelf;
         
         var bookInformations = db.GetAllWithChildren<BookInformations>(s => s.BookSeriesId.Equals(bookShelf.BookSeriesId));
+        bookInformations.ToCoverFullPath();
 
         var bookShelfSerie = new BookShelfSeries
         {
