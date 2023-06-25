@@ -33,7 +33,7 @@ public static class CommonCollection
         collection[index] = selected;
     }
     
-    public static void SetCollection<T>(this ICollection<T> collection, ISQLiteConnection connection) where T : class, new()
+    public static void GetCollection<T>(this ICollection<T> collection, ISQLiteConnection connection) where T : class, new()
     {
         var tableAttribute = (TableAttribute)typeof(T).GetCustomAttributes(typeof(TableAttribute)).First();
         
@@ -44,7 +44,7 @@ public static class CommonCollection
         }
     }
 
-    public static IEnumerable<T> SetCollection<T>() where T : class, new()
+    public static IEnumerable<T> GetCollection<T>() where T : class, new()
     {
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();

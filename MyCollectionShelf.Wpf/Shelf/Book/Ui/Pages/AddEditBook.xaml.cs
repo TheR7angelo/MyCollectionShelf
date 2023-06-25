@@ -29,10 +29,10 @@ public partial class AddEditBook
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
         
-        AuthorsList.SetCollection(db);
-        EditorsList.SetCollection(db);
-        GenresList.SetCollection(db);
-        SeriesList.SetCollection(db);
+        AuthorsList.GetCollection(db);
+        EditorsList.GetCollection(db);
+        GenresList.GetCollection(db);
+        SeriesList.GetCollection(db);
         
         InitializeComponent();
     }
