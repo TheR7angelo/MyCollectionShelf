@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
              xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
 
              StartupUri="MainWindow.xaml">
 
@@ -18,8 +19,9 @@
                 
                 <materialDesign:MahAppsBundledTheme BaseTheme="Inherit"
                                                     PrimaryColor="DeepPurple"
-                                                    SecondaryColor="Purple" />
-                
+                                                    SecondaryColor="Purple">
+                </materialDesign:MahAppsBundledTheme>
+
                 <!-- MahApps -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
@@ -37,6 +39,11 @@
             
             <!-- Dragablz Material Design -->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
+            
+            <!-- MahApps -->
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+            </Style>
             
             <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
             
