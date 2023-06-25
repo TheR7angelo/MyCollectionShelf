@@ -13,7 +13,7 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 public static class CommonCollection
 {
-    public static void UpdateCollection(this IEnumerable<VBookShelf> bookShelves)
+    public static void ToCoverFullPath(this IEnumerable<VBookShelf> bookShelves)
     {
         foreach (var bookShelf in bookShelves)
         {

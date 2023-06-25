@@ -15,7 +15,7 @@ public partial class BookShelf
     public BookShelf()
     {
         var vBookShelves = CommonCollection.SetCollection<VBookShelf>().ToList();
-        vBookShelves.UpdateCollection();
+        vBookShelves.ToCoverFullPath();
 
         BookShelves = new ObservableCollection<VBookShelf>(vBookShelves);
         
