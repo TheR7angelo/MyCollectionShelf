@@ -14,7 +14,7 @@
     
     <Grid>
         
-        <Frame x:Name="MainFrame" Source="/Shelf/HomePage.xaml" />
+        <Frame x:Name="MainFrame" Source="/Shelf/Book/Ui/Pages/BookShelf.xaml" />
 
     </Grid>
     
