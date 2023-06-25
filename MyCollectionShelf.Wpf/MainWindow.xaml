@@ -7,8 +7,10 @@
         
         WindowStartupLocation="CenterScreen"
         
-        Title="MainWindow" 
-        Height="450" Width="1000"
+        Title="MainWindow"
+        
+        MinHeight="720" Height="720"
+        MinWidth="1280" Width="1280"
         
         DataContext="{Binding RelativeSource={RelativeSource Self}}">
     
