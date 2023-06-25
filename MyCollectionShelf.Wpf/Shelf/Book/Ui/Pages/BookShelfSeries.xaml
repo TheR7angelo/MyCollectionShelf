@@ -15,7 +15,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -40,7 +40,9 @@
             <ItemsControl ItemsSource="{Binding BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <customButton:ButtonShelfTome BookInformations="{Binding ., Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                            <customButton:ButtonShelfTome BookInformations="{Binding ., Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                                                          Click="ButtonShelfTome_OnClick">
+                            </customButton:ButtonShelfTome>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 
