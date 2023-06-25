@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using MyCollectionShelf.Sql;
+using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Common.Enum;
 using SQLite;
@@ -18,6 +19,16 @@ public static class CommonCollection
         foreach (var bookShelf in bookShelves)
         {
             bookShelf.BookSeriesCover = Path.GetFullPath(bookShelf.BookSeriesCover);
+        }
+    }
+    
+    public static void ToCoverFullPath(this IEnumerable<BookInformations> bookInformations)
+    {
+        foreach (var bookInformation in bookInformations)
+        {
+            if (string.IsNullOrEmpty(bookInformation.BookCover.Storage)) continue;
+            
+            bookInformation.BookCover.Storage = Path.GetFullPath(bookInformation.BookCover.Storage);
         }
     }
     
