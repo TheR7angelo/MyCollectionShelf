@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using MyCollectionShelf.Sql;
+using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Static;
@@ -23,7 +25,20 @@ public partial class BookShelf
 
     private void ShelfBook_OnClick(object sender, RoutedEventArgs e)
     {
+        using var sqlHandler = new SqlMainHandler();
+        var db = sqlHandler.GetSqlConnection();
+        
         var shelfBook = (ButtonShelfBook)sender;
-        Console.WriteLine(shelfBook.VBookShelf.BookSeriesTitle);
+        var bookShelf = shelfBook.VBookShelf;
+
+        var bookInformations = db.Query<BookInformations>($"SELECT * FROM book_informations WHERE book_series_fk={bookShelf.BookSeriesId}");
+
+        var bookShelfSerie = new BookShelfSeries
+        {
+            VBookShelf = bookShelf,
+            BookInformations = new ObservableCollection<BookInformations>(bookInformations)
+        };
+        
+        bookShelfSerie.Navigate();
     }
 }
