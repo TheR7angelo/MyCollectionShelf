@@ -100,6 +100,14 @@
       <Resource Include="Resources\cover.jpg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Resources\Assets\043-left-arrow-14.svg" />
+      <Resource Include="Resources\Assets\043-left-arrow-14.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Resources\Assets\046-home.svg" />
+      <Resource Include="Resources\Assets\046-home.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

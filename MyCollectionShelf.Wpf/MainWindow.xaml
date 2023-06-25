@@ -14,7 +14,9 @@
     
     <Grid>
         
-        <Frame x:Name="MainFrame" Source="/Shelf/Book/Ui/Pages/BookShelf.xaml" />
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"
+               Source="/Shelf/Book/Ui/Pages/BookShelf.xaml">
+        </Frame>
 
     </Grid>
     
