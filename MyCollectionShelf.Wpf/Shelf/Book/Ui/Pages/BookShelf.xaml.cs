@@ -6,6 +6,7 @@ using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Static;
+using SQLiteNetExtensions.Extensions;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
@@ -30,8 +31,8 @@ public partial class BookShelf
         
         var shelfBook = (ButtonShelfBook)sender;
         var bookShelf = shelfBook.VBookShelf;
-
-        var bookInformations = db.Query<BookInformations>($"SELECT * FROM book_informations WHERE book_series_fk={bookShelf.BookSeriesId}");
+        
+        var bookInformations = db.GetAllWithChildren<BookInformations>(s => s.BookSeriesId.Equals(bookShelf.BookSeriesId));
 
         var bookShelfSerie = new BookShelfSeries
         {
