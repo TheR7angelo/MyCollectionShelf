@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
+      xmlns:customButton="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
       mc:Ignorable="d"
 
       Title="BookShelfSeries"
@@ -36,24 +37,19 @@
 
         <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                       VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ItemsControl>
-            <!-- <ItemsControl ItemsSource="{Binding BookShelves, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"> -->
-            <!-- -->
-            <!--     <ItemsControl.ItemTemplate> -->
-            <!--         <DataTemplate> -->
-            <!--             <customButton:ButtonShelfBook VBookShelf="{Binding .}" -->
-            <!--                                           Click="ShelfBook_OnClick"> -->
-            <!--             </customButton:ButtonShelfBook> -->
-            <!--         </DataTemplate> -->
-            <!--     </ItemsControl.ItemTemplate> -->
-            <!-- -->
-            <!--     <ItemsControl.ItemsPanel> -->
-            <!--         <ItemsPanelTemplate> -->
-            <!--             <WrapPanel /> -->
-            <!--         </ItemsPanelTemplate> -->
-            <!--     </ItemsControl.ItemsPanel> -->
-            <!-- -->
-            <!-- </ItemsControl> -->
+            <ItemsControl ItemsSource="{Binding BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <customButton:ButtonShelfTome />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </ScrollViewer>
 
     </Grid>
