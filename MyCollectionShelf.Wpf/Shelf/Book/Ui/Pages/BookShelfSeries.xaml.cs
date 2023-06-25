@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
+using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
@@ -29,5 +31,11 @@ public partial class BookShelfSeries
     {
         get => (ObservableCollection<BookInformations>)GetValue(BookInformationsProperty);
         set => SetValue(BookInformationsProperty, value);
+    }
+
+    private void ButtonShelfTome_OnClick(object sender, RoutedEventArgs e)
+    {
+        var button = (ButtonShelfTome)sender;
+        Console.WriteLine(button.BookInformations.TomeNumber);
     }
 }
