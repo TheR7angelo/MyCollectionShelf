@@ -13,23 +13,25 @@
 
     <Grid>
 
-        <ItemsControl ItemsSource="{Binding BookShelves, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding BookShelves, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <customButton:ButtonShelfBook VBookShelf="{Binding .}"
-                                                  Click="ShelfBook_OnClick">
-                    </customButton:ButtonShelfBook>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <customButton:ButtonShelfBook VBookShelf="{Binding .}"
+                                                      Click="ShelfBook_OnClick">
+                        </customButton:ButtonShelfBook>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
 
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-        </ItemsControl>
+            </ItemsControl>
+        </ScrollViewer>
 
     </Grid>
 
