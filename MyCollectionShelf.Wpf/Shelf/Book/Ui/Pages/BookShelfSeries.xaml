@@ -40,7 +40,7 @@
             <ItemsControl ItemsSource="{Binding BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <customButton:ButtonShelfTome />
+                            <customButton:ButtonShelfTome BookInformations="{Binding ., Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 
