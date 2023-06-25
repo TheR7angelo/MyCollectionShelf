@@ -1,27 +1,34 @@
-﻿<UserControl x:Class="MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton.ButtonShelfTome"
+﻿<Button x:Class="MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton.ButtonShelfTome"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:converter="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Converter"
+             mc:Ignorable="d">
+
+    <Button.Resources>
+        <converter:JoinBookAuthors x:Key="JoinBookAuthors" />
+    </Button.Resources>
 
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="/Resources/cover.jpg" Stretch="Uniform"
-               MinWidth="187" MaxWidth="187"
-               MinHeight="265" MaxHeight="265" />
+        <Image Grid.Row="0"
+               Source="{Binding Path=BookInformations.BookCover.Storage, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                          RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfTome}}}"
+               Stretch="Uniform" />
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Label Content="{Binding Path=BookInformations.Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+            <Label
+                Content="{Binding Path=BookInformations.Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
                           RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfTome}}}"
-                   Foreground="Black">
+                Foreground="Black">
             </Label>
             <Label Content="-" Foreground="Black" />
             <Label
@@ -32,6 +39,13 @@
             </Label>
         </StackPanel>
 
+        <TextBlock Grid.Row="2"
+                   TextWrapping="Wrap"
+                   Text="{Binding BookInformations.BookAuthors, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                                      RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfTome}},
+                                      Converter={StaticResource JoinBookAuthors}}">
+        </TextBlock>
+
     </Grid>
 
-</UserControl>
+</Button>
