@@ -4,7 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
-
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        
+        Style="{StaticResource MahApps.Styles.Button}"
+        
         mc:Ignorable="d">
 
     <Button.ToolTip>
