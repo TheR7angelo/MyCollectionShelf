@@ -19,6 +19,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <customButton:ButtonShelfBook VBookShelf="{Binding .}"
+                                                      Margin="5"
                                                       Click="ShelfBook_OnClick">
                         </customButton:ButtonShelfBook>
                     </DataTemplate>
