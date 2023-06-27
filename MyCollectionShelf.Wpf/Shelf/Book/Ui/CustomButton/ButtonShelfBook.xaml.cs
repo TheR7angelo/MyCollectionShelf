@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
@@ -18,10 +17,5 @@ public partial class ButtonShelfBook
     {
         get => (VBookShelf)GetValue(VBookShelfProperty);
         set => SetValue(VBookShelfProperty, value);
-    }
-
-    private void ToolTip_OnOpened(object sender, RoutedEventArgs e)
-    {
-        Console.WriteLine(VBookShelf.SeriesSummarize);
     }
 }
