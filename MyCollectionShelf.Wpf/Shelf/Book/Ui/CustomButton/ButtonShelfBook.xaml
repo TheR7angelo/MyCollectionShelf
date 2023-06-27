@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
+        
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 
@@ -14,6 +15,8 @@
         Width="{Binding ActualWidth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
                 RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}"
 
+        Padding="5"
+        
         mc:Ignorable="d">
 
     <Button.ToolTip>
