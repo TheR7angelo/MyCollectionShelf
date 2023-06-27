@@ -14,7 +14,7 @@
     <Grid>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding BookShelves, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ItemsControl ItemsSource="{Binding BookShelves, UpdateSourceTrigger=PropertyChanged}">
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
