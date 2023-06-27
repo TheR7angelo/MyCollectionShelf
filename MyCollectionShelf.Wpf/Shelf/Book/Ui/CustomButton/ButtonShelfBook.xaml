@@ -20,9 +20,11 @@
         mc:Ignorable="d">
 
     <Button.ToolTip>
+        <!-- todo à corriger -->
         <ToolTip
+            Opened="ToolTip_OnOpened"
             Placement="Mouse"
-            Content="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+            Content="{Binding VBookShelf.SeriesSummarize, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
                       RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
         </ToolTip>
     </Button.ToolTip>
