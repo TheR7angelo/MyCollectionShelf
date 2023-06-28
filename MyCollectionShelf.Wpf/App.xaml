@@ -35,6 +35,9 @@
                 <!-- Dragablz Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml" />
                 
+                <!-- Perso -->
+                <ResourceDictionary Source="/Resources/Style/Global.xaml" />
+                
             </ResourceDictionary.MergedDictionaries>
             
             <!-- Dragablz Material Design -->
