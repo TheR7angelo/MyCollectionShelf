@@ -43,13 +43,6 @@
             <!-- Dragablz Material Design -->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
             
-            <!-- MahApps -->
-            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-                <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
-            </Style>
-            
-            <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
-            
         </ResourceDictionary>
 
     </Application.Resources>
