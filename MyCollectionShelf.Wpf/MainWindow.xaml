@@ -39,6 +39,7 @@
         </Grid>
 
         <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"
+               Margin="10"
                Source="/Shelf/Book/Ui/Pages/BookShelf.xaml">
         </Frame>
 
