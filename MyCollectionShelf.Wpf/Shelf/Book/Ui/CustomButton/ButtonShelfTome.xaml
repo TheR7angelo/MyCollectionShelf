@@ -7,7 +7,17 @@
         xmlns:converter="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Converter"
         xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters"
 
-        Background="Transparent"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+
+        Style="{StaticResource MaterialDesignOutlinedLightButton}"
+
+        Height="{Binding ActualHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}"
+        Width="{Binding ActualWidth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}"
+
+        Padding="5"
         
         mc:Ignorable="d">
 
