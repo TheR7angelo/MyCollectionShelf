@@ -20,7 +20,25 @@
 
     <Grid>
 
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Content="Light" />
+            <ToggleButton Grid.Column="1" x:Name="ToggleButtonTheme" Checked="ToggleButtonTheme_OnChecked" Unchecked="ToggleButtonTheme_OnChecked"  />
+            <Label Grid.Column="2" Content="Dark" />
+
+        </Grid>
+
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"
                Source="/Shelf/Book/Ui/Pages/BookShelf.xaml">
         </Frame>
 
