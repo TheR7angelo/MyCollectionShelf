@@ -77,6 +77,11 @@
       <Page Update="Shelf\Book\Ui\CustomButton\ButtonShelfBook.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+      <Page Update="Resources\Style\Effect\DropShadowEffect.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
