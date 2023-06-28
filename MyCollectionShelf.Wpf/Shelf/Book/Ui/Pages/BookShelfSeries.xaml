@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
       xmlns:customButton="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters"
       mc:Ignorable="d"
 
       Background="{DynamicResource MaterialDesignPaper}"
@@ -15,6 +16,9 @@
 
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
+    <Page.Resources>
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+    </Page.Resources>
     <Grid>
 
         <Grid.RowDefinitions>

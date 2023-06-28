@@ -4,7 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
-        
+        xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters"
+
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 
@@ -18,6 +19,10 @@
         Padding="5"
         
         mc:Ignorable="d">
+
+    <Button.Resources>
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+    </Button.Resources>
     
     <Button.ToolTip>
         <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->

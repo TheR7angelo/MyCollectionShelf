@@ -9,6 +9,7 @@
 
     <Button.Resources>
         <converter:JoinBookAuthors x:Key="JoinBookAuthors" />
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
     </Button.Resources>
 
     <Grid>
