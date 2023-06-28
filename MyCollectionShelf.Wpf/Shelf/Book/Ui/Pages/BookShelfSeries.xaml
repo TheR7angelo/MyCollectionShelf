@@ -24,6 +24,8 @@
         </Grid.ColumnDefinitions>
 
         <Image Grid.Row="0" Grid.Column="0"
+               Margin="0, 0, 10, 0"
+               Effect="{StaticResource StyleDropShadowEffect}"
                Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                                     RelativeSource={RelativeSource AncestorType={x:Type local:BookShelfSeries}},
                                     Converter={StaticResource StringToImageSourceConverter}}"
@@ -42,6 +44,7 @@
                     <DataTemplate>
                         <customButton:ButtonShelfTome
                             BookInformations="{Binding ., Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            Effect="{StaticResource StyleDropShadowEffect}"
                             Click="ButtonShelfTome_OnClick">
 
                             <!-- <customButton:ButtonShelfTome.Style> -->

@@ -20,6 +20,7 @@
                     <DataTemplate>
                         <customButton:ButtonShelfBook VBookShelf="{Binding .}"
                                                       Margin="5"
+                                                      Effect="{StaticResource StyleDropShadowEffect}"
                                                       Click="ShelfBook_OnClick">
                         </customButton:ButtonShelfBook>
                     </DataTemplate>
