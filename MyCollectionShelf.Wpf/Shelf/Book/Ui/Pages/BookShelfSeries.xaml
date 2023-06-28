@@ -19,6 +19,7 @@
     <Page.Resources>
         <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
     </Page.Resources>
+    
     <Grid>
 
         <Grid.RowDefinitions>
