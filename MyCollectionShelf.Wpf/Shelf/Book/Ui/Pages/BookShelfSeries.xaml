@@ -3,22 +3,26 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
-      xmlns:customButton="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters"
+
+      xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
+
+      xmlns:customButton="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
+      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
+
       mc:Ignorable="d"
 
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-      
+
       Title="BookShelfSeries"
 
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+        <converters:InverseBooleanConverter x:Key="BooleanConverter" />
     </Page.Resources>
-    
+
     <Grid>
 
         <Grid.RowDefinitions>
@@ -26,46 +30,50 @@
             <RowDefinition Height="15" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
+
             <Image Grid.Column="0"
                    Margin="0, 0, 10, 0"
                    Effect="{StaticResource StyleDropShadowEffect}"
                    Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                                     RelativeSource={RelativeSource AncestorType={x:Type local:BookShelfSeries}},
                                     Converter={StaticResource StringToImageSourceConverter}}"
-                   Stretch="UniformToFill">
-            
+                   Stretch="UniformToFill"
+                   MouseLeftButtonDown="ImageCover_OnMouseLeftButtonDown">
             </Image>
 
             <TextBox Grid.Column="1" Grid.ColumnSpan="2"
                      HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                     IsReadOnly="True" TextWrapping="Wrap"
+                     TextWrapping="Wrap"
+                     IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
                      materialDesign:HintAssist.Hint="Résumer de la série"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     Text="{Binding VBookShelf.SeriesSummarize, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                     Text="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             </TextBox>
-        
-            <Button Grid.Column="2"
-                    Margin="0, 5, 5, 0"
-                    VerticalAlignment="Top"
-                    Style="{StaticResource MaterialDesignFloatingActionDarkButton}">
+
+            <ToggleButton Grid.Column="2" x:Name="ToggleEdit"
+                          VerticalAlignment="Top"
+                          Margin="0, 5, 5, 0"
+                          Height="50" Width="50"
+                          IsChecked="False"
+                          Unchecked="ToggleEdit_OnUnchecked"
+                          Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
                 <materialDesign:PackIcon Kind="NoteEdit" />
-            </Button>
-            
+            </ToggleButton>
+
         </Grid>
-        
+
         <ScrollViewer Grid.Row="2"
                       Background="{DynamicResource MaterialDesignPaper}"
                       VerticalScrollBarVisibility="Auto">
-            
+
             <ItemsControl ItemsSource="{Binding BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
