@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Converters;
 
 public class StringToImageSourceConverter : IValueConverter
 {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Data;
 using MyCollectionShelf.Sql.Object.Book.Class.Table;
 
-namespace MyCollectionShelf.Wpf.Shelf.Book.Converter;
+namespace MyCollectionShelf.Wpf.Shelf.Book.Converters;
 
 public class JoinBookAuthors : IValueConverter
 {
