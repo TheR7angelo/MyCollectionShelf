@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0"
+            <Image Grid.Column="0" MinHeight="60"
                    Margin="0, 0, 10, 0"
                    Effect="{StaticResource StyleDropShadowEffect}"
                    Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
