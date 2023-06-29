@@ -13,7 +13,7 @@
                  Title="MainWindow"
                  TitleCharacterCasing="Normal"
 
-                 MinHeight="720" Height="720"
+                 MinHeight="735" Height="735"
                  MinWidth="1280" Width="1280"
 
                  DataContext="{Binding RelativeSource={RelativeSource Self}}">
