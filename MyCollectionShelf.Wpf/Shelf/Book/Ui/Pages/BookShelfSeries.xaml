@@ -49,24 +49,41 @@
                    MouseLeftButtonDown="ImageCover_OnMouseLeftButtonDown">
             </Image>
 
-            <TextBox Grid.Column="1" Grid.ColumnSpan="2"
-                     HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
-                     TextWrapping="Wrap"
-                     IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
-                     materialDesign:HintAssist.Hint="Résumer de la série"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     Text="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            </TextBox>
+            <Grid Grid.Column="1" Grid.ColumnSpan="2">
 
-            <ToggleButton Grid.Column="2" x:Name="ToggleEdit"
-                          VerticalAlignment="Top"
-                          Margin="0, 5, 5, 0"
-                          Height="50" Width="50"
-                          IsChecked="False"
-                          Unchecked="ToggleEdit_OnUnchecked"
-                          Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
-                <materialDesign:PackIcon Kind="NoteEdit" />
-            </ToggleButton>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0"
+                         IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
+                         materialDesign:HintAssist.Hint="Titre"
+                         Text="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="16"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                </TextBox>
+
+                <TextBox Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                         TextWrapping="Wrap"
+                         IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
+                         materialDesign:HintAssist.Hint="Résumer de la série"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Text="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
+
+                <ToggleButton Grid.Row="2" x:Name="ToggleEdit"
+                              VerticalAlignment="Top" HorizontalAlignment="Right"
+                              Margin="0, 5, 5, 0"
+                              Height="50" Width="50"
+                              IsChecked="False"
+                              Unchecked="ToggleEdit_OnUnchecked"
+                              Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
+                    <materialDesign:PackIcon Kind="NoteEdit" />
+                </ToggleButton>
+
+            </Grid>
 
         </Grid>
 

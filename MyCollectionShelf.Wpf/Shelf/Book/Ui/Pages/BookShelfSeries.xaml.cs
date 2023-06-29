@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using MyCollectionShelf.Sql.Object.Book.Class.Table;
@@ -67,7 +68,25 @@ public partial class BookShelfSeries
         var differences = VBookShelfOriginal.Compare(VBookShelf);
 
         if (differences.Count.Equals(0)) return;
+
+        var imageCoverName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.BookSeriesCover))!.Name;
+        var titleName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.BookSeriesTitle))!.Name;
+        var seriesSummarizeName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.SeriesSummarize))!.Name;
         
-        Console.WriteLine("dif");
+        foreach (var propertiesInfoName in differences.Select(difference => typeof(VBookShelf).GetProperty(difference.Property)!.Name))
+        {
+            if (propertiesInfoName.Equals(imageCoverName))
+            {
+                Console.WriteLine("Copy image require");
+            }
+            else if (propertiesInfoName.Equals(titleName))
+            {
+                Console.WriteLine("Update BookSeriesTitle require");
+            }
+            else if (propertiesInfoName.Equals(seriesSummarizeName))
+            {
+                Console.WriteLine("Update seriesSummarize require");
+            }
+        }
     }
 }
