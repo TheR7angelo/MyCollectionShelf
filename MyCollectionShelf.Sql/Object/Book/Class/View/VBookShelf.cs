@@ -168,4 +168,6 @@ public class VBookShelf : ISql, INotifyPropertyChanged
                             ON bi.book_editor_fk = bel.id
         GROUP BY bs.id
         """;
+
+    public VBookShelf DeepCopy() => (VBookShelf)MemberwiseClone();
 }
