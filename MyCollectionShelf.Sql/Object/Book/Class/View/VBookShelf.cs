@@ -25,9 +25,9 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private string _bookSeriesTitle = string.Empty;
-    
+
     [Column("title")]
     public string BookSeriesTitle
     {
@@ -38,9 +38,9 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private string _bookSeriesCover = string.Empty;
-    
+
     [Column("series_cover")]
     public string BookSeriesCover
     {
@@ -51,9 +51,9 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private string _seriesSummarize = string.Empty;
-    
+
     [Column("series_summarize")]
     public string SeriesSummarize
     {
@@ -64,7 +64,7 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private long _averagePage;
 
     [Column("average_page")]
@@ -77,7 +77,7 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private long _bookEditorListId;
 
     [Column("book_editor_list_id")]
@@ -90,9 +90,9 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private string _editor = string.Empty;
-    
+
     [Column("editor")]
     public string Editor
     {
@@ -103,7 +103,7 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private long _notRead;
 
     [Column("not_read")]
@@ -116,7 +116,7 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     private long _read;
 
     [Column("read")]
@@ -142,7 +142,7 @@ public class VBookShelf : ISql, INotifyPropertyChanged
             OnPropertyChanged();
         }
     }
-    
+
     public string Definition =>
         """
         CREATE VIEW IF NOT EXISTS v_book_shelf AS
