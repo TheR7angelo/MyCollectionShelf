@@ -6,6 +6,7 @@ using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Comparator;
+using MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
@@ -51,14 +52,14 @@ public partial class BookShelfSeries
 
     private void ImageCover_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-        if ((bool)ToggleEdit.IsChecked!)
-        {
-            Console.WriteLine("hey");
-        }
-        else
-        {
-            Console.WriteLine("nop");
-        }
+        if (!(bool)ToggleEdit.IsChecked!) return;
+
+        var dialog = new ImageDialog();
+        var file = dialog.GetFile();
+
+        if (string.IsNullOrEmpty(file)) return;
+
+        VBookShelf.BookSeriesCover = file;
     }
 
     private void ToggleEdit_OnUnchecked(object sender, RoutedEventArgs e)
