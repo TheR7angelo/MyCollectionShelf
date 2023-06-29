@@ -4,8 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
-        xmlns:converter="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Converter"
-        xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Converters"
+        xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
+        xmlns:bookConverters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Converters"
 
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -22,7 +22,7 @@
         mc:Ignorable="d">
 
     <Button.Resources>
-        <converter:JoinBookAuthors x:Key="JoinBookAuthors" />
+        <bookConverters:JoinBookAuthors x:Key="JoinBookAuthors" />
         <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
     </Button.Resources>
 
