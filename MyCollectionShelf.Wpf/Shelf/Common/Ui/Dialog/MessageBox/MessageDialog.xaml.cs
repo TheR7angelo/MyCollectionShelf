@@ -18,19 +18,26 @@ public partial class MessageDialog
     public MessageDialog(string messageContent)
     {
         MessageContent = messageContent;
+        
         InitializeComponent();
+        
+        SetButtonVisibility(MessageBoxButton.OK);
     }
     
     public MessageDialog(string messageContent, string caption)
     {
         MessageContent = messageContent;
         Caption = caption;
+        
         InitializeComponent();
+        
+        SetButtonVisibility(MessageBoxButton.OK);
     }
     
     public MessageDialog(string messageContent, MessageBoxButton messageBoxButton)
     {
         MessageContent = messageContent;
+        
         InitializeComponent();
         
         SetButtonVisibility(messageBoxButton);
@@ -52,6 +59,8 @@ public partial class MessageDialog
         MessageBoxImage = messageBoxImage;
         
         InitializeComponent();
+        
+        SetButtonVisibility(MessageBoxButton.OK);
     }
     
     public MessageDialog(string messageContent, string caption, Uri messageBoxImage)
@@ -61,6 +70,8 @@ public partial class MessageDialog
         MessageBoxImage = messageBoxImage;
         
         InitializeComponent();
+        
+        SetButtonVisibility(MessageBoxButton.OK);
     }
     
     public MessageDialog(string messageContent, MessageBoxButton messageBoxButton, Uri messageBoxImage)
