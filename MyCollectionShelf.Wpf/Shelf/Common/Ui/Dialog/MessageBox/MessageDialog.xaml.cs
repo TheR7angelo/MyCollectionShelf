@@ -8,11 +8,11 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox;
 
 public partial class MessageDialog
 {
-    private string MessageContent { get; }
-    
-    private string Caption { get; } = string.Empty;
+    public string MessageContent { get; }
 
-    private Uri? MessageBoxImage { get; }
+    public string Caption { get; } = string.Empty;
+
+    public Uri? MessageBoxImage { get; }
 
     public MessageBoxResult MessageBoxResult { get; set; }
     
