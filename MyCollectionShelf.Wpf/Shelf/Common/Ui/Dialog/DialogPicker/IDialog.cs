@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.DialogPicker;
 
 public interface IDialog
 {

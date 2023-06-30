@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.DialogPicker;
 
 public class ImageDialog : IDialog
 {

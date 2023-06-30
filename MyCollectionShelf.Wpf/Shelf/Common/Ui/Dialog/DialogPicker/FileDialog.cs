@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog;
+namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.DialogPicker;
 
 public class FileDialog
 {
