@@ -60,11 +60,38 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
-        internal static string MessageBox_Yes {
+        internal static string Yes {
             get {
-                return ResourceManager.GetString("MessageBox_Yes", resourceCulture);
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }
