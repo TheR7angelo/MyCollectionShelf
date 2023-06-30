@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -97,7 +98,7 @@ public partial class BookShelfSeries
             
             if (propertiesInfoName.Equals(imageCoverName))
             {
-                Console.WriteLine("Copy image require");
+                File.Copy(VBookShelf.BookSeriesCover, VBookShelfOriginal!.BookSeriesCover, true);
             }
             else if (propertiesInfoName.Equals(titleName))
             {
