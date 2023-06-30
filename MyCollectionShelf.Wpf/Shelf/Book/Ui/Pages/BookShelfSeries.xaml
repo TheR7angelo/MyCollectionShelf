@@ -70,6 +70,7 @@
                     <TextBox Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
                              TextWrapping="Wrap"
                              IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
+                             AcceptsReturn="True" AcceptsTab="True"
                              materialDesign:HintAssist.Hint="Résumer de la série"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Text="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
