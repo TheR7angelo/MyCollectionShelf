@@ -60,11 +60,20 @@ namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string EditConfirmationCaption {
+            get {
+                return ResourceManager.GetString("EditConfirmationCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you realy want to edit this series ?.
         /// </summary>
-        internal static string EditConfirmation {
+        internal static string EditConfirmationContent {
             get {
-                return ResourceManager.GetString("EditConfirmation", resourceCulture);
+                return ResourceManager.GetString("EditConfirmationContent", resourceCulture);
             }
         }
     }

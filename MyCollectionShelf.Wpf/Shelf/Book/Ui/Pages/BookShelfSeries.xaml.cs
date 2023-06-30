@@ -76,6 +76,13 @@ public partial class BookShelfSeries
         var differences = VBookShelfOriginal.Compare(VBookShelf);
 
         if (differences.Count.Equals(0)) return;
+        
+        var messageDialog = new MessageDialog(BookShelfSeriesResources.EditConfirmationContent, BookShelfSeriesResources.EditConfirmationCaption, MessageBoxButton.YesNoCancel);
+        await DialogHost.Show(messageDialog, DialogHost.Identifier!);
+        
+        var result = messageDialog.MessageBoxResult;
+
+        if (result != MessageBoxResult.Yes) return;
 
         var imageCoverName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.BookSeriesCover))!.Name;
         var titleName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.BookSeriesTitle))!.Name;
