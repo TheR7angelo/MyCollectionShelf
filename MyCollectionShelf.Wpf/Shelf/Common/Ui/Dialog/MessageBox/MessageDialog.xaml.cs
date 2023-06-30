@@ -11,7 +11,7 @@ public partial class MessageDialog
     
     private string Caption { get; } = string.Empty;
 
-    private Uri? MessageBoxImage { get; } = null;
+    private Uri? MessageBoxImage { get; }
 
     public MessageBoxResult MessageBoxResult { get; set; }
     
