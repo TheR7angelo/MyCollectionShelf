@@ -102,12 +102,12 @@ public partial class BookShelfSeries
             else if (propertiesInfoName.Equals(titleName))
             {
                 column = bookSeriesType.GetProperty(nameof(BookSeries.Title))!.GetCustomAttribute<ColumnAttribute>()!.Name;
-                cmd = $"UPDATE book_series SET {column} = {VBookShelf.BookSeriesTitle.SqlNull()} WHERE {idColumn} = {VBookShelfOriginal!.BookSeriesId};";
+                cmd = $"UPDATE book_series SET {column} = {VBookShelf.BookSeriesTitle.ToSql()} WHERE {idColumn} = {VBookShelfOriginal!.BookSeriesId};";
             }
             else if (propertiesInfoName.Equals(seriesSummarizeName))
             {
                 column = bookSeriesType.GetProperty(nameof(BookSeries.SeriesSummarize))!.GetCustomAttribute<ColumnAttribute>()!.Name;
-                cmd = $"UPDATE book_series SET {column} = {VBookShelf.SeriesSummarize.SqlNull()} WHERE {idColumn} = {VBookShelfOriginal!.BookSeriesId};";
+                cmd = $"UPDATE book_series SET {column} = {VBookShelf.SeriesSummarize.ToSql()} WHERE {idColumn} = {VBookShelfOriginal!.BookSeriesId};";
             }
 
             if (cmd is null) continue;
