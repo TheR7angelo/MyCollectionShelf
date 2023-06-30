@@ -144,7 +144,7 @@ public partial class MessageDialog
         foreach (var buttonString in buttonsString)
         {
             var button = (Button)FindName($"Button{buttonString}")!;
-            button.Content = MessageBox.Resources.ResourceManager.GetString(buttonString);
+            button.Content = MessageBoxResources.ResourceManager.GetString(buttonString);
             button.Visibility = Visibility.Visible;
         }
     }
