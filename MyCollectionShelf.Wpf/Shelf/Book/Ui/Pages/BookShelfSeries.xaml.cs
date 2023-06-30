@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
@@ -11,6 +12,7 @@ using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Comparator;
 using MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.DialogPicker;
 using MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox;
+using SQLite;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
@@ -78,25 +80,34 @@ public partial class BookShelfSeries
         var result = messageDialog.MessageBoxResult;
 
         if (result != MessageBoxResult.Yes) return;
-
-        var imageCoverName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.BookSeriesCover))!.Name;
-        var titleName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.BookSeriesTitle))!.Name;
-        var seriesSummarizeName = typeof(VBookShelf).GetProperty(nameof(VBookShelf.SeriesSummarize))!.Name;
+        
+        var vBookShelfType = typeof(VBookShelf);
+        
+        var imageCoverName = vBookShelfType.GetProperty(nameof(VBookShelf.BookSeriesCover))!.Name;
+        var titleName = vBookShelfType.GetProperty(nameof(VBookShelf.BookSeriesTitle))!.Name;
+        var seriesSummarizeName = vBookShelfType.GetProperty(nameof(VBookShelf.SeriesSummarize))!.Name;
+        
+        var bookSeriesType = typeof(BookSeries);
+        var idColumn = bookSeriesType.GetProperty(nameof(BookSeries.Id))!.GetCustomAttribute<ColumnAttribute>()!.Name;
+        string column;
         
         foreach (var propertiesInfoName in differences.Select(difference => typeof(VBookShelf).GetProperty(difference.Property)!.Name))
         {
             string? cmd = null;
+            
             if (propertiesInfoName.Equals(imageCoverName))
             {
                 Console.WriteLine("Copy image require");
             }
             else if (propertiesInfoName.Equals(titleName))
             {
-                Console.WriteLine("Update BookSeriesTitle require");
+                column = bookSeriesType.GetProperty(nameof(BookSeries.Title))!.GetCustomAttribute<ColumnAttribute>()!.Name;
+                cmd = $"UPDATE book_series SET {column} = {VBookShelf.BookSeriesTitle.SqlNull()} WHERE {idColumn} = {VBookShelfOriginal!.BookSeriesId};";
             }
             else if (propertiesInfoName.Equals(seriesSummarizeName))
             {
-                Console.WriteLine("Update seriesSummarize require");
+                column = bookSeriesType.GetProperty(nameof(BookSeries.SeriesSummarize))!.GetCustomAttribute<ColumnAttribute>()!.Name;
+                cmd = $"UPDATE book_series SET {column} = {VBookShelf.SeriesSummarize.SqlNull()} WHERE {idColumn} = {VBookShelfOriginal!.BookSeriesId};";
             }
 
             if (cmd is null) continue;
