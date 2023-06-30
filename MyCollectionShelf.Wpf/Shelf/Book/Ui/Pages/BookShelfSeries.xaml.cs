@@ -3,11 +3,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Comparator;
-using MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog;
+using MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.DialogPicker;
+using MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 
@@ -63,8 +65,12 @@ public partial class BookShelfSeries
         VBookShelf.BookSeriesCover = file;
     }
 
-    private void ToggleEdit_OnUnchecked(object sender, RoutedEventArgs e)
+    private async void ToggleEdit_OnUnchecked(object sender, RoutedEventArgs e)
     {
+        var messageDialog = new MessageDialog("Yolo", MessageBoxButton.YesNoCancel);
+        
+        var message = await DialogHost.Show(messageDialog, DialogHost.Identifier!);
+        
         var differences = VBookShelfOriginal.Compare(VBookShelf);
 
         if (differences.Count.Equals(0)) return;
