@@ -23,7 +23,7 @@
         <converters:InverseBooleanConverter x:Key="BooleanConverter" />
     </Page.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="True">
+    <materialDesign:DialogHost x:Name="DialogHost" Identifier="RootDialog" CloseOnClickAway="True">
 
         <Grid>
 
