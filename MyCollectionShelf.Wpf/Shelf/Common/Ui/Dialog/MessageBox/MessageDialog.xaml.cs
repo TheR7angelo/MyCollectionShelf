@@ -124,14 +124,16 @@ public partial class MessageDialog
         SetButtonVisibility(messageBoxButton, messageBoxResult);
     }
 
-    private void SetButtonVisibility(MessageBoxButton messageBoxButton, MessageBoxResult? messageBoxResult=null)
+    private void SetButtonVisibility(MessageBoxButton messageBoxButton, MessageBoxResult messageBoxResult = MessageBoxResult.None)
     {
-        var buttonsStrings = messageBoxButton.ToString().SplitByMaj();
+        MessageBoxResult = messageBoxResult;
         
-        Console.WriteLine(MessageBox.Resources.MessageBox_Yes);
-        foreach (var buttonString in buttonsStrings)
+        var buttonsString = messageBoxButton.ToString().SplitByMaj();
+        
+        foreach (var buttonString in buttonsString)
         {
             var button = (Button)FindName($"Button{buttonString}")!;
+            button.Content = MessageBox.Resources.ResourceManager.GetString(buttonString);
             button.Visibility = Visibility.Visible;
         }
     }
