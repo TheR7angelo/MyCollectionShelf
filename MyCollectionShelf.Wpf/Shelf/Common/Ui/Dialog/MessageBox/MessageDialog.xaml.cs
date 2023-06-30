@@ -135,7 +135,7 @@ public partial class MessageDialog
         SetButtonVisibility(messageBoxButton, messageBoxResult);
     }
 
-    private void SetButtonVisibility(MessageBoxButton messageBoxButton, MessageBoxResult messageBoxResult = MessageBoxResult.None)
+    private void SetButtonVisibility(MessageBoxButton messageBoxButton, MessageBoxResult messageBoxResult = MessageBoxResult.Cancel)
     {
         MessageBoxResult = messageBoxResult;
         
