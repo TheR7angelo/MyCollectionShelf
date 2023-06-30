@@ -8,4 +8,9 @@ public static partial class RegexFunction
     private static partial Regex IsNumberRegex();
 
     public static bool IsNumber(this string str) => IsNumberRegex().IsMatch(str);
+
+    [GeneratedRegex("(?<!^)(?=[A-Z])")]
+    private static partial Regex SplitByMajRegex();
+
+    public static string[] SplitByMaj(this string str) => SplitByMajRegex().Split(str);
 }
