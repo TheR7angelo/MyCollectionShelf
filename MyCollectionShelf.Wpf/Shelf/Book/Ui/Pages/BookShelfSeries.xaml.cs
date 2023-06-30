@@ -67,9 +67,11 @@ public partial class BookShelfSeries
 
     private async void ToggleEdit_OnUnchecked(object sender, RoutedEventArgs e)
     {
-        var messageDialog = new MessageDialog("Yolo", MessageBoxButton.YesNoCancel);
+        var messageDialog = new MessageDialog(BookShelfSeriesResources.EditConfirmation, MessageBoxButton.YesNoCancel);
+        await DialogHost.Show(messageDialog, DialogHost.Identifier!);
+        var result = messageDialog.MessageBoxResult;
         
-        var message = await DialogHost.Show(messageDialog, DialogHost.Identifier!);
+        Console.WriteLine(result);
         
         var differences = VBookShelfOriginal.Compare(VBookShelf);
 
