@@ -122,17 +122,26 @@
     </ItemGroup>
   
     <ItemGroup>
-      <EmbeddedResource Update="Shelf\Common\Ui\Dialog\MessageBox\Resources.resx">
+      <EmbeddedResource Update="Shelf\Common\Ui\Dialog\MessageBox\MessageBoxResources.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        <LastGenOutput>MessageBoxResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Shelf\Book\Ui\Pages\BookShelfSeriesResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>BookShelfSeriesResources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Shelf\Common\Ui\Dialog\MessageBox\Resources.Designer.cs">
+      <Compile Update="Shelf\Common\Ui\Dialog\MessageBox\MessageBoxResources.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>Resources.resx</DependentUpon>
+        <DependentUpon>MessageBoxResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Shelf\Book\Ui\Pages\BookShelfSeriesResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>BookShelfSeriesResources.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 
