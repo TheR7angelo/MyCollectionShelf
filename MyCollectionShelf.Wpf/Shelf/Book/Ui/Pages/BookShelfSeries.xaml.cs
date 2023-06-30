@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
+using MyCollectionShelf.Sql;
 using MyCollectionShelf.Sql.Object.Book.Class.Table;
 using MyCollectionShelf.Sql.Object.Book.Class.View;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
@@ -67,12 +68,6 @@ public partial class BookShelfSeries
 
     private async void ToggleEdit_OnUnchecked(object sender, RoutedEventArgs e)
     {
-        var messageDialog = new MessageDialog(BookShelfSeriesResources.EditConfirmation, MessageBoxButton.OKCancel);
-        await DialogHost.Show(messageDialog, DialogHost.Identifier!);
-        var result = messageDialog.MessageBoxResult;
-        
-        Console.WriteLine(result);
-        
         var differences = VBookShelfOriginal.Compare(VBookShelf);
 
         if (differences.Count.Equals(0)) return;
@@ -90,6 +85,7 @@ public partial class BookShelfSeries
         
         foreach (var propertiesInfoName in differences.Select(difference => typeof(VBookShelf).GetProperty(difference.Property)!.Name))
         {
+            string? cmd = null;
             if (propertiesInfoName.Equals(imageCoverName))
             {
                 Console.WriteLine("Copy image require");
@@ -102,6 +98,12 @@ public partial class BookShelfSeries
             {
                 Console.WriteLine("Update seriesSummarize require");
             }
+
+            if (cmd is null) continue;
+            
+            using var sqlHander = new SqlMainHandler();
+            using var connection = sqlHander.GetSqlConnection();
+            connection.Execute(cmd);
         }
     }
 }
