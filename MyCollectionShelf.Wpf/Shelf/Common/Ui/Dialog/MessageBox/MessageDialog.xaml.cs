@@ -136,12 +136,3 @@ public partial class MessageDialog
         }
     }
 }
-
-public enum MessageBoxResult
-{
-    Ok,
-    YesNo,
-    OkCancel,
-    YesNoCancel,
-    Cancel
-}
