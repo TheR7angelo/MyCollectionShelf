@@ -120,5 +120,20 @@
     <ItemGroup>
       <Folder Include="Shelf\Book\Ui\" />
     </ItemGroup>
+  
+    <ItemGroup>
+      <EmbeddedResource Update="Shelf\Common\Ui\Dialog\MessageBox\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Shelf\Common\Ui\Dialog\MessageBox\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
 
 </Project>
