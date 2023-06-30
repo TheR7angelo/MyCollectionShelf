@@ -92,7 +92,7 @@ public partial class BookShelfSeries
         var idColumn = bookSeriesType.GetProperty(nameof(BookSeries.Id))!.GetCustomAttribute<ColumnAttribute>()!.Name;
         string column;
         
-        foreach (var propertiesInfoName in differences.Select(difference => typeof(VBookShelf).GetProperty(difference.Property)!.Name))
+        foreach (var propertiesInfoName in differences.Select(s => s.Property))
         {
             string? cmd = null;
             
