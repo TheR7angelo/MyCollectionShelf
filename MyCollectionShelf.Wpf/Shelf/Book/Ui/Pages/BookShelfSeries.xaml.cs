@@ -67,7 +67,7 @@ public partial class BookShelfSeries
 
     private async void ToggleEdit_OnUnchecked(object sender, RoutedEventArgs e)
     {
-        var messageDialog = new MessageDialog(BookShelfSeriesResources.EditConfirmation, MessageBoxButton.YesNoCancel);
+        var messageDialog = new MessageDialog(BookShelfSeriesResources.EditConfirmation, MessageBoxButton.OKCancel);
         await DialogHost.Show(messageDialog, DialogHost.Identifier!);
         var result = messageDialog.MessageBoxResult;
         
