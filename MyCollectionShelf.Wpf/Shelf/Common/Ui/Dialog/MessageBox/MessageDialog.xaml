@@ -45,10 +45,10 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
             
-            <Button Content="Yes" x:Name="ButtonYes" Visibility="Collapsed" />
-            <Button Content="No" x:Name="ButtonNo" Visibility="Collapsed" />
-            <Button Content="Ok" x:Name="ButtonOk" Visibility="Collapsed" />
-            <Button Content="Cancel" x:Name="ButtonCancel" Visibility="Collapsed" />
+            <Button Content="Yes" x:Name="ButtonYes" Visibility="Collapsed" Click="ButtonYes_OnClick" />
+            <Button Content="No" x:Name="ButtonNo" Visibility="Collapsed" Click="ButtonNo_OnClick" />
+            <Button Content="Ok" x:Name="ButtonOk" Visibility="Collapsed" Click="ButtonOk_OnClick" />
+            <Button Content="Cancel" x:Name="ButtonCancel" Visibility="Collapsed" Click="ButtonCancel_OnClick" />
             
         </StackPanel>
 

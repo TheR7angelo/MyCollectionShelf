@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using MaterialDesignThemes.Wpf;
 using MyCollectionShelf.Wpf.Shelf.Common.Static;
 
 namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox;
@@ -139,7 +140,7 @@ public partial class MessageDialog
     {
         MessageBoxResult = messageBoxResult;
         
-        var buttonsString = messageBoxButton.ToString().SplitByMaj();
+        var buttonsString = messageBoxButton.ToString().Replace("OK", "Ok").SplitByMaj();
         
         foreach (var buttonString in buttonsString)
         {
@@ -147,5 +148,23 @@ public partial class MessageDialog
             button.Content = MessageBoxResources.ResourceManager.GetString(buttonString);
             button.Visibility = Visibility.Visible;
         }
+    }
+
+    private void ButtonYes_OnClick(object sender, RoutedEventArgs e) 
+        => SetResult(MessageBoxResult.Yes);
+
+    private void ButtonNo_OnClick(object sender, RoutedEventArgs e)
+        => SetResult(MessageBoxResult.No);
+
+    private void ButtonOk_OnClick(object sender, RoutedEventArgs e)
+        => SetResult(MessageBoxResult.OK);
+
+    private void ButtonCancel_OnClick(object sender, RoutedEventArgs e)
+        => SetResult(MessageBoxResult.Cancel);
+    
+    private void SetResult(MessageBoxResult messageBoxResult)
+    {
+        MessageBoxResult = messageBoxResult;
+        DialogHost.CloseDialogCommand.Execute(null, null);
     }
 }
