@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox {
+namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages {
     using System;
     
     
@@ -21,14 +21,14 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class BookShelfSeriesResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal BookShelfSeriesResources() {
         }
         
         /// <summary>
@@ -38,7 +38,7 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages.BookShelfSeriesResources", typeof(BookShelfSeriesResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,38 +60,11 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Dialog.MessageBox {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Do you realy want to edit this series ?.
         /// </summary>
-        internal static string Cancel {
+        internal static string EditConfirmation {
             get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No.
-        /// </summary>
-        internal static string No {
-            get {
-                return ResourceManager.GetString("No", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        internal static string Ok {
-            get {
-                return ResourceManager.GetString("Ok", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        internal static string Yes {
-            get {
-                return ResourceManager.GetString("Yes", resourceCulture);
+                return ResourceManager.GetString("EditConfirmation", resourceCulture);
             }
         }
     }
