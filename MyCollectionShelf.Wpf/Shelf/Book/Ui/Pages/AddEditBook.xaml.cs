@@ -23,8 +23,8 @@ public partial class AddEditBook
     public static readonly DependencyProperty BookDataProperty = DependencyProperty.Register(nameof(BookData),
         typeof(Sql.Object.Book.Class.Table.Book), typeof(AddEditBook),
         new PropertyMetadata(new Sql.Object.Book.Class.Table.Book()));
-
-    public AddEditBook()
+    
+    public AddEditBook(Sql.Object.Book.Class.Table.Book? book = null)
     {
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
@@ -35,6 +35,10 @@ public partial class AddEditBook
         SeriesList.GetCollection(db);
         
         InitializeComponent();
+
+        if (book is null) return;
+
+        BookData = book;
     }
 
     public Sql.Object.Book.Class.Table.Book BookData
