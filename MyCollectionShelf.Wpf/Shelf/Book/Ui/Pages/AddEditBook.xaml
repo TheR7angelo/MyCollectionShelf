@@ -7,11 +7,15 @@
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
       xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons"
       xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls"
+      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
       mc:Ignorable="d"
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
+        
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+        
     </Page.Resources>
 
     <Grid>
@@ -91,32 +95,32 @@
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="25" />
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <ComboBox Grid.Column="0"
-                                        ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                        DisplayMemberPath="NameConcat"
-                                        SelectedItem="{Binding .}"
-                                        SelectionChanged="SelectorAuthor_OnSelectionChanged">
+                                              ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                              DisplayMemberPath="NameConcat"
+                                              SelectedItem="{Binding .}"
+                                              SelectionChanged="SelectorAuthor_OnSelectionChanged">
                                     </ComboBox>
-                        
-                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" 
-                                                                  Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                                  Click="ButtonAddRemoveAuthors_OnClick" />
-                                    
-                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" 
-                                                                  Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                                  Click="ButtonAddRemoveAuthors_OnClick" />
-                                    
+
+                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove"
+                                                             Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                             Click="ButtonAddRemoveAuthors_OnClick" />
+
+                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add"
+                                                             Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                             Click="ButtonAddRemoveAuthors_OnClick" />
+
                                     <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
-                        
+
                                 </Grid>
 
                             </DataTemplate>
@@ -152,7 +156,8 @@
 
                     <Label Content="Genres" HorizontalContentAlignment="Left" />
 
-                    <ListBox ItemsSource="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox
+                        ItemsSource="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -169,15 +174,15 @@
 
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                        
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="25"/>
-                                        <ColumnDefinition Width="25"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="25" />
+                                        <ColumnDefinition Width="25" />
                                     </Grid.ColumnDefinitions>
-                        
+
                                     <ComboBox Grid.Column="0" IsEditable="True"
                                               ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                               DisplayMemberPath="Genre"
@@ -185,18 +190,18 @@
                                               SelectionChanged="SelectorGenre_OnSelectionChanged">
                                     </ComboBox>
 
-                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" 
+                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove"
                                                              Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
                                                              Click="ButtonAddRemoveGenres_OnClick" />
-                                    
-                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" 
-                                                                  Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                                  Click="ButtonAddRemoveGenres_OnClick" />
-                                    
+
+                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add"
+                                                             Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
+                                                             Click="ButtonAddRemoveGenres_OnClick" />
+
                                     <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
-                        
+
                                 </Grid>
-                        
+
                             </DataTemplate>
                         </ListBox.ItemTemplate>
 
@@ -209,21 +214,21 @@
                     <Label Content="Serie" HorizontalContentAlignment="Left" />
 
                     <Grid>
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        
+
                         <ComboBox Grid.Column="0" IsEditable="True"
                                   ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title"
                                   SelectedItem="{Binding BookData.BookInformations.BookSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   Text="{Binding BookData.BookInformations.BookSeries.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
-                        
+
                         <buttons:SvgButton Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" Height="25" />
-                        
+
                     </Grid>
 
                 </StackPanel>
@@ -354,17 +359,19 @@
 
                     <Label Content="Date terminé" HorizontalContentAlignment="Left" />
 
-                    <DatePicker SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <DatePicker
+                        SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
 
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                
+
                 <Button x:Name="ButtonValid" Content="Valider" Click="ButtonValidBook_OnClick" />
-                <userControls:BusySpinner x:Name="BusySpinner" Width="32" Background="Transparent" Foreground="Black" Visibility="Hidden" />
-                
+                <userControls:BusySpinner x:Name="BusySpinner" Width="32" Background="Transparent" Foreground="Black"
+                                          Visibility="Hidden" />
+
             </Grid>
 
         </Grid>
