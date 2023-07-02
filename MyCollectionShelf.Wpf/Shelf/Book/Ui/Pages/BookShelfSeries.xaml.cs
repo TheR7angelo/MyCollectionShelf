@@ -54,7 +54,11 @@ public partial class BookShelfSeries
     private void ButtonShelfTome_OnClick(object sender, RoutedEventArgs e)
     {
         var button = (ButtonShelfTome)sender;
-        Console.WriteLine(button.BookInformations.TomeNumber);
+
+        var bookHandler = new SqlBookHandler();
+        var book = bookHandler.GetBook(button.BookInformations);
+        
+        Console.WriteLine(book.Id);
     }
 
     private void ImageCover_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
