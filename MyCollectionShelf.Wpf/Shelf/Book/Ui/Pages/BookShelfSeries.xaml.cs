@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -55,10 +54,11 @@ public partial class BookShelfSeries
     {
         var button = (ButtonShelfTome)sender;
 
-        var bookHandler = new SqlBookHandler();
+        using var bookHandler = new SqlBookHandler();
         var book = bookHandler.GetBook(button.BookInformations);
-        
-        Console.WriteLine(book.Id);
+
+        var addEditBook = new AddEditBook(book);
+        addEditBook.Navigate();
     }
 
     private void ImageCover_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
