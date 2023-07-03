@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Threading;
+using System.Windows;
 using MaterialDesignThemes.Wpf;
 
 namespace MyCollectionShelf.Wpf
@@ -10,6 +12,12 @@ namespace MyCollectionShelf.Wpf
             InitializeComponent();
             
             SetUpTheme();
+
+            var cultureFr = new CultureInfo("fr");
+            var cultureEn = new CultureInfo("en");
+
+            Thread.CurrentThread.CurrentCulture = cultureEn;
+            Thread.CurrentThread.CurrentUICulture = cultureEn;
         }
 
         private void SetUpTheme()
