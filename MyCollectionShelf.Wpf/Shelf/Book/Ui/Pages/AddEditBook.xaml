@@ -9,6 +9,7 @@
       xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons"
       xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d"
       
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -54,7 +55,7 @@
                      materialDesign:HintAssist.Hint="Titre"
                      Text="{Binding BookData.BookInformations.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      FontSize="16"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
             </TextBox>
 
             <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
@@ -129,19 +130,16 @@
                     </ListBox>
 
                 </StackPanel>
-
-                <StackPanel Grid.Row="0" Grid.Column="1">
-
-                    <Label Content="Éditeur" HorizontalContentAlignment="Left" />
-
-                    <ComboBox ItemsSource="{Binding EditorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              DisplayMemberPath="Editor"
-                              Text="{Binding BookData.BookInformations.BookEditor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedItem="{Binding BookData.BookInformations.BookEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              IsEditable="True">
-                    </ComboBox>
-
-                </StackPanel>
+                
+                <ComboBox Grid.Row="0" Grid.Column="1"
+                          materialDesign:HintAssist.Hint="Éditeur"
+                          ItemsSource="{Binding EditorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Editor"
+                          Text="{Binding BookData.BookInformations.BookEditor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding BookData.BookInformations.BookEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          IsEditable="True"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                </ComboBox>
 
                 <StackPanel Grid.Row="0" Grid.Column="2">
 
@@ -237,9 +235,10 @@
 
                     <Label Content="Tome" HorizontalContentAlignment="Left" />
 
-                    <TextBox
-                        Text="{Binding BookData.BookInformations.TomeNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                        PreviewTextInput="OnlyNumber_OnTextChanged" />
+                    <mah:NumericUpDown Minimum="0" Interval="1"
+                                       Value="{Binding BookData.BookInformations.TomeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       InterceptArrowKeys="True" InterceptMouseWheel="True" Speedup="True">
+                    </mah:NumericUpDown>
 
                 </StackPanel>
 
