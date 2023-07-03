@@ -8,7 +8,11 @@
       xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
       xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons"
       xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
+      
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
@@ -23,7 +27,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         
         <Image Grid.Column="0" MinHeight="60"
@@ -47,14 +50,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-
-                <Label Content="Titre" HorizontalContentAlignment="Left" />
-                <TextBox
-                    Text="{Binding BookData.BookInformations.Title, Mode=TwoWay,
-                    UpdateSourceTrigger=PropertyChanged}" />
-
-            </StackPanel>
+            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                     materialDesign:HintAssist.Hint="Titre"
+                     Text="{Binding BookData.BookInformations.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     FontSize="16"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            </TextBox>
 
             <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
 
