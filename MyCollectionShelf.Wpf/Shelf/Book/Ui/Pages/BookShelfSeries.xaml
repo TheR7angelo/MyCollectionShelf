@@ -59,7 +59,7 @@
 
                     <TextBox Grid.Row="0"
                              IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
-                             materialDesign:HintAssist.Hint="Titre"
+                             materialDesign:HintAssist.Hint="{Binding SeriesTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                              Text="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="16"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}">
@@ -69,7 +69,7 @@
                              TextWrapping="Wrap"
                              IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
                              AcceptsReturn="True" AcceptsTab="True"
-                             materialDesign:HintAssist.Hint="Résumer de la série"
+                             materialDesign:HintAssist.Hint="{Binding SeriesSummarize, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              Text="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     </TextBox>

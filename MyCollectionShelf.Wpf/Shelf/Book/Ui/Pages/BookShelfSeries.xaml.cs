@@ -33,6 +33,10 @@ public partial class BookShelfSeries
 
     private VBookShelf? VBookShelfOriginal { get; set; }
     
+    public string SeriesSummarize { get; } = BookShelfSeriesResources.Summarize;
+    
+    public string SeriesTitle { get; } = BookShelfSeriesResources.Title;
+    
     public BookShelfSeries()
     {
         InitializeComponent();
