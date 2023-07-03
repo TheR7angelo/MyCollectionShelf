@@ -1,11 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace MyCollectionShelf.Sql.Object.Book.Class.Table;
+namespace MyCollectionShelf.Sql.Table.Book;
 
 [Table("book_informations")]
 public class BookInformations : ISql, INotifyPropertyChanged

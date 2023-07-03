@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using MyCollectionShelf.Sql.Object.Interface;
 using SQLite;
 
-namespace MyCollectionShelf.Sql.Object.Book.Class.View;
+namespace MyCollectionShelf.Sql.View.Book;
 
 [Table("v_book_shelf")]
 public class VBookShelf : ISql, INotifyPropertyChanged

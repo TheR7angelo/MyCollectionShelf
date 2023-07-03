@@ -1,4 +1,4 @@
-﻿namespace MyCollectionShelf.Sql.Object.Interface;
+﻿namespace MyCollectionShelf.Sql;
 
 public interface ISql
 {
