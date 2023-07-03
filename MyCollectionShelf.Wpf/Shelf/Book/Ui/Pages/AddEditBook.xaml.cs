@@ -10,7 +10,7 @@ using MyCollectionShelf.Book;
 using MyCollectionShelf.Book.Object.Enum;
 using MyCollectionShelf.Book.Object.Static_Class;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
+using MyCollectionShelf.Sql.Table.Book;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.Window;
 using MyCollectionShelf.Wpf.Shelf.Common.Static;
 using MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons;
@@ -21,10 +21,10 @@ namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages;
 public partial class AddEditBook
 {
     public static readonly DependencyProperty BookDataProperty = DependencyProperty.Register(nameof(BookData),
-        typeof(Sql.Object.Book.Class.Table.Book), typeof(AddEditBook),
-        new PropertyMetadata(new Sql.Object.Book.Class.Table.Book()));
+        typeof(Sql.Table.Book.Book), typeof(AddEditBook),
+        new PropertyMetadata(new Sql.Table.Book.Book()));
     
-    public AddEditBook(Sql.Object.Book.Class.Table.Book? book = null)
+    public AddEditBook(Sql.Table.Book.Book? book = null)
     {
         using var sqlHandler = new SqlMainHandler();
         var db = sqlHandler.GetSqlConnection();
@@ -41,9 +41,9 @@ public partial class AddEditBook
         BookData = book;
     }
 
-    public Sql.Object.Book.Class.Table.Book BookData
+    public Sql.Table.Book.Book BookData
     {
-        get => (Sql.Object.Book.Class.Table.Book)GetValue(BookDataProperty);
+        get => (Sql.Table.Book.Book)GetValue(BookDataProperty);
         set => SetValue(BookDataProperty, value);
     }
 
@@ -186,7 +186,7 @@ public partial class AddEditBook
         BusySpinner.Visibility = Visibility.Hidden;
     }
     
-    private static async Task<Sql.Object.Book.Class.Table.Book> GetBook(string isbn)
+    private static async Task<Sql.Table.Book.Book> GetBook(string isbn)
     {
         var api = new BookAllApi();
         var book = await api.GetBookInformation(isbn);
@@ -202,7 +202,7 @@ public partial class AddEditBook
         return book;
     }
 
-    private void SetBook(Sql.Object.Book.Class.Table.Book book)
+    private void SetBook(Sql.Table.Book.Book book)
     {
         UpdateAuthor(book);
         
@@ -222,7 +222,7 @@ public partial class AddEditBook
         BookData = book;
     }
 
-    private void UpdateEditor(Sql.Object.Book.Class.Table.Book book)
+    private void UpdateEditor(Sql.Table.Book.Book book)
     {
         if (string.IsNullOrEmpty(book.BookInformations.BookEditor.Editor)) return;
         
@@ -237,7 +237,7 @@ public partial class AddEditBook
         if (!EditorsList.Contains(book.BookInformations.BookEditor)) EditorsList.Add(book.BookInformations.BookEditor);
     }
 
-    private void UpdateAuthor(Sql.Object.Book.Class.Table.Book book)
+    private void UpdateAuthor(Sql.Table.Book.Book book)
     {
         foreach (var author in book.BookInformations.BookAuthors)
         {

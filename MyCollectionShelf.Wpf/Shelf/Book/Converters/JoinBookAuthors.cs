@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
+using MyCollectionShelf.Sql.Table.Book;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Converters;
 

@@ -1,7 +1,6 @@
 using System.Collections.ObjectModel;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
-using MyCollectionShelf.Sql.Object.Interface;
+using MyCollectionShelf.Sql.Table.Book;
 using SQLiteNetExtensions.Extensions;
 
 namespace TestProjectMyCollectionShelf.Sql;

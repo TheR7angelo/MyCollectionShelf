@@ -5,8 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
-using MyCollectionShelf.Sql.Object.Book.Class.View;
+using MyCollectionShelf.Sql.Table.Book;
+using MyCollectionShelf.Sql.View.Book;
 using MyCollectionShelf.Wpf.Shelf.Common.Enum;
 using SQLite;
 

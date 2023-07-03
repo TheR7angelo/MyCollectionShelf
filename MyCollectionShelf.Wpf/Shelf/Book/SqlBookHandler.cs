@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
+using MyCollectionShelf.Sql.Table.Book;
 using SQLite;
 using SQLiteNetExtensions.Extensions;
 
@@ -17,11 +17,11 @@ public class SqlBookHandler : IDisposable
         Connection = sqlHander.GetSqlConnection();
     }
 
-    public Sql.Object.Book.Class.Table.Book GetBook(BookInformations bookInformations)
+    public Sql.Table.Book.Book GetBook(BookInformations bookInformations)
     {
-        var book = Connection.Query<Sql.Object.Book.Class.Table.Book>(
+        var book = Connection.Query<Sql.Table.Book.Book>(
             $"SELECT * FROM book WHERE book_information_fk = {bookInformations.Id}").First();
-        return Connection.GetWithChildren<Sql.Object.Book.Class.Table.Book>(book.Id, true);
+        return Connection.GetWithChildren<Sql.Table.Book.Book>(book.Id, true);
     }
 
     public void Dispose()

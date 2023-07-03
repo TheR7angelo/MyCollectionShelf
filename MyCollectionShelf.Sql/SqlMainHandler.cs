@@ -1,6 +1,5 @@
-﻿using MyCollectionShelf.Sql.Object.Book.Class.Table;
-using MyCollectionShelf.Sql.Object.Book.Class.View;
-using MyCollectionShelf.Sql.Object.Interface;
+﻿using MyCollectionShelf.Sql.Table.Book;
+using MyCollectionShelf.Sql.View.Book;
 using SQLite;
 
 namespace MyCollectionShelf.Sql;

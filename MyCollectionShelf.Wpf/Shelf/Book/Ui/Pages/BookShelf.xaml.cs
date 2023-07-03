@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Windows;
 using MyCollectionShelf.Sql;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
-using MyCollectionShelf.Sql.Object.Book.Class.View;
+using MyCollectionShelf.Sql.Table.Book;
+using MyCollectionShelf.Sql.View.Book;
 using MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 using MyCollectionShelf.Wpf.Shelf.Common.Static;
 using SQLiteNetExtensions.Extensions;

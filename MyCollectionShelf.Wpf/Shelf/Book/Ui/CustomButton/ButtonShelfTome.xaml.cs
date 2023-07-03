@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
+using MyCollectionShelf.Sql.Table.Book;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton;
 

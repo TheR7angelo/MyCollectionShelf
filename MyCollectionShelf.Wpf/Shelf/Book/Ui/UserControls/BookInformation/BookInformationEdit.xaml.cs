@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using MyCollectionShelf.Sql.Object.Book.Class.Table;
+using MyCollectionShelf.Sql.Table.Book;
 
 namespace MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls.BookInformation;
 
