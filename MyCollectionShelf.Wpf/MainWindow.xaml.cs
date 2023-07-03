@@ -9,6 +9,18 @@ namespace MyCollectionShelf.Wpf
         {
             InitializeComponent();
             
+            SetUpTheme();
+            // var cultureInfo = new System.Globalization.CultureInfo("fr-FR");
+            // Thread.CurrentThread.CurrentCulture = cultureInfo;
+            // Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            //
+            // var z = Thread.CurrentThread.CurrentUICulture;
+            // Console.WriteLine(z.Name);
+            // Console.WriteLine(z.EnglishName);
+        }
+
+        private void SetUpTheme()
+        {
             var palette = new PaletteHelper();
             var theme = palette.GetTheme();
             var baseTheme = theme.GetBaseTheme();
@@ -17,9 +29,8 @@ namespace MyCollectionShelf.Wpf
             {
                 ToggleButtonTheme.IsChecked = true;
             }
-
         }
-
+        
         private void ToggleButtonTheme_OnChecked(object sender, RoutedEventArgs e)
         {
             var palette = new PaletteHelper();

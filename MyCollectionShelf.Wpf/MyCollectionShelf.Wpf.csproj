@@ -118,7 +118,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Shelf\Book\Ui\" />
+      <Folder Include="Ui\Book\Ui\" />
     </ItemGroup>
   
     <ItemGroup>

@@ -1,0 +1,120 @@
+﻿<Page x:Class="MyCollectionShelf.Wpf.Ui.Book.Ui.Pages.BookShelfSeries"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Ui.Common.Converters"
+      xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.Ui.Pages"
+      xmlns:customButton="clr-namespace:MyCollectionShelf.Wpf.Ui.Book.Ui.CustomButton"
+
+      mc:Ignorable="d"
+
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+
+      Title="BookShelfSeries"
+
+      DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Page.Resources>
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+        <converters:InverseBooleanConverter x:Key="BooleanConverter" />
+    </Page.Resources>
+
+    <materialDesign:DialogHost x:Name="DialogHost" Identifier="RootDialog">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" MinHeight="60"
+                       Margin="0, 0, 10, 0"
+                       Effect="{StaticResource StyleDropShadowEffect}"
+                       Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                    RelativeSource={RelativeSource AncestorType={x:Type local:BookShelfSeries}},
+                                    Converter={StaticResource StringToImageSourceConverter}}"
+                       Stretch="UniformToFill"
+                       MouseLeftButtonDown="ImageCover_OnMouseLeftButtonDown">
+                </Image>
+
+                <Grid Grid.Column="1" Grid.ColumnSpan="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="15" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0"
+                             IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:HintAssist.Hint="Titre"
+                             Text="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="16"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    </TextBox>
+
+                    <TextBox Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                             TextWrapping="Wrap"
+                             IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
+                             AcceptsReturn="True" AcceptsTab="True"
+                             materialDesign:HintAssist.Hint="Résumer de la série"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             Text="{Binding VBookShelf.SeriesSummarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+
+                    <ToggleButton Grid.Row="2" x:Name="ToggleEdit"
+                                  VerticalAlignment="Top" HorizontalAlignment="Right"
+                                  Margin="0, 5, 5, 0"
+                                  Height="50" Width="50"
+                                  IsChecked="False"
+                                  Unchecked="ToggleEdit_OnUnchecked"
+                                  Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
+                        <materialDesign:PackIcon Kind="NoteEdit" />
+                    </ToggleButton>
+
+                </Grid>
+
+            </Grid>
+
+            <ScrollViewer Grid.Row="2"
+                          Background="{DynamicResource MaterialDesignPaper}"
+                          VerticalScrollBarVisibility="Auto">
+
+                <ItemsControl
+                    ItemsSource="{Binding BookInformations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <customButton:ButtonShelfTome
+                                BookInformations="{Binding ., Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                Effect="{StaticResource StyleDropShadowEffect}"
+                                Margin="4.5"
+                                Click="ButtonShelfTome_OnClick">
+                            </customButton:ButtonShelfTome>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </Grid>
+
+    </materialDesign:DialogHost>
+
+</Page>
