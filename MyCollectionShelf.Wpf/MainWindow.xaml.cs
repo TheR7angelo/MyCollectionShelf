@@ -10,13 +10,6 @@ namespace MyCollectionShelf.Wpf
             InitializeComponent();
             
             SetUpTheme();
-            // var cultureInfo = new System.Globalization.CultureInfo("fr-FR");
-            // Thread.CurrentThread.CurrentCulture = cultureInfo;
-            // Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            
-            // var z = Thread.CurrentThread.CurrentUICulture;
-            // Console.WriteLine(z.Name);
-            // Console.WriteLine(z.EnglishName);
         }
 
         private void SetUpTheme()
