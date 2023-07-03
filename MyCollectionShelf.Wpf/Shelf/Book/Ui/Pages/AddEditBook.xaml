@@ -25,15 +25,14 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
-        <Button Grid.Column="0" Background="Transparent"
-                Click="ButtonSelectPicture_OnClick">
-            <Image
-                Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToImageSourceConverter}}"
-                MinWidth="163" MinHeight="238"
-                Stretch="Uniform">
-            </Image>
-        </Button>
+        
+        <Image Grid.Column="0" MinHeight="60"
+               Margin="0, 0, 10, 0"
+               Effect="{StaticResource StyleDropShadowEffect}"
+               Source="{Binding BookData.BookInformations.BookCover.Storage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource StringToImageSourceConverter}}"
+               Stretch="UniformToFill"
+               MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown">
+        </Image>
 
         <Grid Grid.Column="1">
 
