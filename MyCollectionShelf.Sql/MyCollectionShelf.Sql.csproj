@@ -10,5 +10,5 @@
       <PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
       <PackageReference Include="SQLite.Net.Extensions" Version="3.0.0" />
     </ItemGroup>
-
+    
 </Project>
