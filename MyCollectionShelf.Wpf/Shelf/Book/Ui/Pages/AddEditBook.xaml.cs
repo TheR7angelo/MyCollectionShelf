@@ -110,7 +110,7 @@ public partial class AddEditBook
         collection.AddRemoveList(function, item, new BookGenre());
     }
     
-    private void ButtonSelectPicture_OnClick(object sender, RoutedEventArgs e)
+    private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
         Console.WriteLine("heyy");
     }
