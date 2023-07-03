@@ -1,0 +1,26 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="AveragePage" xml:space="preserve">
+        <value>Average page</value>
+    </data>
+    <data name="NotRead" xml:space="preserve">
+        <value>Not read</value>
+    </data>
+    <data name="Owned" xml:space="preserve">
+        <value>Owned</value>
+    </data>
+    <data name="Read" xml:space="preserve">
+        <value>Read</value>
+    </data>
+</root>
