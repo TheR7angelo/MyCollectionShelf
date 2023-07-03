@@ -231,16 +231,21 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Grid.Column="2">
+                <Border Grid.Row="1" Grid.Column="2" 
+                        BorderBrush="{StaticResource MaterialDesignDarkForeground}"
+                        BorderThickness="1" CornerRadius="3"
+                        >
+                    <StackPanel>
 
-                    <Label Content="Tome" HorizontalContentAlignment="Left" />
+                        <Label Content="Tome" HorizontalContentAlignment="Left" />
 
-                    <mah:NumericUpDown Minimum="0" Interval="1"
-                                       Value="{Binding BookData.BookInformations.TomeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                       InterceptArrowKeys="True" InterceptMouseWheel="True" Speedup="True">
-                    </mah:NumericUpDown>
+                        <mah:NumericUpDown Minimum="0" Interval="1"
+                                           Value="{Binding BookData.BookInformations.TomeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           InterceptArrowKeys="True" InterceptMouseWheel="True" Speedup="True">
+                        </mah:NumericUpDown>
 
-                </StackPanel>
+                    </StackPanel>
+                </Border>
 
                 <StackPanel Grid.Row="2" Grid.Column="0">
 
