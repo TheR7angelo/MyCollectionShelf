@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using System.Threading;
+using System.Windows;
 using MyCollectionShelf.Wpf.Shelf.Common.Class;
 
 namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls;
@@ -9,6 +11,7 @@ namespace MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls;
 public partial class LanguageControl
 {
     public List<Language> Languages { get; }
+    public Language LanguageSelected { get; set; }
 
     public LanguageControl()
     {
@@ -23,6 +26,14 @@ public partial class LanguageControl
         }).ToList();
     }
 
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        Thread.CurrentThread.CurrentCulture = LanguageSelected.CultureInfo;
+        Thread.CurrentThread.CurrentUICulture = LanguageSelected.CultureInfo;
+
+        InitializeComponent();
+    }
+    
     private static IEnumerable<CultureInfo> GetAvailableCultures()
     {
         // Création du gestionnaire de ressources

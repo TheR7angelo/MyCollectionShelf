@@ -18,8 +18,13 @@
 
         <ComboBox Grid.Column="0"
                   ItemsSource="{Binding Languages, Mode=OneWay, RelativeSource={RelativeSource AncestorType={x:Type local:LanguageControl}}}"
-                  DisplayMemberPath="DisplayName">
+                  DisplayMemberPath="DisplayName"
+                  SelectedItem="{Binding LanguageSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:LanguageControl}}}">
         </ComboBox>
+        
+        <Button Grid.Column="1" Content="Valid"
+                Click="ButtonBase_OnClick">
+        </Button>
 
     </Grid>
 
