@@ -1,0 +1,17 @@
+﻿<Button x:Class="MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons.ButtonAddRemove"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons"
+        mc:Ignorable="d">
+
+    <ContentControl>
+
+        <svgc:SvgViewbox
+            Source="{Binding ImageUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type buttons:ButtonAddRemove}}}" />
+
+    </ContentControl>
+
+</Button>

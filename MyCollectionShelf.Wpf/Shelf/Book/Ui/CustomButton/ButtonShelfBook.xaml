@@ -1,0 +1,104 @@
+﻿<Button x:Class="MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton.ButtonShelfBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.CustomButton"
+        xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
+
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+
+        Style="{StaticResource MaterialDesignOutlinedLightButton}"
+
+        Height="{Binding ActualHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}"
+        Width="{Binding ActualWidth, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}"
+
+        Padding="5"
+        
+        mc:Ignorable="d">
+
+    <Button.Resources>
+        <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+    </Button.Resources>
+    
+    <Button.ToolTip>
+        <!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+        <ToolTip DataContext="{Binding PlacementTarget.VBookShelf, RelativeSource={RelativeSource Mode=Self}}" 
+                 Width="{Binding PlacementTarget.ActualWidth, RelativeSource={RelativeSource Mode=Self}}" 
+                 Height="{Binding PlacementTarget.ActualHeight, RelativeSource={RelativeSource Mode=Self}}"
+                 Placement="Mouse">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <TextBox Text="{Binding Path=SeriesSummarize}" 
+                         TextWrapping="Wrap" 
+                         Width="{Binding Parent.ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ToolTip}}" 
+                         Height="{Binding Parent.ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ToolTip}}" />
+            </ScrollViewer>
+        </ToolTip>
+        <!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
+    </Button.ToolTip>
+
+    <Button.Content>
+
+        <StackPanel Orientation="Vertical">
+
+            <Image MinWidth="187" MaxWidth="187"
+                   MinHeight="265" MaxHeight="265"
+                   Source="{Binding VBookShelf.BookSeriesCover, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                    RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}},
+                                    Converter={StaticResource StringToImageSourceConverter}}"
+                   Stretch="Uniform">
+            </Image>
+
+            <Label HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Top"
+                   Content="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                                     RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+            </Label>
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Center" HorizontalAlignment="Center"
+                       Content="{Binding Owned, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                                 RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                </Label>
+                
+                <Label Grid.Row="1" Grid.Column="0"
+                       HorizontalContentAlignment="Left" HorizontalAlignment="Left"
+                       Content="{Binding Read, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                                 RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                </Label>
+                
+                <Label Grid.Row="1" Grid.Column="1"
+                       HorizontalContentAlignment="Right" HorizontalAlignment="Right"
+                       Content="{Binding NotRead, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                                 RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                </Label>
+                
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       HorizontalContentAlignment="Center" HorizontalAlignment="Center"
+                       Content="{Binding AveragePage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged,
+                                 RelativeSource={RelativeSource AncestorType={x:Type local:ButtonShelfBook}}}">
+                </Label>
+                
+            </Grid>
+
+        </StackPanel>
+
+    </Button.Content>
+
+</Button>
