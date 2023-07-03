@@ -130,6 +130,10 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>BookShelfSeriesResources.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Update="Shelf\Book\Ui\CustomButton\ButtonShelfBookResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>ButtonShelfBookResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -142,6 +146,11 @@
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>BookShelfSeriesResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Shelf\Book\Ui\CustomButton\ButtonShelfBookResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ButtonShelfBookResources.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 
