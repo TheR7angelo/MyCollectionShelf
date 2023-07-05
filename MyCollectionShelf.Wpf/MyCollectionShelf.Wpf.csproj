@@ -119,6 +119,7 @@
 
     <ItemGroup>
       <Folder Include="Shelf\Book\Ui\" />
+      <Folder Include="Shelf\Book\Ui\UserControls\AddEditBook\" />
     </ItemGroup>
   
     <ItemGroup>
