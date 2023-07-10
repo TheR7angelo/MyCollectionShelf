@@ -11,16 +11,16 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d"
-      
+
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-      
+
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
         
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
-        
+        <converters:InverseBooleanConverter x:Key="BooleanConverter" />
+
     </Page.Resources>
 
     <Grid>
@@ -29,7 +29,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Image Grid.Column="0" MinHeight="60"
                Margin="0, 0, 10, 0"
                Effect="{StaticResource StyleDropShadowEffect}"
@@ -40,345 +40,377 @@
 
         <Grid Grid.Column="1">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+                <TextBox materialDesign:HintAssist.Hint="Titre"
+                         Text="{Binding BookData.BookInformations.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="16"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
 
-            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                     materialDesign:HintAssist.Hint="Titre"
-                     Text="{Binding BookData.BookInformations.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     FontSize="16"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
-            </TextBox>
-
-            <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Grid.Row="0" Grid.Column="0">
-
-                    <Label Content="Auteur" HorizontalContentAlignment="Left" />
-
-                    <ListBox ItemsSource="{Binding BookData.BookInformations.BookAuthors}">
-
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ListBoxItem">
-                                            <ContentPresenter />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                                <Setter Property="Tag"
-                                        Value="{Binding ItemsSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}" />
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="25" />
-                                        <ColumnDefinition Width="25" />
-                                        <ColumnDefinition Width="25" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <ComboBox Grid.Column="0"
-                                              ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                              DisplayMemberPath="NameConcat"
-                                              SelectedItem="{Binding .}"
-                                              SelectionChanged="SelectorAuthor_OnSelectionChanged">
-                                    </ComboBox>
-
-                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove"
-                                                             Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                             Click="ButtonAddRemoveAuthors_OnClick" />
-
-                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add"
-                                                             Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                             Click="ButtonAddRemoveAuthors_OnClick" />
-
-                                    <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
-
-                                </Grid>
-
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-
-                    </ListBox>
-
-                </StackPanel>
+                <ContentControl Style="{StaticResource HoverBorderStyle}" Height="250" Width="250"/>
                 
-                <ComboBox Grid.Row="0" Grid.Column="1"
-                          materialDesign:HintAssist.Hint="Éditeur"
-                          ItemsSource="{Binding EditorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          DisplayMemberPath="Editor"
-                          Text="{Binding BookData.BookInformations.BookEditor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding BookData.BookInformations.BookEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                          IsEditable="True"
-                          Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                </ComboBox>
-
-                <StackPanel Grid.Row="0" Grid.Column="2">
-
-                    <Label Content="Date de parution" HorizontalContentAlignment="Left" />
-
-                    <DatePicker
-                        SelectedDate="{Binding BookData.BookInformations.PublishDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                </StackPanel>
-
-                <StackPanel Grid.Row="1" Grid.Column="0">
-
-                    <Label Content="Genres" HorizontalContentAlignment="Left" />
-
-                    <ListBox
-                        ItemsSource="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="ListBoxItem">
-                                            <ContentPresenter />
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="25" />
-                                        <ColumnDefinition Width="25" />
-                                        <ColumnDefinition Width="25" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <ComboBox Grid.Column="0" IsEditable="True"
-                                              ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                              DisplayMemberPath="Genre"
-                                              Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                              SelectionChanged="SelectorGenre_OnSelectionChanged">
-                                    </ComboBox>
-
-                                    <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove"
-                                                             Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                             Click="ButtonAddRemoveGenres_OnClick" />
-
-                                    <buttons:ButtonAddRemove Grid.Column="2" Mode="Add"
-                                                             Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}"
-                                                             Click="ButtonAddRemoveGenres_OnClick" />
-
-                                    <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" />
-
-                                </Grid>
-
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-
-                    </ListBox>
-
-                </StackPanel>
-
-                <StackPanel Grid.Row="1" Grid.Column="1">
-
-                    <Label Content="Serie" HorizontalContentAlignment="Left" />
-
+                <Border>
                     <Grid>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                    
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <ComboBox Grid.Column="0" IsEditable="True"
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Serie" HorizontalContentAlignment="Left" />
+
+                        <ComboBox Grid.Row="1" Grid.Column="0" IsEditable="True"
                                   ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   DisplayMemberPath="Title"
                                   SelectedItem="{Binding BookData.BookInformations.BookSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Text="{Binding BookData.BookInformations.BookSeries.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                  Text="{Binding BookData.BookInformations.BookSeries.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
-                        <buttons:SvgButton Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" Height="25" />
+                        <buttons:SvgButton Grid.Row="1" Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" Height="25" />
 
+                        <ToggleButton Grid.Row="1" Grid.Column="2" x:Name="ToggleEdit"
+                                      VerticalAlignment="Top" HorizontalAlignment="Right"
+                                      Margin="0, 5, 5, 0"
+                                      Height="50" Width="50"
+                                      IsChecked="False"
+
+                                      Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
+                            <materialDesign:PackIcon Kind="NoteEdit" />
+                        </ToggleButton>
+                    
                     </Grid>
-
-                </StackPanel>
-
-                <Border Grid.Row="1" Grid.Column="2" 
-                        BorderBrush="{StaticResource MaterialDesignDarkForeground}"
-                        BorderThickness="1" CornerRadius="3"
-                        >
-                    <StackPanel>
-
-                        <Label Content="Tome" HorizontalContentAlignment="Left" />
-
-                        <mah:NumericUpDown Minimum="0" Interval="1"
-                                           Value="{Binding BookData.BookInformations.TomeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                           InterceptArrowKeys="True" InterceptMouseWheel="True" Speedup="True">
-                        </mah:NumericUpDown>
-
-                    </StackPanel>
+                    
                 </Border>
 
-                <StackPanel Grid.Row="2" Grid.Column="0">
-
-                    <Label Content="Résumer" HorizontalContentAlignment="Left" />
-
-                    <TextBox AcceptsReturn="True" AcceptsTab="True"
-                             MinHeight="110" MaxHeight="110"
-                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             Text="{Binding BookData.BookInformations.Summarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    </TextBox>
-
-                </StackPanel>
-
-                <StackPanel Grid.Row="2" Grid.Column="1">
-
-                    <Label Content="Commentaire" HorizontalContentAlignment="Left" />
-
-                    <TextBox AcceptsReturn="True" AcceptsTab="True"
-                             MinHeight="110" MaxHeight="110"
-                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto"
-                             Text="{Binding BookData.BookNote.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                    </TextBox>
-
-                </StackPanel>
-
-                <Grid Grid.Row="2" Grid.Column="2">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Row="0" Grid.Column="0">
-
-                        <Label Content="Nombre de page" HorizontalContentAlignment="Left" />
-
-                        <TextBox
-                            Text="{Binding BookData.BookInformations.PageNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                            PreviewTextInput="OnlyNumber_OnTextChanged" />
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="0" Grid.Column="1">
-
-                        <Label Content="Prix" HorizontalContentAlignment="Left" />
-
-                        <TextBox
-                            Text="{Binding BookData.BookNote.Price, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                            PreviewTextInput="OnlyNumber_OnTextChanged" />
-
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-
-                        <Label Content="Code ISBN" HorizontalContentAlignment="Left" />
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBox Grid.Column="0"
-                                     Text="{Binding BookData.BookInformations.Isbn, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                                     MinWidth="100"
-                                     PreviewTextInput="OnlyNumber_OnTextChanged"
-                                     KeyDown="IsbnSearch_OnKeyDown" />
-
-                            <Button Grid.Column="1" Content="Rechercher" Click="ButtonISBN_OnClick" />
-
-                        </Grid>
-
-                        <Button Click="ButtonScan_OnClick">
-                            <StackPanel>
-                                <Label Content="Scanner" HorizontalAlignment="Center" />
-                                <svgc:SvgViewbox Source="/Resources/Assets/Book/barcode.svg" MaxHeight="25" />
-                            </StackPanel>
-                        </Button>
-
-                    </StackPanel>
-
-                </Grid>
-
-            </Grid>
-
-            <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <CheckBox Grid.Row="0" x:Name="CheckBoxBookIsRead" Content="Livre lu"
-                          IsChecked="{Binding BookData.BookNote.IsRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                <StackPanel Grid.Row="1">
-
-                    <Label Content="Date commencé" HorizontalContentAlignment="Left" />
-
-                    <DatePicker
-                        SelectedDate="{Binding BookData.BookNote.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                </StackPanel>
-
-                <StackPanel Grid.Row="2"
-                            Visibility="{Binding ElementName=CheckBoxBookIsRead, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                    <Label Content="Date terminé" HorizontalContentAlignment="Left" />
-
-                    <DatePicker
-                        SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-                </StackPanel>
-
-            </Grid>
-
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-
-                <Button x:Name="ButtonValid" Content="Valider" Click="ButtonValidBook_OnClick" />
-                <userControls:BusySpinner x:Name="BusySpinner" Width="32" Background="Transparent" Foreground="Black"
-                                          Visibility="Hidden" />
-
-            </Grid>
+            </StackPanel>
 
         </Grid>
+
+        <!-- <Grid Grid.Column="1"> -->
+        <!-- -->
+        <!--     <Grid.RowDefinitions> -->
+        <!--         <RowDefinition Height="Auto" /> -->
+        <!--         <RowDefinition Height="*" /> -->
+        <!--         <RowDefinition Height="Auto" /> -->
+        <!--     </Grid.RowDefinitions> -->
+        <!-- -->
+        <!--     <Grid.ColumnDefinitions> -->
+        <!--         <ColumnDefinition Width="*" /> -->
+        <!--         <ColumnDefinition Width="Auto" /> -->
+        <!--     </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!-- -->
+        <!--     <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"> -->
+        <!-- -->
+        <!--         <Grid.RowDefinitions> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--         </Grid.RowDefinitions> -->
+        <!-- -->
+        <!--         <Grid.ColumnDefinitions> -->
+        <!--             <ColumnDefinition Width="*" /> -->
+        <!--             <ColumnDefinition Width="*" /> -->
+        <!--             <ColumnDefinition Width="Auto" /> -->
+        <!--         </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="0" Grid.Column="0"> -->
+        <!-- -->
+        <!--             <Label Content="Auteur" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <ListBox ItemsSource="{Binding BookData.BookInformations.BookAuthors}"> -->
+        <!-- -->
+        <!--                 <ListBox.ItemContainerStyle> -->
+        <!--                     <Style TargetType="ListBoxItem"> -->
+        <!--                         <Setter Property="FocusVisualStyle" Value="{x:Null}" /> -->
+        <!--                         <Setter Property="Template"> -->
+        <!--                             <Setter.Value> -->
+        <!--                                 <ControlTemplate TargetType="ListBoxItem"> -->
+        <!--                                     <ContentPresenter /> -->
+        <!--                                 </ControlTemplate> -->
+        <!--                             </Setter.Value> -->
+        <!--                         </Setter> -->
+        <!--                         <Setter Property="Tag" -->
+        <!--                                 Value="{Binding ItemsSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}" /> -->
+        <!--                     </Style> -->
+        <!--                 </ListBox.ItemContainerStyle> -->
+        <!-- -->
+        <!--                 <ListBox.ItemTemplate> -->
+        <!--                     <DataTemplate> -->
+        <!-- -->
+        <!--                         <Grid> -->
+        <!--                             <Grid.ColumnDefinitions> -->
+        <!--                                 <ColumnDefinition Width="*" /> -->
+        <!--                                 <ColumnDefinition Width="25" /> -->
+        <!--                                 <ColumnDefinition Width="25" /> -->
+        <!--                                 <ColumnDefinition Width="25" /> -->
+        <!--                             </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!--                             <ComboBox Grid.Column="0" -->
+        <!--                                       ItemsSource="{Binding AuthorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}" -->
+        <!--                                       DisplayMemberPath="NameConcat" -->
+        <!--                                       SelectedItem="{Binding .}" -->
+        <!--                                       SelectionChanged="SelectorAuthor_OnSelectionChanged"> -->
+        <!--                             </ComboBox> -->
+        <!-- -->
+        <!--                             <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" -->
+        <!--                                                      Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}" -->
+        <!--                                                      Click="ButtonAddRemoveAuthors_OnClick" /> -->
+        <!-- -->
+        <!--                             <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" -->
+        <!--                                                      Tag="{Binding BookData.BookInformations.BookAuthors, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}" -->
+        <!--                                                      Click="ButtonAddRemoveAuthors_OnClick" /> -->
+        <!-- -->
+        <!--                             <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" /> -->
+        <!-- -->
+        <!--                         </Grid> -->
+        <!-- -->
+        <!--                     </DataTemplate> -->
+        <!--                 </ListBox.ItemTemplate> -->
+        <!-- -->
+        <!--             </ListBox> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!--          -->
+        <!--         <ComboBox Grid.Row="0" Grid.Column="1" -->
+        <!--                   materialDesign:HintAssist.Hint="Éditeur" -->
+        <!--                   ItemsSource="{Binding EditorsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+        <!--                   DisplayMemberPath="Editor" -->
+        <!--                   Text="{Binding BookData.BookInformations.BookEditor.Editor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+        <!--                   SelectedItem="{Binding BookData.BookInformations.BookEditor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+        <!--                   IsEditable="True" -->
+        <!--                   Style="{StaticResource MaterialDesignOutlinedComboBox}"> -->
+        <!--         </ComboBox> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="0" Grid.Column="2"> -->
+        <!-- -->
+        <!--             <Label Content="Date de parution" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <DatePicker -->
+        <!--                 SelectedDate="{Binding BookData.BookInformations.PublishDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="1" Grid.Column="0"> -->
+        <!-- -->
+        <!--             <Label Content="Genres" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <ListBox -->
+        <!--                 ItemsSource="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"> -->
+        <!-- -->
+        <!--                 <ListBox.ItemContainerStyle> -->
+        <!--                     <Style TargetType="ListBoxItem"> -->
+        <!--                         <Setter Property="FocusVisualStyle" Value="{x:Null}" /> -->
+        <!--                         <Setter Property="Template"> -->
+        <!--                             <Setter.Value> -->
+        <!--                                 <ControlTemplate TargetType="ListBoxItem"> -->
+        <!--                                     <ContentPresenter /> -->
+        <!--                                 </ControlTemplate> -->
+        <!--                             </Setter.Value> -->
+        <!--                         </Setter> -->
+        <!--                     </Style> -->
+        <!--                 </ListBox.ItemContainerStyle> -->
+        <!-- -->
+        <!--                 <ListBox.ItemTemplate> -->
+        <!--                     <DataTemplate> -->
+        <!-- -->
+        <!--                         <Grid> -->
+        <!--                             <Grid.ColumnDefinitions> -->
+        <!--                                 <ColumnDefinition Width="*" /> -->
+        <!--                                 <ColumnDefinition Width="25" /> -->
+        <!--                                 <ColumnDefinition Width="25" /> -->
+        <!--                                 <ColumnDefinition Width="25" /> -->
+        <!--                             </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!--                             <ComboBox Grid.Column="0" IsEditable="True" -->
+        <!--                                       ItemsSource="{Binding GenresList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}" -->
+        <!--                                       DisplayMemberPath="Genre" -->
+        <!--                                       Text="{Binding Genre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+        <!--                                       SelectionChanged="SelectorGenre_OnSelectionChanged"> -->
+        <!--                             </ComboBox> -->
+        <!-- -->
+        <!--                             <buttons:ButtonAddRemove Grid.Column="1" Mode="Remove" -->
+        <!--                                                      Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}" -->
+        <!--                                                      Click="ButtonAddRemoveGenres_OnClick" /> -->
+        <!-- -->
+        <!--                             <buttons:ButtonAddRemove Grid.Column="2" Mode="Add" -->
+        <!--                                                      Tag="{Binding BookData.BookInformations.BookGenres, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:AddEditBook}}}" -->
+        <!--                                                      Click="ButtonAddRemoveGenres_OnClick" /> -->
+        <!-- -->
+        <!--                             <buttons:SvgButton Grid.Column="3" ImageUri="/Resources/Assets/liste.svg" /> -->
+        <!-- -->
+        <!--                         </Grid> -->
+        <!-- -->
+        <!--                     </DataTemplate> -->
+        <!--                 </ListBox.ItemTemplate> -->
+        <!-- -->
+        <!--             </ListBox> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="1" Grid.Column="1"> -->
+        <!-- -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--         <Border Grid.Row="1" Grid.Column="2"  -->
+        <!--                 BorderBrush="{StaticResource MaterialDesignDarkForeground}" -->
+        <!--                 BorderThickness="1" CornerRadius="3" -->
+        <!--                 > -->
+        <!--             <StackPanel> -->
+        <!-- -->
+        <!--                 <Label Content="Tome" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--                 <mah:NumericUpDown Minimum="0" Interval="1" -->
+        <!--                                    Value="{Binding BookData.BookInformations.TomeNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+        <!--                                    InterceptArrowKeys="True" InterceptMouseWheel="True" Speedup="True"> -->
+        <!--                 </mah:NumericUpDown> -->
+        <!-- -->
+        <!--             </StackPanel> -->
+        <!--         </Border> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="2" Grid.Column="0"> -->
+        <!-- -->
+        <!--             <Label Content="Résumer" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <TextBox AcceptsReturn="True" AcceptsTab="True" -->
+        <!--                      MinHeight="110" MaxHeight="110" -->
+        <!--                      ScrollViewer.HorizontalScrollBarVisibility="Auto" -->
+        <!--                      ScrollViewer.VerticalScrollBarVisibility="Auto" -->
+        <!--                      Text="{Binding BookData.BookInformations.Summarize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"> -->
+        <!--             </TextBox> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="2" Grid.Column="1"> -->
+        <!-- -->
+        <!--             <Label Content="Commentaire" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <TextBox AcceptsReturn="True" AcceptsTab="True" -->
+        <!--                      MinHeight="110" MaxHeight="110" -->
+        <!--                      ScrollViewer.HorizontalScrollBarVisibility="Auto" -->
+        <!--                      ScrollViewer.VerticalScrollBarVisibility="Auto" -->
+        <!--                      Text="{Binding BookData.BookNote.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"> -->
+        <!--             </TextBox> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--         <Grid Grid.Row="2" Grid.Column="2"> -->
+        <!-- -->
+        <!--             <Grid.RowDefinitions> -->
+        <!--                 <RowDefinition Height="Auto" /> -->
+        <!--                 <RowDefinition Height="Auto" /> -->
+        <!--             </Grid.RowDefinitions> -->
+        <!-- -->
+        <!--             <Grid.ColumnDefinitions> -->
+        <!--                 <ColumnDefinition Width="*" /> -->
+        <!--                 <ColumnDefinition Width="*" /> -->
+        <!--             </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!--             <StackPanel Grid.Row="0" Grid.Column="0"> -->
+        <!-- -->
+        <!--                 <Label Content="Nombre de page" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--                 <TextBox -->
+        <!--                     Text="{Binding BookData.BookInformations.PageNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" -->
+        <!--                     PreviewTextInput="OnlyNumber_OnTextChanged" /> -->
+        <!-- -->
+        <!--             </StackPanel> -->
+        <!-- -->
+        <!--             <StackPanel Grid.Row="0" Grid.Column="1"> -->
+        <!-- -->
+        <!--                 <Label Content="Prix" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--                 <TextBox -->
+        <!--                     Text="{Binding BookData.BookNote.Price, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" -->
+        <!--                     PreviewTextInput="OnlyNumber_OnTextChanged" /> -->
+        <!-- -->
+        <!--             </StackPanel> -->
+        <!-- -->
+        <!--             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"> -->
+        <!-- -->
+        <!--                 <Label Content="Code ISBN" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--                 <Grid> -->
+        <!--                     <Grid.ColumnDefinitions> -->
+        <!--                         <ColumnDefinition Width="*" /> -->
+        <!--                         <ColumnDefinition Width="Auto" /> -->
+        <!--                     </Grid.ColumnDefinitions> -->
+        <!-- -->
+        <!--                     <TextBox Grid.Column="0" -->
+        <!--                              Text="{Binding BookData.BookInformations.Isbn, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" -->
+        <!--                              MinWidth="100" -->
+        <!--                              PreviewTextInput="OnlyNumber_OnTextChanged" -->
+        <!--                              KeyDown="IsbnSearch_OnKeyDown" /> -->
+        <!-- -->
+        <!--                     <Button Grid.Column="1" Content="Rechercher" Click="ButtonISBN_OnClick" /> -->
+        <!-- -->
+        <!--                 </Grid> -->
+        <!-- -->
+        <!--                 <Button Click="ButtonScan_OnClick"> -->
+        <!--                     <StackPanel> -->
+        <!--                         <Label Content="Scanner" HorizontalAlignment="Center" /> -->
+        <!--                         <svgc:SvgViewbox Source="/Resources/Assets/Book/barcode.svg" MaxHeight="25" /> -->
+        <!--                     </StackPanel> -->
+        <!--                 </Button> -->
+        <!-- -->
+        <!--             </StackPanel> -->
+        <!-- -->
+        <!--         </Grid> -->
+        <!-- -->
+        <!--     </Grid> -->
+        <!-- -->
+        <!--     <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"> -->
+        <!-- -->
+        <!--         <Grid.RowDefinitions> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--             <RowDefinition Height="Auto" /> -->
+        <!--         </Grid.RowDefinitions> -->
+        <!-- -->
+        <!--         <CheckBox Grid.Row="0" x:Name="CheckBoxBookIsRead" Content="Livre lu" -->
+        <!--                   IsChecked="{Binding BookData.BookNote.IsRead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="1"> -->
+        <!-- -->
+        <!--             <Label Content="Date commencé" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <DatePicker -->
+        <!--                 SelectedDate="{Binding BookData.BookNote.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--         <StackPanel Grid.Row="2" -->
+        <!--                     Visibility="{Binding ElementName=CheckBoxBookIsRead, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"> -->
+        <!-- -->
+        <!--             <Label Content="Date terminé" HorizontalContentAlignment="Left" /> -->
+        <!-- -->
+        <!--             <DatePicker -->
+        <!--                 SelectedDate="{Binding BookData.BookNote.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" /> -->
+        <!-- -->
+        <!--         </StackPanel> -->
+        <!-- -->
+        <!--     </Grid> -->
+        <!-- -->
+        <!--     <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"> -->
+        <!-- -->
+        <!--         <Button x:Name="ButtonValid" Content="Valider" Click="ButtonValidBook_OnClick" /> -->
+        <!--         <userControls:BusySpinner x:Name="BusySpinner" Width="32" Background="Transparent" Foreground="Black" -->
+        <!--                                   Visibility="Hidden" /> -->
+        <!-- -->
+        <!--     </Grid> -->
+        <!-- -->
+        <!-- </Grid> -->
 
     </Grid>
 

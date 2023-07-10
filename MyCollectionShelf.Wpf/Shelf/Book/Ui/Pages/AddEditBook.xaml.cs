@@ -176,14 +176,14 @@ public partial class AddEditBook
 
     private async Task GetIsbnBook(string isbn)
     {
-        ButtonValid.Visibility = Visibility.Hidden;
-        BusySpinner.Visibility = Visibility.Visible;
-
-        var book = await GetBook(isbn);
-        SetBook(book);
-
-        ButtonValid.Visibility = Visibility.Visible;
-        BusySpinner.Visibility = Visibility.Hidden;
+        // ButtonValid.Visibility = Visibility.Hidden;
+        // BusySpinner.Visibility = Visibility.Visible;
+        //
+        // var book = await GetBook(isbn);
+        // SetBook(book);
+        //
+        // ButtonValid.Visibility = Visibility.Visible;
+        // BusySpinner.Visibility = Visibility.Hidden;
     }
     
     private static async Task<Sql.Table.Book.Book> GetBook(string isbn)
