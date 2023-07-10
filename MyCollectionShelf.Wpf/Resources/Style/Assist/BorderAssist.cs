@@ -1,13 +1,18 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace MyCollectionShelf.Wpf.Resources.Style.ContentControl;
+namespace MyCollectionShelf.Wpf.Resources.Style.Assist;
 
-public static class CornerRadiusHelper
+public static class BorderAssist
 {
-    public static readonly DependencyProperty CornerRadiusProperty =
-        DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(CornerRadiusHelper), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender, OnCornerRadiusPropertyChanged));
+    #region Border
 
+    public static readonly DependencyProperty CornerRadiusProperty =
+        DependencyProperty.RegisterAttached("CornerRadius", typeof(CornerRadius), typeof(BorderAssist),
+            new FrameworkPropertyMetadata(default(CornerRadius),
+                FrameworkPropertyMetadataOptions.AffectsRender |
+                FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender, OnCornerRadiusPropertyChanged));
+    
     public static CornerRadius GetCornerRadius(DependencyObject obj)
     {
         return (CornerRadius)obj.GetValue(CornerRadiusProperty);
@@ -20,10 +25,11 @@ public static class CornerRadiusHelper
 
     private static void OnCornerRadiusPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        // This method is called when the CornerRadius property is changed
         if (d is Border border)
         {
             border.CornerRadius = (CornerRadius)e.NewValue;
         }
     }
+
+    #endregion
 }
