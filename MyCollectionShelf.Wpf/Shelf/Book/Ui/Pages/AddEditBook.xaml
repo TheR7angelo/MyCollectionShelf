@@ -17,7 +17,7 @@
       DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Page.Resources>
-        
+
         <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
         <converters:InverseBooleanConverter x:Key="BooleanConverter" />
 
@@ -49,8 +49,16 @@
                          IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
                 </TextBox>
 
-                <ContentControl Style="{StaticResource HoverBorderStyle}" Height="250" Width="250"/>
-                
+                <ContentControl materialDesign:HintAssist.Hint="Serie"
+                                materialDesign:HintAssist.Background="Chartreuse"
+                                Style="{StaticResource HoverBorderStyle}">
+                    <ComboBox>
+                        <ComboBoxItem Content="Alice"/>
+                        <ComboBoxItem Content="Bob"/>
+                        <ComboBoxItem Content="Charlie"/>
+                    </ComboBox>
+                </ContentControl>
+
                 <Border>
                     <Grid>
 
@@ -58,14 +66,15 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                    
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Serie" HorizontalContentAlignment="Left" />
+                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Serie"
+                               HorizontalContentAlignment="Left" />
 
                         <ComboBox Grid.Row="1" Grid.Column="0" IsEditable="True"
                                   ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -75,7 +84,8 @@
                                   IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
                         </ComboBox>
 
-                        <buttons:SvgButton Grid.Row="1" Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" Height="25" />
+                        <buttons:SvgButton Grid.Row="1" Grid.Column="1" ImageUri="/Resources/Assets/liste.svg"
+                                           Height="25" />
 
                         <ToggleButton Grid.Row="1" Grid.Column="2" x:Name="ToggleEdit"
                                       VerticalAlignment="Top" HorizontalAlignment="Right"
@@ -86,9 +96,9 @@
                                       Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
                             <materialDesign:PackIcon Kind="NoteEdit" />
                         </ToggleButton>
-                    
+
                     </Grid>
-                    
+
                 </Border>
 
             </StackPanel>
