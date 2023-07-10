@@ -3,8 +3,7 @@
     
     <ResourceDictionary.MergedDictionaries>
         
-        <ResourceDictionary Source="ContentControl/Global.xaml" />
-        <ResourceDictionary Source="Effect/Global.xaml" />
+        <ResourceDictionary Source="HoverBorderStyle.xaml" />
         
     </ResourceDictionary.MergedDictionaries>
     
