@@ -58,7 +58,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBox Grid.Row="0"
-                             IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
+                             IsReadOnly="{Binding IsChecked, Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"
                              materialDesign:HintAssist.Hint="{Binding SeriesTitle, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                              Text="{Binding VBookShelf.BookSeriesTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="16"
