@@ -49,9 +49,7 @@
                          IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
                 </TextBox>
 
-                <ContentControl materialDesign:HintAssist.Hint="Serie"
-                                materialDesign:HintAssist.Background="Chartreuse"
-                                Style="{StaticResource HoverBorderStyle}">
+                <ContentControl materialDesign:HintAssist.Hint="Series" Style="{StaticResource HoverBorderStyle}">
                     <ComboBox>
                         <ComboBoxItem Content="Alice"/>
                         <ComboBoxItem Content="Bob"/>
