@@ -3,13 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
-      xmlns:local="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.Pages"
-      xmlns:buttons="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.Controls.Buttons"
-      xmlns:userControls="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Ui.UserControls"
+      
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      
+      xmlns:converters="clr-namespace:MyCollectionShelf.Wpf.Shelf.Common.Converters"
+      xmlns:addEditBook="clr-namespace:MyCollectionShelf.Wpf.Shelf.Book.Ui.UserControls.AddEditBook"
       mc:Ignorable="d"
 
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -46,58 +44,56 @@
                          Text="{Binding BookData.BookInformations.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="16"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
+                         IsReadOnly="{Binding IsChecked, Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
                 </TextBox>
 
-                <ContentControl materialDesign:HintAssist.Hint="Series" Style="{StaticResource HoverBorderStyle}">
-                    <ComboBox>
-                        <ComboBoxItem Content="Alice"/>
-                        <ComboBoxItem Content="Bob"/>
-                        <ComboBoxItem Content="Charlie"/>
-                    </ComboBox>
-                </ContentControl>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <addEditBook:BookSeries Grid.Column="0" materialDesign:HintAssist.Hint="Serie"
+                                            SeriesList="{Binding SeriesList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                            Series="{Binding BookData.BookInformations.BookSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            IsReadOnly="{Binding IsChecked, Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
+                    </addEditBook:BookSeries>
+                    
+                    <ToggleButton Grid.Column="1" x:Name="ToggleEdit"
+                                  VerticalAlignment="Top" HorizontalAlignment="Right"
+                                  Margin="0, 5, 5, 0"
+                                  Height="50" Width="50"
+                                  IsChecked="False"
 
-                <Border>
-                    <Grid>
+                                  Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
+                        <materialDesign:PackIcon Kind="NoteEdit" />
+                    </ToggleButton>
+                </Grid>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Serie"
-                               HorizontalContentAlignment="Left" />
-
-                        <ComboBox Grid.Row="1" Grid.Column="0" IsEditable="True"
-                                  ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  DisplayMemberPath="Title"
-                                  SelectedItem="{Binding BookData.BookInformations.BookSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  Text="{Binding BookData.BookInformations.BookSeries.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                  IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}">
-                        </ComboBox>
-
-                        <buttons:SvgButton Grid.Row="1" Grid.Column="1" ImageUri="/Resources/Assets/liste.svg"
-                                           Height="25" />
-
-                        <ToggleButton Grid.Row="1" Grid.Column="2" x:Name="ToggleEdit"
-                                      VerticalAlignment="Top" HorizontalAlignment="Right"
-                                      Margin="0, 5, 5, 0"
-                                      Height="50" Width="50"
-                                      IsChecked="False"
-
-                                      Style="{StaticResource MaterialDesignActionSecondaryToggleButton}">
-                            <materialDesign:PackIcon Kind="NoteEdit" />
-                        </ToggleButton>
-
-                    </Grid>
-
-                </Border>
+                <!-- <ContentControl materialDesign:HintAssist.Hint="Series" Style="{StaticResource HoverBorderStyle}"> -->
+                <!--     <Grid> -->
+                <!-- -->
+                <!--         <Grid.ColumnDefinitions> -->
+                <!--             <ColumnDefinition Width="*" /> -->
+                <!--             <ColumnDefinition Width="Auto" /> -->
+                <!--             <ColumnDefinition Width="Auto" /> -->
+                <!--         </Grid.ColumnDefinitions> -->
+                <!-- -->
+                <!--         <ComboBox Grid.Column="0" IsEditable="True" -->
+                <!--                   ItemsSource="{Binding SeriesList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+                <!--                   DisplayMemberPath="Title" -->
+                <!--                   SelectedItem="{Binding BookData.BookInformations.BookSeries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+                <!--                   Text="{Binding BookData.BookInformations.BookSeries.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+                <!--                   IsReadOnly="{Binding IsChecked,Converter={StaticResource BooleanConverter}, ElementName=ToggleEdit, UpdateSourceTrigger=PropertyChanged}"> -->
+                <!--         </ComboBox> -->
+                <!-- -->
+                <!--         <buttons:SvgButton Grid.Column="1" ImageUri="/Resources/Assets/liste.svg" -->
+                <!--                            Height="25" /> -->
+                <!-- -->
+                <!-- -->
+                <!-- -->
+                <!--     </Grid> -->
+                <!-- </ContentControl> -->
 
             </StackPanel>
 
