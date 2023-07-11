@@ -5,101 +5,43 @@
     <Style x:Key="HoverBorderStyle" TargetType="ContentControl">
         <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" />
         <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
-        <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="5, -25" />
+        <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="5, -15" />
+
         <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" />
+
         <Setter Property="Padding" Value="3" />
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
                     <Grid>
+
                         <Border x:Name="OuterBorder" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="2"
                                 Margin="8"
                                 Visibility="Collapsed"
-                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:TextFieldAssist.TextFieldCornerRadius)}">
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                         Path=(materialDesign:TextFieldAssist.TextFieldCornerRadius)}">
                         </Border>
 
                         <Border x:Name="MainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"
                                 Margin="9"
                                 Padding="{TemplateBinding Padding}"
-                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:TextFieldAssist.TextFieldCornerRadius)}">
-                            <Grid>
-                                <TextBox x:Name="TextBox"
-                                         BorderThickness="0"
-                                         Background="Transparent"
-                                         Foreground="{TemplateBinding Foreground}"
-                                         Padding="{TemplateBinding Padding}"
-                                         SnapsToDevicePixels="True"
-                                         Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
-                                         Opacity="0"
-                                         IsHitTestVisible="False">
-                                    <TextBox.Style>
-                                        <Style TargetType="TextBox">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="TextBox">
-                                                        <ScrollViewer x:Name="PART_ContentHost" />
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </TextBox.Style>
-                                </TextBox>
-                                <ContentPresenter />
-                            </Grid>
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                                         Path=(materialDesign:TextFieldAssist.TextFieldCornerRadius)}">
+
+                            <ContentPresenter />
+
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="OuterBorder" Property="Visibility" Value="Visible" />
                         </Trigger>
-                        <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="MainBorder" Property="Background"
-                                    Value="Aqua" />
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!-- <Style x:Key="HoverBorderStyle" TargetType="ContentControl"> -->
-    <!--     <Setter Property="materialDesign:TextFieldAssist.TextFieldCornerRadius" Value="4" /> -->
-    <!--     <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" /> -->
-    <!--     <Setter Property="materialDesign:HintAssist.FloatingOffset" Value="5, -25" /> -->
-    <!-- -->
-    <!--     <Setter Property="BorderBrush" Value="{DynamicResource MaterialDesignTextBoxBorder}" /> -->
-    <!-- -->
-    <!--     <Setter Property="Padding" Value="3" /> -->
-    <!-- -->
-    <!--     <Setter Property="Template"> -->
-    <!--         <Setter.Value> -->
-    <!--             <ControlTemplate TargetType="ContentControl"> -->
-    <!--                 <Grid> -->
-    <!--                     <Border x:Name="OuterBorder" BorderBrush="{TemplateBinding BorderBrush}" -->
-    <!--                             BorderThickness="2" -->
-    <!--                             Margin="8" -->
-    <!--                             Visibility="Collapsed" -->
-    <!--                             CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},  -->
-    <!--                                                                      Path=(materialDesign:TextFieldAssist.TextFieldCornerRadius)}"> -->
-    <!--                     </Border> -->
-    <!-- -->
-    <!--                     <Border x:Name="MainBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" -->
-    <!--                             Margin="9" -->
-    <!--                             Padding="{TemplateBinding Padding}" -->
-    <!--                             CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent},  -->
-    <!--                                                                      Path=(materialDesign:TextFieldAssist.TextFieldCornerRadius)}"> -->
-    <!--                         <ContentPresenter /> -->
-    <!--                     </Border> -->
-    <!--                 </Grid> -->
-    <!--                 <ControlTemplate.Triggers> -->
-    <!--                     <Trigger Property="IsMouseOver" Value="True"> -->
-    <!--                         <Setter TargetName="OuterBorder" Property="Visibility" Value="Visible" /> -->
-    <!--                     </Trigger> -->
-    <!--                 </ControlTemplate.Triggers> -->
-    <!--             </ControlTemplate> -->
-    <!--         </Setter.Value> -->
-    <!--     </Setter> -->
-    <!-- </Style> -->
 
 </ResourceDictionary>
